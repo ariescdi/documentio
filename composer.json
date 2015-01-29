@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "fabpot/php-cs-fixer": "~1.4"
     },
     "scripts": {
         "post-root-package-install": [
