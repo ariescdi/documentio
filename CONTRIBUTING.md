@@ -24,6 +24,11 @@ cs-fix`.
 
 [PHP Coding Standards Fixer]: http://cs.sensiolabs.org/
 
+When writing documentation (including comments), and issues, it's
+appreciated to respect these [English typography guidelines].
+
+[English typography guidelines]: https://github.com/valeriangalliat/typography
+
 Language
 --------
 
