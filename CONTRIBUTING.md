@@ -72,9 +72,11 @@ model][sgbm].
     everything in fact).
 *   Base feature branch from the `develop` branch.
 *   Once a feature is done, open a [pull request] on the GitHub
-    repository, let the other team members review the code, apply fixes
-    if needed, and merge in `develop` once everything is fine. *Leaving
-    a reasonable time frame for code review is important!*
+    repository (be sure you base it on `develop` when creating the pull
+    request, GitHub will choose `master` by default), let the other team
+    members review the code, apply fixes if needed, and merge in
+    `develop` once everything is fine. *Leaving a reasonable time frame
+    for code review is important!*
 *   When a release is ready  merge `develop` in `master`, and add a
     version tag if we decide to do [Versioning](#versioning).
 
