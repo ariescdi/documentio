@@ -7,11 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/app/example", name="homepage")
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $form = $this->createFormBuilder()
+                ->add('text', 'text')
+                ->add('submit', 'submit')
+                ->getForm();
+
+        return $this->render('default/index.html.twig', array(
+                    'form' => $form->createView(),
+        ));
     }
 }

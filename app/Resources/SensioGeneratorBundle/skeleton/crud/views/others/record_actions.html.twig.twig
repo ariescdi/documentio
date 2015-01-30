@@ -1,0 +1,19 @@
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <div class="btn btn-default">    
+            <a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">
+                <i class="glyphicon glyphicon-backward"></i> Back to the list
+            </a>
+        </div>
+        {% if ('edit' in actions) and (not hide_edit) %}
+            <div class="btn btn-default">
+                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': entity."~ identifier ~" }) }}" }}">
+                    <i class="glyphicon glyphicon-edit"></i> Edit
+                </a>
+            </div>
+        {% endif %}
+        {% if ('delete' in actions) and (not hide_delete) %}
+            {{ '{{ form(delete_form) }}' }}
+        {% endif %}
+    </div>
+</div>
