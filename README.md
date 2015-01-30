@@ -1,5 +1,5 @@
-DocumentsIO
-===========
+DocumentIO
+==========
 
 > [Symfony] website to host and browse documents.
 
