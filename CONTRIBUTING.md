@@ -24,6 +24,11 @@ cs-fix`.
 
 [PHP Coding Standards Fixer]: http://cs.sensiolabs.org/
 
+[Symfony Best Practices] is also a nice resource to consider while
+developing on this project.
+
+[Symfony Best Practices]: http://symfony.com/doc/current/best_practices/index.html
+
 When writing documentation (including comments), and issues, it's
 appreciated to respect these [English typography guidelines].
 
