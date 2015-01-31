@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Media</h1>
+
+    <table class="record_properties table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
+        <tbody>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th data-field="name" data-align="right" data-sortable="true">Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th data-field="comment" data-align="right" data-sortable="true">Comment</th>
+                <td>{{ entity.comment }}</td>
+            </tr>
+            <tr>
+                <th data-field="path" data-align="right" data-sortable="true">Path</th>
+                <td>{{ entity.path }}</td>
+            </tr>
+            <tr>
+                <th data-field="creation_date" data-align="right" data-sortable="true">Creation_date</th>
+                <td>{{ entity.creationdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th data-field="update_date" data-align="right" data-sortable="true">Update_date</th>
+                <td>{{ entity.updatedate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th data-field="mark" data-align="right" data-sortable="true">Mark</th>
+                <td>{{ entity.mark }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="btn btn-default">
+                <a href="{{ path('media') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                </a>
+            </div>
+            <div class="btn btn-default">
+                <a href="{{ path('media_edit', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-edit"></i> Edit
+                </a>
+            </div>
+            {{ form(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

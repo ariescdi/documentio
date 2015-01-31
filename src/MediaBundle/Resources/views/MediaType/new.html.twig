@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MediaType creation</h1>
+
+    {{ form(form) }}
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="btn btn-default">
+                <a href="{{ path('mediatype') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

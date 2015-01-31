@@ -1,0 +1,20 @@
+
+<ul class="list-group">
+    {% for m in medias %}
+        <li class="list-group-item" style="cursor: pointer" title="{{ m.name }}" onclick="window.location.href = '{{ path('media_display', { 'id': m.id }) }}';">
+            <button class="btn btn-primary text-left" type="button" style='width: 100%'>
+                {{ m.name[:11] }}
+                <span class="badge" style="
+                      {% if m.mark == 0 %}
+                          color: blue;
+                      {% elseif m.mark > 0 %}
+                          color: green;
+                      {% else %}
+                          color: red;
+                      {% endif %}
+                      ">{{ m.mark }}</span>
+            </button>
+            {{ m.comment }}
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Configure dropped files</h1>
+    {% for data in datas %}
+        <div class="well">
+            <h2>{{ data.filename }} configuration</h2>
+            {{ form(data.form) }}
+        </div>
+    {% endfor %}
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="btn btn-default">
+                <a href="{{ path('media') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
