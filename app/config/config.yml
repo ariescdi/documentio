@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -29,6 +29,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
 
 # Assetic Configuration
 assetic:
@@ -42,6 +44,20 @@ assetic:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+    assets:
+        main_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css
+            filters:
+                - cssrewrite
+            output: css/main.css
+        main_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/jquery/jquery/*
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
+            output: js/main.js
 
 # Doctrine Configuration
 doctrine:
@@ -62,8 +78,24 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        auto_mapping: true 
 
+knp_gaufrette:
+    adapters:
+        dio:
+            local:
+                directory: %dio_directory%
+    filesystems:
+        dio:
+            adapter:    dio
+            alias:      fs.dio
+            
+# FOSUser Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: MediaBundle\Entity\User
+    
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
