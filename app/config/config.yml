@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -55,8 +55,8 @@ assetic:
             output: css/main.css
         main_js:
             inputs:
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../vendor/jquery/jquery/*
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
             output: js/main.js
 
 # Doctrine Configuration
@@ -78,8 +78,24 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        auto_mapping: true 
 
+knp_gaufrette:
+    adapters:
+        dio:
+            local:
+                directory: %dio_directory%
+    filesystems:
+        dio:
+            adapter:    dio
+            alias:      fs.dio
+            
+# FOSUser Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: MediaBundle\Entity\User
+    
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

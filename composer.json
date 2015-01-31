@@ -32,7 +32,10 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "twbs/bootstrap": "3.*",
-        "jquery/jquery": "1.10.*"
+        "jquery/jquery": "1.10.*",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "knplabs/knp-gaufrette-bundle": "*@dev",
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

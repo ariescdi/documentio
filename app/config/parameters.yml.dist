@@ -18,3 +18,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Ensure 'dio_directory' is www-data writable
+    dio_directory: /full/path/to/your/media/directory

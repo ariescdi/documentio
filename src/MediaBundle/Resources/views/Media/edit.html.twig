@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Media edit</h1>
+
+    {{ form(edit_form) }}
+
+        <div class="btn-toolbar">
+    <div class="btn-group">
+        <div class="btn btn-default">    
+            <a href="{{ path('media') }}">
+                <i class="glyphicon glyphicon-backward"></i> Back to the list
+            </a>
+        </div>
+                            {{ form(delete_form) }}
+            </div>
+</div>{% endblock %}
