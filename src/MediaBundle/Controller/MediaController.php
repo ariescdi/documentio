@@ -20,6 +20,11 @@ use MediaBundle\Form\MediaType;
 class MediaController extends Controller
 {
 
+    private static function getUploadRoot()
+    {
+        return 'uploads/dio';
+    }
+
     /**
      * Finds and displays a Media entity.
      *
@@ -79,25 +84,26 @@ class MediaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $kw_repo = $em->getRepository('MediaBundle:MediaKeyword');
+        $kwRepo = $em->getRepository('MediaBundle:MediaKeyword');
 
+        // preg_replace : ponctuation -> space
         $keywords = array_merge($keywords, explode(' ', preg_replace('/[^\s\p{L}]/u', ' ', $entity->getName())));
         $keywords = array_merge($keywords, explode(' ', preg_replace('/[^\s\p{L}]/u', ' ', $entity->getComment())));
 
         foreach ($keywords as $k) {
             $k = strtolower($k);
             if (strlen($k)) {
-                /** @var Aries\Site\MediaBundle\Entity\MediaKeyword $kw_entity */
-                $kw_entity = $kw_repo->findOneBy(array(
+                /** @var Aries\Site\MediaBundle\Entity\MediaKeyword $kwEntity */
+                $kwEntity = $kwRepo->findOneBy(array(
                     'word' => $k,
                 ));
-                if (!$kw_entity) {
-                    $kw_entity = new MediaKeyword();
-                    $kw_entity->setWord($k);
+                if (!$kwEntity) {
+                    $kwEntity = new MediaKeyword();
+                    $kwEntity->setWord($k);
                 }
-                $kw_entity->addMedia($entity);
-                $entity->addKeyword($kw_entity);
-                $em->persist($kw_entity);
+                $kwEntity->addMedia($entity);
+                $entity->addKeyword($kwEntity);
+                $em->persist($kwEntity);
                 $em->flush();
             }
         }
@@ -112,7 +118,7 @@ class MediaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $media_repo = $em->getRepository('MediaBundle:Media');
+        $mediaRepo = $em->getRepository('MediaBundle:Media');
 
         $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('media_search'))
@@ -127,7 +133,7 @@ class MediaController extends Controller
         if ($form->isValid()) {
             $keywords = $form->get('search')->getData();
             $keywords = explode(" ", $keywords);
-            $result = $media_repo->findByKeywords($keywords);
+            $result = $mediaRepo->findByKeywords($keywords);
 
             return $this->render('MediaBundle:Media:index.html.twig', array('entities' => $result));
         }
@@ -183,9 +189,9 @@ class MediaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $media_category = $em->getRepository('MediaBundle:MediaCategory')->find($id);
+        $mediaCategory = $em->getRepository('MediaBundle:MediaCategory')->find($id);
 
-        return $this->render('MediaBundle:Media:index.html.twig', array('entities' => $media_category->getMedias()));
+        return $this->render('MediaBundle:Media:index.html.twig', array('entities' => $mediaCategory->getMedias()));
     }
 
     /**
@@ -222,7 +228,7 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $f->move('uploads/dio/'.$entity->getCategory()->getName(),
+            $f->move( MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
                      $entity->getId().'_'.$fname);
             $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
@@ -325,7 +331,7 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $f->move('uploads/dio/'.$entity->getCategory()->getName(),
+            $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
                      $entity->getId().'_'.$fname);
             $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
@@ -472,7 +478,7 @@ class MediaController extends Controller
             throw $this->createNotFoundException('Unable to find Media entity.');
         }
 
-        $original_category = $entity->getCategory()->getId();
+        $originalCategory = $entity->getCategory()->getId();
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
@@ -483,20 +489,20 @@ class MediaController extends Controller
                 $f = $entity->getFile();
 
                 $fname = $f->getClientOriginalName();
-                $f->move('uploads/dio/'.$entity->getCategory()->getName(),
+                $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
                          $entity->getId().'_'.$fname);
                 $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
                 $em->persist($entity);
-            } elseif ($original_category != $entity->getCategory()->getId()) {
+            } elseif ($originalCategory != $entity->getCategory()->getId()) {
                 /* @var $f \Symfony\Component\HttpFoundation\File\File */
-                $f = new \Symfony\Component\HttpFoundation\File\File('uploads/dio/'.$entity->getPath());
+                $f = new \Symfony\Component\HttpFoundation\File\File(MediaController::getUploadRoot() . '/' .$entity->getPath());
                 if ($f == null) {
                     throw $this->createNotFoundException();
                 }
 
                 $fname = $f->getBasename();
-                $f->move('uploads/dio/'.$entity->getCategory()->getName(),
+                $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
                          $fname);
                 $entity->setPath($entity->getCategory()->getName().'/'.$fname);
             }

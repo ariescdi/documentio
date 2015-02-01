@@ -102,14 +102,14 @@ WHERE m.id IN (
             $q->setParameter($ii+1, strtolower($keywords[$ii]));
         }
 
-        $tmp_medias = $q->getResult();
+        $tmpMedias = $q->getResult();
 
         // clear entity manager for Media
         $this->getEntityManager()->clear('Aries\Site\MediaBundle\Entity\Media');
 
         $ids = array();
 
-        foreach ($tmp_medias as $m) {
+        foreach ($tmpMedias as $m) {
             $ids[] = $m->getId();
         }
 

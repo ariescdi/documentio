@@ -74,7 +74,7 @@ class Media
      * @ORM\Column(name="creation_date", type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
-    private $creation_date;
+    private $creationDate;
 
     /**
      * @var DateTime
@@ -82,7 +82,7 @@ class Media
      * @ORM\Column(name="update_date", type="datetime")
      * @Gedmo\Timestampable(on="update")
      */
-    private $update_date;
+    private $updateDate;
 
     /**
      * @var MediaKeyword[]|ArrayCollection
@@ -214,49 +214,49 @@ class Media
     }
 
     /**
-     * Set creation_date
+     * Set creationDate
      *
      * @param  \DateTime $creationDate
      * @return Media
      */
     public function setCreationDate($creationDate)
     {
-        $this->creation_date = $creationDate;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     /**
-     * Get creation_date
+     * Get creationDate
      *
      * @return \DateTime
      */
     public function getCreationDate()
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
     /**
-     * Set update_date
+     * Set updateDate
      *
      * @param  \DateTime $updateDate
      * @return Media
      */
     public function setUpdateDate($updateDate)
     {
-        $this->update_date = $updateDate;
+        $this->updateDate = $updateDate;
 
         return $this;
     }
 
     /**
-     * Get update_date
+     * Get updateDate
      *
      * @return \DateTime
      */
     public function getUpdateDate()
     {
-        return $this->update_date;
+        return $this->updateDate;
     }
     /**
      * Constructor

@@ -20,25 +20,25 @@ class MediaType extends AbstractType
             foreach ($entity->getKeywords() as $k) {
                 $tmp[] = $k->getWord();
             }
-            $default_keywords = implode(' ', $tmp);
-            $file_required = false;
+            $defaultKeywords = implode(' ', $tmp);
+            $fileRequired = false;
         } else {
-            $default_keywords = "";
-            $file_required = true;
+            $defaultKeywords = "";
+            $fileRequired = true;
         }
 
         $builder
             ->add('name')
             ->add('comment', 'textarea')
             ->add('file', 'file', array('label' => 'File',
-                    'required' => $file_required,
+                    'required' => $fileRequired,
                 ))
             //->add('creation_date')
             //->add('update_date')
             ->add('category')
             ->add('type')
             ->add('keywords', 'text', array(
-                'data' => $default_keywords,
+                'data' => $defaultKeywords,
                 'required' => false,
                 'mapped' => false,
             ))
