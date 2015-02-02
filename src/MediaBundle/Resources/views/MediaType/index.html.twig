@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MediaType list</h1>
+
+    <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
+        <thead>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Id</th>
+                <th data-field="name" data-align="right" data-sortable="true">Name</th>
+                <th data-field="ext" data-align="right" data-sortable="true">Ext</th>
+                <th data-field="comment" data-align="right" data-sortable="true">Comment</th>
+                <th data-field="mimetype" data-align="right" data-sortable="true">Mimetype</th>
+                <th data-field="actions" data-align="center" data-sortable="false">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('mediatype_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.ext }}</td>
+                    <td>{{ entity.comment }}</td>
+                    <td>{{ entity.mimetype }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-edit icon-white"></i> Actions</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ path('mediatype_show', { 'id': entity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('mediatype_edit', { 'id': entity.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="btn btn-default">
+        <a href="{{ path('mediatype_new') }}">
+            <i class="glyphicon glyphicon-plus"></i> Create a new entry
+        </a>
+    </div>
+{% endblock %}

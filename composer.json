@@ -17,6 +17,17 @@
                     "type": "file"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "dropzone/dropzone",
+                "version": "1.1",
+                "dist": {
+                    "url": "https://raw.githubusercontent.com/enyo/dropzone/master/dist/dropzone.js",
+                    "type": "file"
+                }
+            }
         }
     ],
     "require": {
@@ -32,7 +43,11 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "twbs/bootstrap": "3.*",
-        "jquery/jquery": "1.10.*"
+        "jquery/jquery": "1.10.*",
+        "dropzone/dropzone": "1.1",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
