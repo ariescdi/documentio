@@ -26,6 +26,18 @@ Installation
 git clone https://github.com/ariescdi/documentsio.git
 cd documentsio
 composer install
+
+# When asked, configure parameters according to your setup. It's
+# preconfigured to use a SQLite database in `app/data` which is ideal
+# for development.
+
+app/console doctrine:schema:create # Create the database.
+app/console doctrine:fixtures:load # Load fixtures (default data).
+app/console assets:install --symlink --relative # Symlink assets in `web` directory.
+app/console assetic:dump # Compile assets.
+
+# Run a PHP built-in server.
+app/console server:run
 ```
 
 Contributing
