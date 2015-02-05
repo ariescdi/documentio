@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * MediaKeyWord
  *
- * @ORM\Table(name="dio_mediakeyword",indexes={@ORM\Index(name="search_idx", columns={"word"})})
+ * @ORM\Table(name="dio_mediakeyword", indexes={@ORM\Index(name="search_idx", columns={"word"})})
  * @ORM\Entity
  */
 class MediaKeyword
@@ -17,7 +17,7 @@ class MediaKeyword
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer", name="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,19 +26,20 @@ class MediaKeyword
     /**
      * @var string
      *
-     * @ORM\Column(name="word", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false, name="word")
      */
     private $word;
 
     /**
      * @var Media[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Media",inversedBy="keywords",cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="MediaBundle\Entity\Media", inversedBy="keywords", cascade={"remove"})
      *
-     * @ORM\JoinTable(name="dio_mediakeywords_media",
-     *      joinColumns={@ORM\JoinColumn(name="keyword_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="CASCADE")}
-     *      )
+     * @ORM\JoinTable(
+     *     name="dio_mediakeywords_media",
+     *     joinColumns={@ORM\JoinColumn(name="keyword_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="CASCADE")}
+     * )
      */
     private $medias;
 

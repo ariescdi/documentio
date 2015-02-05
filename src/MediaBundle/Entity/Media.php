@@ -17,7 +17,7 @@ class Media
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer", name="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,7 +26,7 @@ class Media
     /**
      * @var MediaCategory
      *
-     * @ORM\ManyToOne(targetEntity="MediaCategory", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="MediaBundle\Entity\MediaCategory", inversedBy="medias")
      * @ORM\JoinColumn(name="mediacategory_id", referencedColumnName="id", nullable=false)
      */
     private $category;
@@ -34,14 +34,14 @@ class Media
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="MediaBundle\Entity\User", inversedBy="medias")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)     *
      */
     private $owner;
 
     /**
      * @var MediaType
-     * @ORM\ManyToOne(targetEntity="MediaType", inversedBy="medias")
+     * @ORM\ManyToOne(targetEntity="MediaBundle\Entity\MediaType", inversedBy="medias")
      * @ORM\JoinColumn(name="mediatype_id", referencedColumnName="id", nullable=false)
      */
     private $type;
@@ -49,21 +49,21 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128, nullable=false)
+     * @ORM\Column(type="string", length=128, nullable=false, name="name")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false, name="comment")
      */
     private $comment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=128, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false, name="path")
      * @Gedmo\UploadableFilePath
      */
     private $path;
@@ -71,7 +71,7 @@ class Media
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="creation_date", type="datetime")
+     * @ORM\Column(type="datetime", nullable=true, name="creation_date")
      * @Gedmo\Timestampable(on="create")
      */
     private $creationDate;
@@ -79,7 +79,7 @@ class Media
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="update_date", type="datetime")
+     * @ORM\Column(type="datetime", nullable=true, name="update_date")
      * @Gedmo\Timestampable(on="update")
      */
     private $updateDate;
@@ -87,12 +87,12 @@ class Media
     /**
      * @var MediaKeyword[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="MediaKeyword",mappedBy="medias",cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="MediaBundle\Entity\MediaKeyword", mappedBy="medias", cascade={"remove"})
      */
     private $keywords;
 
     /**
-     * @ORM\Column(name="mark",type="integer")
+     * @ORM\Column(type="integer", nullable=true, name="mark")
      */
     private $mark = 0;
 

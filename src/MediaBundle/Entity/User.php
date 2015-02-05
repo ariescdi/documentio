@@ -20,7 +20,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="MediaBundle\Entity\Media", mappedBy="owner")
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;

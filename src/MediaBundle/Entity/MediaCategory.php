@@ -16,7 +16,7 @@ class MediaCategory
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer", name="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -25,19 +25,19 @@ class MediaCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128, unique=true)
+     * @ORM\Column(type="string", unique=true, length=128, nullable=true, name="name")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512)
+     * @ORM\Column(type="string", length=255, nullable=true, name="comment")
      */
     private $comment;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="MediaBundle\Entity\Media", mappedBy="category")
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;

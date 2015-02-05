@@ -16,7 +16,7 @@ class MediaType
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer", name="id")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -25,33 +25,33 @@ class MediaType
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128, unique=true)
+     * @ORM\Column(type="string", unique=true, length=128, nullable=true, name="name")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ext", type="string", length=32, unique=true)
+     * @ORM\Column(type="string", unique=true, length=32, nullable=true, name="ext")
      */
     private $ext;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512, unique=true)
+     * @ORM\Column(type="string", unique=true, length=255, nullable=true, name="comment")
      */
     private $comment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mimetype", type="string", length=128, nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=true, name="mimetype")
      */
     private $mimetype;
 
     /**
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="MediaBundle\Entity\Media", mappedBy="type")
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;
