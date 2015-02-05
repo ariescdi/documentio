@@ -39,7 +39,7 @@ class MediaType
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512, unique=true)
+     * @ORM\Column(name="comment", type="string", length=255, unique=true)
      */
     private $comment;
 

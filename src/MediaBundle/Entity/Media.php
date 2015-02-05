@@ -56,14 +56,14 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512, nullable=false)
+     * @ORM\Column(name="comment", type="string", length=255, nullable=false)
      */
     private $comment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=128, nullable=false)
+     * @ORM\Column(name="path", type="string", length=255, nullable=false)
      * @Gedmo\UploadableFilePath
      */
     private $path;

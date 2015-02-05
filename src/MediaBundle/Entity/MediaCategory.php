@@ -32,7 +32,7 @@ class MediaCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=512)
+     * @ORM\Column(name="comment", type="string", length=255)
      */
     private $comment;
 
