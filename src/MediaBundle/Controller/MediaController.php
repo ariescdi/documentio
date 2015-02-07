@@ -228,7 +228,7 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $f->move( MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
+            $f->move(MediaController::getUploadRoot().'/'.$entity->getCategory()->getName(),
                      $entity->getId().'_'.$fname);
             $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
@@ -331,7 +331,7 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
+            $f->move(MediaController::getUploadRoot().'/'.$entity->getCategory()->getName(),
                      $entity->getId().'_'.$fname);
             $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
@@ -489,20 +489,20 @@ class MediaController extends Controller
                 $f = $entity->getFile();
 
                 $fname = $f->getClientOriginalName();
-                $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
+                $f->move(MediaController::getUploadRoot().'/'.$entity->getCategory()->getName(),
                          $entity->getId().'_'.$fname);
                 $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
 
                 $em->persist($entity);
             } elseif ($originalCategory != $entity->getCategory()->getId()) {
                 /* @var $f \Symfony\Component\HttpFoundation\File\File */
-                $f = new \Symfony\Component\HttpFoundation\File\File(MediaController::getUploadRoot() . '/' .$entity->getPath());
+                $f = new \Symfony\Component\HttpFoundation\File\File(MediaController::getUploadRoot().'/'.$entity->getPath());
                 if ($f == null) {
                     throw $this->createNotFoundException();
                 }
 
                 $fname = $f->getBasename();
-                $f->move(MediaController::getUploadRoot() . '/' .$entity->getCategory()->getName(),
+                $f->move(MediaController::getUploadRoot().'/'.$entity->getCategory()->getName(),
                          $fname);
                 $entity->setPath($entity->getCategory()->getName().'/'.$fname);
             }
