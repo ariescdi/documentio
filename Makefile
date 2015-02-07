@@ -11,4 +11,4 @@ cs-diff:
 	php-cs-fixer fix src --dry-run --diff
 
 cs-fix:
-	php-cs-fixer fix src || :
+	-php-cs-fixer fix src
