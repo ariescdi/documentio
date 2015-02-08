@@ -100,7 +100,7 @@ doctrine:
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
                 alias: GedmoTree # this one is optional and will default to the name set for the mapping
                 is_bundle: false
-                        
+
 stof_doctrine_extensions:
     default_locale: %locale%
 
@@ -117,14 +117,14 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
-            uploadable: true 
+            uploadable: true
 
 # FOSUser Configuration
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: MediaBundle\Entity\User
-    
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
