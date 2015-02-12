@@ -23,8 +23,8 @@ Installation
 ------------
 
 ```sh
-git clone https://github.com/ariescdi/documentsio.git
-cd documentsio
+git clone https://github.com/ariescdi/documentio.git
+cd documentio
 composer install
 
 # When asked, configure parameters according to your setup. It's
