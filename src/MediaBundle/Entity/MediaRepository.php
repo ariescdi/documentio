@@ -93,7 +93,7 @@ WHERE m.id IN (
         */
 
         $rsm = new ResultSetMapping();
-        $rsm->addEntityResult('Aries\Site\MediaBundle\Entity\Media', 'm');
+        $rsm->addEntityResult('MediaBundle\Entity\Media', 'm');
         $rsm->addFieldResult('m', 'id', 'id');
 
         $q = $this->getEntityManager()->createNativeQuery($sql, $rsm);
@@ -105,7 +105,7 @@ WHERE m.id IN (
         $tmpMedias = $q->getResult();
 
         // clear entity manager for Media
-        $this->getEntityManager()->clear('Aries\Site\MediaBundle\Entity\Media');
+        $this->getEntityManager()->clear('MediaBundle\Entity\Media');
 
         $ids = array();
 

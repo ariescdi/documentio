@@ -1,15 +1,15 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaKeyword creation</h1>
+    <h1>Créer un nouveau mot clef</h1>
 
-    {{ form(form) }}
 
+ {{ form(form) }}
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">
                 <a href="{{ path('mediakeyword') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
                 </a>
             </div>
         </div>

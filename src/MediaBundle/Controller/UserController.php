@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use MediaBundle\Entity\MediaType;
-use MediaBundle\Form\MediaTypeType;
+use MediaBundle\Entity\User;
+use MediaBundle\Form\UserType;
 
 /**
- * MediaType controller.
+ * User controller.
  *
- * @Route("/mediatype")
+ * @Route("/user")
  */
-class MediaTypeController extends Controller
+class UserController extends Controller
 {
 
     /**
-     * Lists all MediaType entities.
+     * Lists all User entities.
      *
-     * @Route("/", name="mediatype")
+     * @Route("/", name="user")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class MediaTypeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:MediaType')->findAll();
+        $entities = $em->getRepository('MediaBundle:User')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new MediaType entity.
+     * Creates a new User entity.
      *
-     * @Route("/", name="mediatype_create")
+     * @Route("/", name="user_create")
      * @Method("POST")
-     * @Template("MediaBundle:MediaType:new.html.twig")
+     * @Template("MediaBundle:User:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new MediaType();
+        $entity = new User();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +53,7 @@ class MediaTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('mediatype_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,34 +63,34 @@ class MediaTypeController extends Controller
     }
 
     /**
-     * Creates a form to create a MediaType entity.
+     * Creates a form to create a User entity.
      *
-     * @param MediaType $entity The entity
+     * @param User $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(MediaType $entity)
+    private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new MediaTypeType(), $entity, array(
-            'action' => $this->generateUrl('mediatype_create'),
+        $form = $this->createForm(new UserType(), $entity, array(
+            'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new MediaType entity.
+     * Displays a form to create a new User entity.
      *
-     * @Route("/new", name="mediatype_new")
+     * @Route("/new", name="user_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new MediaType();
+        $entity = new User();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +100,9 @@ class MediaTypeController extends Controller
     }
 
     /**
-     * Finds and displays a MediaType entity.
+     * Finds and displays a User entity.
      *
-     * @Route("/{id}", name="mediatype_show")
+     * @Route("/{id}", name="user_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +110,10 @@ class MediaTypeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:MediaType')->find($id);
+        $entity = $em->getRepository('MediaBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find MediaType entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +125,9 @@ class MediaTypeController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing MediaType entity.
+     * Displays a form to edit an existing User entity.
      *
-     * @Route("/{id}/edit", name="mediatype_edit")
+     * @Route("/{id}/edit", name="user_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,10 +135,10 @@ class MediaTypeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:MediaType')->find($id);
+        $entity = $em->getRepository('MediaBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find MediaType entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -152,38 +152,38 @@ class MediaTypeController extends Controller
     }
 
     /**
-     * Creates a form to edit a MediaType entity.
-     *
-     * @param MediaType $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createEditForm(MediaType $entity)
+    * Creates a form to edit a User entity.
+    *
+    * @param User $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(User $entity)
     {
-        $form = $this->createForm(new MediaTypeType(), $entity, array(
-            'action' => $this->generateUrl('mediatype_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new UserType(), $entity, array(
+            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
     /**
-     * Edits an existing MediaType entity.
+     * Edits an existing User entity.
      *
-     * @Route("/{id}", name="mediatype_update")
+     * @Route("/{id}", name="user_update")
      * @Method("PUT")
-     * @Template("MediaBundle:MediaType:edit.html.twig")
+     * @Template("MediaBundle:User:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:MediaType')->find($id);
+        $entity = $em->getRepository('MediaBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find MediaType entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -193,7 +193,7 @@ class MediaTypeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('mediatype_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 
         return array(
@@ -203,27 +203,33 @@ class MediaTypeController extends Controller
         );
     }
     /**
-     * Deletes a MediaType entity.
+     * Deletes a User entity.
      *
-     * @Route("/delete/{id}", name="mediatype_delete")
-    * @Method({"DELETE","GET"})
+     * @Route("/{id}", name="user_delete")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('MediaBundle:MediaType')->find($id);
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find MediaType entity.');
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('MediaBundle:User')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find User entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
         }
 
-        $em->remove($entity);
-        $em->flush();
-        return $this->redirect($this->generateUrl('mediatype'));
+        return $this->redirect($this->generateUrl('user'));
     }
 
     /**
-     * Creates a form to delete a MediaType entity by id.
+     * Creates a form to delete a User entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -232,7 +238,7 @@ class MediaTypeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('mediatype_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

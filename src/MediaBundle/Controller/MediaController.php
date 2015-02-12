@@ -126,6 +126,12 @@ class MediaController extends Controller
                 ->add('search', 'search', array(
                     'label' => false,
                 ))
+                ->add('submit', 'submit', array(
+                    'label' => ' ',
+                    'attr' => array(
+                        'class' => 'glyphicon glyphicon-search',
+                    ),
+                ))
                 ->getForm();
 
         $form->handleRequest($request);
@@ -209,7 +215,7 @@ class MediaController extends Controller
         ));
         $form->remove('file');
         $form->add('tmpfile', 'hidden', array('mapped' => false));
-        $form->add('submit', 'submit', array('label' => 'configure'));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
         $form->handleRequest($request);
         if ($form->isValid()) {
             $fname = $form->get('tmpfile')->getData();
@@ -272,7 +278,7 @@ class MediaController extends Controller
 
             $form->remove('file');
             $form->add('tmpfile', 'hidden', array('mapped' => false, 'data' => $f->getClientOriginalName()));
-            $form->add('submit', 'submit', array('label' => 'configure'));
+            $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
             $data = array();
             $data['filename'] = $f->getClientOriginalName();
             $data['form'] = $form->createView();
@@ -366,7 +372,7 @@ class MediaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -455,7 +461,7 @@ class MediaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -525,26 +531,20 @@ class MediaController extends Controller
     /**
      * Deletes a Media entity.
      *
-     * @Route("/{id}", name="media_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="media_delete")
+     * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MediaBundle:Media')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Media entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Media entity.');
         }
 
+        $em->remove($entity);
+        $em->flush();
         return $this->redirect($this->generateUrl('media'));
     }
 

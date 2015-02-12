@@ -1,7 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaCategory</h1>
+    <h1>Catégorie de média</h1>
 
     <table class="record_properties table table-hover" data-sort-name="name" data-sort-order="id">
         <tbody>
@@ -10,11 +10,11 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th data-field="name" data-align="right" data-sortable="true">Name</th>
+                <th data-field="name" data-align="right" data-sortable="true">Nom</th>
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
-                <th data-field="comment" data-align="right" data-sortable="true">Comment</th>
+                <th data-field="comment" data-align="right" data-sortable="true">Commentaire</th>
                 <td>{{ entity.comment }}</td>
             </tr>
         </tbody>
@@ -23,16 +23,20 @@
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">
-                <a href="{{ path('mediacategory') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                <a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-edit"></i> Editer
                 </a>
             </div>
             <div class="btn btn-default">
-                <a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-edit"></i> Edit
+                <a href="{{ path('mediacategory_delete', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-backward"></i> Supprimer
                 </a>
             </div>
-            {{ form(delete_form) }}
+            <div class="btn btn-default">
+                <a href="{{ path('mediacategory') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

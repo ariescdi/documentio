@@ -1,16 +1,12 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaKeyword</h1>
+    <h1>Mot clef</h1>
 
     <table class="record_properties table table-hover" data-sort-name="name" data-sort-order="id">
         <tbody>
             <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th data-field="word" data-align="right" data-sortable="true">Word</th>
+                <th data-field="word" data-align="right" data-sortable="true">Mot</th>
                 <td>{{ entity.word }}</td>
             </tr>
         </tbody>
@@ -19,16 +15,20 @@
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">
-                <a href="{{ path('mediakeyword') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                <a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-edit"></i> Editer
                 </a>
             </div>
             <div class="btn btn-default">
-                <a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-edit"></i> Edit
+                <a href="{{ path('mediakeyword_delete', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-backward"></i> Supprimer
                 </a>
             </div>
-            {{ form(delete_form) }}
+             <div class="btn btn-default">
+                <a href="{{ path('mediakeyword') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

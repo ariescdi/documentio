@@ -1,0 +1,51 @@
+{% extends '::base_admin.html.twig' %}
+
+{% block body -%}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
+        <thead>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Id</th>
+                <th data-field="username" data-align="right" data-sortable="true">Nom utilisateur</th>
+                <th data-field="username" data-align="right" data-sortable="true">Rôle</th>
+                <th data-field="username" data-align="right" data-sortable="true">Email</th>
+                <th data-field="actions" data-align="center" data-sortable="false">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>
+                    {% for role in entity.roles %}
+                        {{ role }}&nbsp;
+                    {% endfor %}
+                </td>
+                <td>{{ entity.email }}</td>
+                <td>
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-edit icon-white"></i> Actions</a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('user_show', { 'id': entity.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <div class="btn btn-default">
+        <a href="{{ path('fos_user_registration_register') }}">
+            <i class="glyphicon glyphicon-plus"></i> Créé un nouvel utilisateur
+        </a>
+    </div>
+    {% endblock %}

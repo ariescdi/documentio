@@ -6,19 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MediaKeywordType extends AbstractType
+class UserType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('word','text',array('label'=>'Mot'))
-            ->add('medias')
-        ;
-    }
 
     /**
      * @param OptionsResolverInterface $resolver
@@ -26,7 +15,7 @@ class MediaKeywordType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MediaBundle\Entity\MediaKeyword',
+            'data_class' => 'MediaBundle\Entity\User'
         ));
     }
 
@@ -35,6 +24,6 @@ class MediaKeywordType extends AbstractType
      */
     public function getName()
     {
-        return 'mediabundle_mediakeyword';
+        return 'mediabundle_user';
     }
 }

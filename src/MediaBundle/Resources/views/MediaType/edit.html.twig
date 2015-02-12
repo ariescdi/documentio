@@ -1,7 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaType edit</h1>
+    <h1>Edition d'un type de média</h1>
 
     {{ form(edit_form) }}
 
@@ -9,10 +9,14 @@
         <div class="btn-group">
             <div class="btn btn-default">
                 <a href="{{ path('mediatype') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
                 </a>
             </div>
-            {{ form(delete_form) }}
+            <div class="btn btn-default">
+                <a href="{{ path('mediatype_delete', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-backward"></i> Supprimer
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

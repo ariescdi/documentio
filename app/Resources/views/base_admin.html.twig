@@ -9,13 +9,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% include '::header.html.twig' %}
+        {% include '::header_admin.html.twig' %}
         <div class="container">
-            <aside class="col-lg-3">
-                {{ render(path('getbestmark',{'count':2})) }}
-                {{ render(path('getlast',{'count':2})) }}
-            </aside>
-            <section class="col-lg-9">
+            <section class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {% block body %}{% endblock %}

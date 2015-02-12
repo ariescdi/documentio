@@ -1,11 +1,11 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    prefix: /
+    prefix: /admin
 
 media:
     resource: "@MediaBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 
 app:
     resource: @AppBundle/Controller/

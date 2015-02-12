@@ -1,0 +1,12 @@
+<footer class="jumbotron " >
+	<div class="container">
+	<p>
+		toto<br />
+		tata<br />
+		titi<br />
+	</p>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('admin_index') }}">admin</a>
+	{% endif %}
+</div>
+</footer>

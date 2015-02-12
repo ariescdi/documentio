@@ -76,7 +76,7 @@ class MediaKeywordController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -165,7 +165,7 @@ class MediaKeywordController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -205,26 +205,19 @@ class MediaKeywordController extends Controller
     /**
      * Deletes a MediaKeyword entity.
      *
-     * @Route("/{id}", name="mediakeyword_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="mediakeyword_delete")
+     * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MediaBundle:MediaKeyword')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find MediaKeyword entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        // $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('MediaBundle:MediaKeyword')->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find MediaKeyword entity.');
         }
-
+        $em->remove($entity);
+        $em->flush();
         return $this->redirect($this->generateUrl('mediakeyword'));
     }
 
@@ -240,7 +233,7 @@ class MediaKeywordController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('mediakeyword_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class' => 'btn btn-default')))
             ->getForm()
         ;
     }
