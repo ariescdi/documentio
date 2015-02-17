@@ -284,7 +284,7 @@ class Media
      *
      * @param MediaKeyword $keyword
      */
-    public function removeKeyword(MediaKeywords $keyword)
+    public function removeKeyword(MediaKeyword $keyword)
     {
         $this->keywords->removeElement($keyword);
     }

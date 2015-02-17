@@ -97,11 +97,11 @@ class MediaKeyword
     /**
      * Remove medias
      *
-     * @param \Aries\Site\MediaBundle\Entity\Media $medias
+     * @param Media $media
      */
-    public function removeMedia(\Aries\Site\MediaBundle\Entity\Media $medias)
+    public function removeMedia(Media $media)
     {
-        $this->medias->removeElement($medias);
+        $this->medias->removeElement($media);
     }
 
     public function __toString()
