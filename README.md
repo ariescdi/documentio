@@ -40,6 +40,15 @@ app/console assetic:dump # Compile assets.
 app/console server:run
 ```
 
+Deployment
+----------
+
+```
+composer install --no-dev --optimize-autoloader
+app/console cache:clear --env=prod --no-debug
+app/console assetic:dump --env=prod --no-debug
+```
+
 Contributing
 ------------
 
