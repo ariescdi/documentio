@@ -37,7 +37,7 @@ class MediaController extends Controller
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Media entity.');
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
 
         return $this->render('MediaBundle:Media:display.html.twig', array(
@@ -303,6 +303,12 @@ class MediaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->findBy(array(), array('isPublished' => 'asc'));
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            1/*limit per page*/
+        );
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
             'entities' => $entities,
@@ -423,7 +429,7 @@ class MediaController extends Controller
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Media entity.');
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -448,7 +454,7 @@ class MediaController extends Controller
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Media entity.');
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -499,7 +505,7 @@ class MediaController extends Controller
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Media entity.');
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
 
         $originalCategory = $entity->getCategory()->getId();
@@ -558,7 +564,7 @@ class MediaController extends Controller
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Media entity.');
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
 
         $em->remove($entity);

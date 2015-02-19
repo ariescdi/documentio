@@ -48,7 +48,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "stof/doctrine-extensions-bundle": "~1.1",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "knplabs/knp-paginator-bundle": "~2.4"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"
