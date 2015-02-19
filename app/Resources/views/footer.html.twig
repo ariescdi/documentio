@@ -6,7 +6,7 @@
 		titi<br />
 	</p>
     <a href="{{ path('fos_user_security_login') }}">Admin</a>
-	{% if is_granted('ROLE_ADMIN') %}
+	{% if is_granted('ROLE_USER') %}
 		<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
 	{% endif %}
 </div>
