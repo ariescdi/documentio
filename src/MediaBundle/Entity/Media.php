@@ -97,6 +97,11 @@ class Media
     private $mark = 0;
 
     /**
+     * @ORM\Column(name="is_published",type="boolean")
+     */
+    private $isPublished = false;
+
+    /**
      * Get id
      *
      * @return integer
@@ -358,5 +363,41 @@ class Media
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set mark
+     *
+     * @param  integer $mark
+     * @return Media
+     */
+    public function setMark($mark)
+    {
+        $this->mark = $mark;
+
+        return $this;
+    }
+
+    /**
+     * Set isPublished
+     *
+     * @param  boolean $isPublished
+     * @return Media
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublished
+     *
+     * @return boolean
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
     }
 }
