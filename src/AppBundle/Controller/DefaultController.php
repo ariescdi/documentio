@@ -42,7 +42,7 @@ class DefaultController extends Controller
             'datas' => $datas,
         );
     }
-    
+
     /**
      * get last 2 medium
      *
@@ -55,6 +55,7 @@ class DefaultController extends Controller
         $datas = $this->getDoctrine()->getManager()
                         ->getRepository('MediaBundle:Media')
                         ->findTop($count);
+
         return array(
             'datas' => $datas,
         );

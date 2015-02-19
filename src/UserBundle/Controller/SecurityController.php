@@ -16,10 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 
 /**
  * Security controller.
@@ -27,7 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  * @Route("/")
  */
 class SecurityController extends BaseController
-{   
+{
     /**
      * Finds and displays a Media entity.
      *
@@ -37,8 +35,8 @@ class SecurityController extends BaseController
     {
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
         $session = $request->getSession();
-        if( $this->container->get('security.context')->isGranted('ROLE_ADMIN') ){
-             return $this->redirect($this->generateUrl('admin_index'));
+        if ($this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin_index'));
         }
         // get the error if any (works with forward and redirect -- see below)
         if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {

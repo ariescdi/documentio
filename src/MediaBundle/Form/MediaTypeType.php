@@ -15,10 +15,10 @@ class MediaTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text',array('label'=>'Nom'))
-            ->add('ext','text',array('label'=>'Extention'))
-            ->add('comment','text',array('label'=>'Commentaire'))
-            ->add('mimetype','text',array('label'=>'Mimetype'))
+            ->add('name', 'text', array('label' => 'Nom'))
+            ->add('ext', 'text', array('label' => 'Extention'))
+            ->add('comment', 'text', array('label' => 'Commentaire'))
+            ->add('mimetype', 'text', array('label' => 'Mimetype'))
         ;
     }
 

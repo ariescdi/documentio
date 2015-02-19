@@ -2,15 +2,10 @@
 
 namespace MediaBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use MediaBundle\Entity\Media;
-use MediaBundle\Entity\MediaKeyword;
-use MediaBundle\Form\MediaType;
 
 
 class AdminController extends Controller

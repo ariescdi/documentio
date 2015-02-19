@@ -28,20 +28,20 @@ class MediaType extends AbstractType
         }
 
         $builder
-            ->add('name', 'text', array('label'=>'Nom'))
-            ->add('comment', 'textarea',array('label'=>'Description'))
+            ->add('name', 'text', array('label' => 'Nom'))
+            ->add('comment', 'textarea', array('label' => 'Description'))
             ->add('file', 'file', array('label' => 'Fichier',
                     'required' => $fileRequired,
                 ))
             //->add('creation_date')
             //->add('update_date')
-            ->add('category', null ,array('label'=>'Catégorie'))
+            ->add('category', null, array('label' => 'Catégorie'))
             ->add('type')
             ->add('keywords', 'text', array(
                 'data' => $defaultKeywords,
                 'required' => false,
                 'mapped' => false,
-                'label'=>'Mots Clefs',
+                'label' => 'Mots Clefs',
             ))
         ;
     }

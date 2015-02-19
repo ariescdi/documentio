@@ -206,7 +206,7 @@ class MediaTypeController extends Controller
      * Deletes a MediaType entity.
      *
      * @Route("/delete/{id}", name="mediatype_delete")
-    * @Method({"DELETE","GET"})
+     * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
     {
@@ -219,6 +219,7 @@ class MediaTypeController extends Controller
 
         $em->remove($entity);
         $em->flush();
+
         return $this->redirect($this->generateUrl('mediatype'));
     }
 
