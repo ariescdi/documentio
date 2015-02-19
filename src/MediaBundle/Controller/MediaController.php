@@ -349,7 +349,8 @@ class MediaController extends Controller
 
             $em->flush();
 
-            if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            if ( ($this->get('security.context')->isGranted('ROLE_USER')) && (!$this->get('security.context')->isGranted('ROLE_ADMIN')) ){
+
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Un nouveau media est en cours de modération')
                     ->setFrom('site@site.fr')
