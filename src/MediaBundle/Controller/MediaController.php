@@ -302,8 +302,7 @@ class MediaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->findBy(array(),array('isPublished' => 'asc'));
-
+        $entities = $em->getRepository('MediaBundle:Media')->findBy(array(), array('isPublished' => 'asc'));
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
             'entities' => $entities,
@@ -357,7 +356,6 @@ class MediaController extends Controller
                     ->setTo('email@email.com')
                     ->setBody($this->renderView('MediaBundle:Mail:moderationEmail.txt.twig'));
                 $this->get('mailer')->send($message);
-
             }
 
             return $this->redirect($this->generateUrl('media_show', array('id' => $entity->getId())));
@@ -384,7 +382,7 @@ class MediaController extends Controller
         ));
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $form->add('isPublished' , NULL , array('label' => 'Publié'));
+            $form->add('isPublished', null, array('label' => 'Publié'));
         }
 
         $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
@@ -477,7 +475,7 @@ class MediaController extends Controller
         ));
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $form->add('isPublished' , NULL , array('label' => 'Publié'));
+            $form->add('isPublished', null, array('label' => 'Publié'));
         }
 
         $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));

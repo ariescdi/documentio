@@ -368,7 +368,7 @@ class Media
     /**
      * Set mark
      *
-     * @param integer $mark
+     * @param  integer $mark
      * @return Media
      */
     public function setMark($mark)
@@ -381,7 +381,7 @@ class Media
     /**
      * Set isPublished
      *
-     * @param boolean $isPublished
+     * @param  boolean $isPublished
      * @return Media
      */
     public function setIsPublished($isPublished)
@@ -394,7 +394,7 @@ class Media
     /**
      * Get isPublished
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsPublished()
     {
