@@ -302,7 +302,8 @@ class MediaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->findAll();
+        $entities = $em->getRepository('MediaBundle:Media')->findBy(array(),array('isPublished' => 'asc'));
+
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
             'entities' => $entities,
@@ -349,6 +350,16 @@ class MediaController extends Controller
 
             $em->flush();
 
+            if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Un nouveau media est en cours de modération')
+                    ->setFrom('site@site.fr')
+                    ->setTo('email@email.com')
+                    ->setBody($this->renderView('MediaBundle:Mail:moderationEmail.txt.twig'));
+                $this->get('mailer')->send($message);
+
+            }
+
             return $this->redirect($this->generateUrl('media_show', array('id' => $entity->getId())));
         }
 
@@ -371,6 +382,10 @@ class MediaController extends Controller
             'action' => $this->generateUrl('media_create'),
             'method' => 'POST',
         ));
+
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $form->add('isPublished' , NULL , array('label' => 'Publié'));
+        }
 
         $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
 
@@ -460,6 +475,10 @@ class MediaController extends Controller
             'action' => $this->generateUrl('media_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
+
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $form->add('isPublished' , NULL , array('label' => 'Publié'));
+        }
 
         $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
 

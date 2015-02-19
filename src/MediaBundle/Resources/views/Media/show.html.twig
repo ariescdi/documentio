@@ -33,6 +33,13 @@
                 <th data-field="mark" data-align="right" data-sortable="true">Note</th>
                 <td>{{ entity.mark }}</td>
             </tr>
+
+            <tr>
+                <th data-field="isPublished" data-align="right" data-sortable="true">Publié</th>
+                <td>
+                    {% if entity.isPublished == false %} Non {% else %}Oui{% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

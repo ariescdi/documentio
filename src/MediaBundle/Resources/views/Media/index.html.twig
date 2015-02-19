@@ -11,6 +11,7 @@
                 <th data-field="path" data-align="right" data-sortable="true">Catégorie</th>
                 <th data-field="path" data-align="right" data-sortable="true">Type de fichier</th>
                 <th data-field="path" data-align="right" data-sortable="true">Auteur</th>
+                <th data-field="isPublished" data-align="right" data-sortable="true">Publié</th>
                 <th data-field="creation_date" data-align="right" data-sortable="true">Date de création</th>
                 <th data-field="update_date" data-align="right" data-sortable="true">Date de modification</th>
                 <th data-field="mark" data-align="right" data-sortable="true">Note</th>
@@ -24,6 +25,9 @@
                     <td>{{ entity.category.name }}</td>
                     <td>{{ entity.type.name }}</td>
                     <td>{{ entity.owner.username }}</td>
+                    <td>
+                        {% if entity.isPublished == false %} Non {% else %}Oui{% endif %}
+                    </td>
                     <td>{% if entity.creationdate %}{{ entity.creationdate|date('Y-m-d') }}{% endif %}</td>
                     <td>{% if entity.updatedate %}{{ entity.updatedate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.mark }}</td>
