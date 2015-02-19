@@ -1,12 +1,11 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaKeyword list</h1>
+    <h1>Liste des mots clefs</h1>
 
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Id</th>
                 <th data-field="word" data-align="right" data-sortable="true">Word</th>
                 <th data-field="actions" data-align="center" data-sortable="false">Actions</th>
             </tr>
@@ -14,18 +13,17 @@
         <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.word }}</td>
+                    <td><a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">{{ entity.word }}</a></td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-edit icon-white"></i> Actions</a>
                             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">show</a>
+                                    <a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">Voir</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">edit</a>
+                                    <a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">Editer</a>
                                 </li>
                             </ul>
                         </div>
@@ -37,7 +35,7 @@
 
     <div class="btn btn-default">
         <a href="{{ path('mediakeyword_new') }}">
-            <i class="glyphicon glyphicon-plus"></i> Create a new entry
+            <i class="glyphicon glyphicon-plus"></i> Créer un nouveau mot clef
         </a>
     </div>
 {% endblock %}

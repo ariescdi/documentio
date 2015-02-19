@@ -1,0 +1,130 @@
+.background-header{
+	background-color: #eaeaea;
+}
+.logo{
+	width:1110px;
+	text-align:center;
+	margin:auto;
+	padding: 40px 0px;
+}
+nav{
+	width:1110px;
+	margin:auto;
+	background-color: transparent!important;
+	background-image: none!important;
+	border: none!important;}
+
+.background-nav {
+	background-color: #23a3de;
+}
+nav ul li{
+	line-height: 50px!important
+}
+nav ul li a{
+	background-color: #fff;
+	border-left:1px solid #23a3de;
+	border-right:1px solid #23a3de;
+	  -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    height:35px;
+    transition: all 0.5s;
+    display: block!important;
+    line-height: 35px!important;
+    padding: 0px 10px!important;
+    margin-top:7.5px;
+    	-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+
+nav ul li:hover a{
+color:#fff!important;
+background-color: #23a3de;
+}
+
+.panel > .panel-heading{
+	border-color: #23a3de!important;
+	background-color: #23a3de!important;
+	background-image: none!important;
+	color:#fff;
+
+}
+
+.panel{
+	border-color: #23a3de!important;
+}
+
+#wrap {
+
+	width:1110px;
+    margin: auto;
+}
+.panel.panel-horizontal {
+    display:table;
+    width:100%;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+    display:table-cell;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+    width: 10%;
+    border:0;
+    vertical-align: middle;
+}
+.panel.panel-horizontal > .panel-heading {
+    border-right: 1px solid #ddd;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+}
+.panel.panel-horizontal > .panel-body{
+	padding: 7px 15px!important;
+}
+.navbar-default .navbar-collapse{
+	padding-left:0px!important;
+}
+
+#wrap a{
+	color:#fff;
+	background-color:#2c2c2c;
+	padding: 5px;
+	display: inline-block;
+	-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+footer{
+	margin-bottom: 0px!important;
+	clear:both;
+}
+
+#form-index{
+	width: 75%;
+	margin: auto;
+}
+
+#form-index .form-control{
+	font-size:40px;
+	height:60px;
+}
+
+#form-index .glyphicon{
+	font-size: 30px;
+	color:#fff;
+}
+
+
+#form-index .btn{
+	border-color: #23a3de!important;
+	background-color: #23a3de!important;
+	background-image: none!important;
+}
+
+
+aside .panel-body h3{
+	margin-top:5px;
+	font-size:20px;
+}

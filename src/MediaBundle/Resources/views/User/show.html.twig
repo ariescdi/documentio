@@ -1,0 +1,45 @@
+{% extends '::base_admin.html.twig' %}
+
+{% block body -%}
+
+    <h1>{{ entity.username }}</h1>
+
+    <table class="record_properties table table-hover" data-sort-name="name" data-sort-order="id">
+        <tbody>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Nom</th>
+                <td>{{ entity.username }}</td>
+            </tr>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Rôle</th>
+                <td>{% for role in entity.roles %}
+                        {{ role }}&nbsp;
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <div class="btn-toolbar">
+    <div class="btn-group">
+        <div class="btn btn-default">
+            <a href="{{ path('user') }}">
+                <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+            </a>
+        </div>
+                    <div class="btn btn-default">
+                <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-edit"></i> Editer
+                </a>
+            </div>
+                            {{ form(delete_form) }}
+            </div>
+</div>
+{% endblock %}

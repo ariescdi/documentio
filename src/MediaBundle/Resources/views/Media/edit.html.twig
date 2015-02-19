@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
     <h1>Media edit</h1>
@@ -8,11 +8,15 @@
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">
-                <a href="{{ path('media') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                <a href="{{ path('media_delete', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-backward"></i> Supprimer
                 </a>
             </div>
-            {{ form(delete_form) }}
+            <div class="btn btn-default">
+                <a href="{{ path('media') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

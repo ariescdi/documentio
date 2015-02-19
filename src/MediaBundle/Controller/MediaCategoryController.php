@@ -76,7 +76,7 @@ class MediaCategoryController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -165,7 +165,7 @@ class MediaCategoryController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
 
         return $form;
     }
@@ -205,25 +205,20 @@ class MediaCategoryController extends Controller
     /**
      * Deletes a MediaCategory entity.
      *
-     * @Route("/{id}", name="mediacategory_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="mediacategory_delete")
+     * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('MediaBundle:MediaCategory')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MediaBundle:MediaCategory')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find MediaCategory entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find MediaCategory entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('mediacategory'));
     }

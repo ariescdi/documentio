@@ -1,7 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>Configure dropped files</h1>
+    <h1>Création du fichier déposé</h1>
     {% for data in datas %}
         <div class="well">
             <h2>{{ data.filename }} configuration</h2>
@@ -13,7 +13,7 @@
         <div class="btn-group">
             <div class="btn btn-default">
                 <a href="{{ path('media') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                    <i class="glyphicon glyphicon-backward"></i> Retour à la liste
                 </a>
             </div>
         </div>

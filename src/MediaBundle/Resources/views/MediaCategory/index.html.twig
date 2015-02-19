@@ -1,22 +1,21 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>MediaCategory list</h1>
+    <h1>Liste des catégories</h1>
 
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Id</th>
-                <th data-field="name" data-align="right" data-sortable="true">Name</th>
-                <th data-field="comment" data-align="right" data-sortable="true">Comment</th>
+                <th data-field="name" data-align="right" data-sortable="true">Nom</th>
+                <th data-field="comment" data-align="right" data-sortable="true">Commentaire</th>
                 <th data-field="actions" data-align="center" data-sortable="false">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.name }}</td>
+
+                    <td><a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                     <td>{{ entity.comment }}</td>
                     <td>
                         <div class="btn-group">
@@ -24,10 +23,10 @@
                             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">show</a>
+                                    <a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">Voir</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">edit</a>
+                                    <a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">Editer</a>
                                 </li>
                             </ul>
                         </div>
@@ -39,7 +38,7 @@
 
     <div class="btn btn-default">
         <a href="{{ path('mediacategory_new') }}">
-            <i class="glyphicon glyphicon-plus"></i> Create a new entry
+            <i class="glyphicon glyphicon-plus"></i> Créer une nouvelle catégorie
         </a>
     </div>
 {% endblock %}

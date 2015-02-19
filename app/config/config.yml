@@ -50,6 +50,7 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
             filters:
                 - cssrewrite
             output: css/main.css

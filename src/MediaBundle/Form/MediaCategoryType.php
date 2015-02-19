@@ -15,8 +15,8 @@ class MediaCategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('comment')
+            ->add('name', 'text', array('label' => 'Nom'))
+            ->add('comment', 'text', array('label' => 'Commentaire'))
         ;
     }
 

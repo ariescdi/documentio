@@ -15,7 +15,7 @@ class MediaKeywordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('word')
+            ->add('word', 'text', array('label' => 'Mot'))
             ->add('medias')
         ;
     }
