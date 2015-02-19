@@ -5,8 +5,9 @@
 		tata<br />
 		titi<br />
 	</p>
+    <a href="{{ path('fos_user_security_login') }}">Admin</a>
 	{% if is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('admin_index') }}">admin</a>
+		<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
 	{% endif %}
 </div>
 </footer>
