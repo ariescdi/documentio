@@ -119,6 +119,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
             uploadable: true
+            sluggable: true
 
 # FOSUser Configuration
 fos_user:

@@ -49,9 +49,17 @@ class Media
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255 ,unique=true)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
 
     /**
      * @var string
@@ -399,5 +407,28 @@ class Media
     public function getIsPublished()
     {
         return $this->isPublished;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Media
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
