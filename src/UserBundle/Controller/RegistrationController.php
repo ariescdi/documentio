@@ -19,7 +19,6 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-
 class RegistrationController extends BaseController
 {
     public function registerAction(Request $request)
