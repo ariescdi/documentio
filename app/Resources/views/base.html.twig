@@ -26,6 +26,17 @@
         {% include '::footer.html.twig' %}
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript">
+            var clock;
+
+            $(document).ready(function()
+            {
+                clock = $('.clock').FlipClock(
+                {
+                    clockFace: 'TwentyFourHourClock'
+                });
+            });
+            </script>
         {% endblock %}
     </body>
 </html>
