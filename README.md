@@ -31,7 +31,7 @@ composer install
 # preconfigured to use a SQLite database in `app/data` which is ideal
 # for development.
 
-app/console doctrine:schema:create # Create the database.
+app/console doctrine:schema:update --force # Create/update the database.
 app/console doctrine:fixtures:load # Load fixtures (default data).
 app/console assets:install --symlink --relative # Symlink assets in `web` directory.
 app/console assetic:dump # Compile assets.
