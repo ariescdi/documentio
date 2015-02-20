@@ -388,7 +388,7 @@ class MediaController extends Controller
         ));
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $form->add('isPublished', null, array('label' => 'Publié'));
+            $form->add('isPublished', null, array('label' => 'Publié','required'  => false,));
         }
 
         $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-default')));
@@ -481,7 +481,7 @@ class MediaController extends Controller
         ));
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $form->add('isPublished', null, array('label' => 'Publié'));
+            $form->add('isPublished', null, array('label' => 'Publié','required'  => false,));
         }
 
         $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'btn btn-default')));
