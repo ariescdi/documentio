@@ -19,6 +19,7 @@
             </tr>
         </thead>
         <tbody>
+
             {% for entity in entities %}
                 <tr>
                     <td><a href="{{ path('media_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>

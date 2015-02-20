@@ -39,6 +39,11 @@
                     <i class="glyphicon glyphicon-edit"></i> Editer
                 </a>
             </div>
+            <div class="btn btn-default">
+                <a href="{{ path('fos_user_change_password', { 'id': entity.id }) }}">
+                    <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
+                </a>
+            </div>
                             {{ form(delete_form) }}
             </div>
 </div>
