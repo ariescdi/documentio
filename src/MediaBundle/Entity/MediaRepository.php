@@ -13,13 +13,6 @@ use Doctrine\ORM\Entity;
  *
  * Please ensure repository is registered :
  *
- services:
- media.repository:
- class: Site\Aries\MediaBundle\Entity\MediaRepository
- factory_service: doctrine.orm.default_entity_manager
- factory_method:  getRepository
- arguments:
- - Site\Aries\MediaBundle\Entity\Media
  *
  */
 class MediaRepository extends EntityRepository
@@ -146,6 +139,15 @@ WHERE m.id IN (
         $dql = "SELECT m FROM MediaBundle:Media m ORDER BY m.mark DESC";
         $q = $this->getEntityManager()->createQuery($dql);
         $q->setMaxResults($count);
+
+        return $q->getResult();
+    }
+
+    public function mediaByCategory($slug)
+    {
+        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished =1";
+        $p =
+        $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);
 
         return $q->getResult();
     }

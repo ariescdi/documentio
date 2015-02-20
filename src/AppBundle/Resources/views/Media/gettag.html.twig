@@ -1,0 +1,13 @@
+<div id="wrap" class="container">
+    <div class="panel panel-default panel-horizontal">
+        <div class="panel-heading">
+             <h3 class="panel-title">Mots-clés</h3>
+        </div>
+        <div class="panel-body">
+            {% for entity in entities %}
+                <a href="{{ path('document_show', { 'slug': entity.medias[0].slug }) }}">{{entity.word}}</a>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>

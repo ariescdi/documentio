@@ -4,12 +4,14 @@ namespace MediaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * MediaType
  *
  * @ORM\Table(name="dio_mediacategory")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MediaCategoryRepository")
+ *
  */
 class MediaCategory
 {
@@ -28,6 +30,14 @@ class MediaCategory
      * @ORM\Column(name="name", type="string", length=128, unique=true)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255 ,unique=true)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
 
     /**
      * @var string
@@ -128,5 +138,28 @@ class MediaCategory
     public function removeMedia(Media $media)
     {
         $this->medias->removeElement($media);
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string        $slug
+     * @return MediaCategory
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
