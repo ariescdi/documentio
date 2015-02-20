@@ -33,7 +33,6 @@ class SiteController extends Controller
         }
 
         return array('entity' => $entity);
-
     }
 
     /**
@@ -44,7 +43,7 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->findBy(array('isPublished' =>1), array());
+        $entities = $em->getRepository('MediaBundle:Media')->findBy(array('isPublished' => 1), array());
 
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(
@@ -54,7 +53,6 @@ class SiteController extends Controller
         );
 
         return array('entities' => $entities);
-
     }
 
     /**
@@ -68,7 +66,8 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' =>1), array('creationDate' => 'desc'),1,0);
+        $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' => 1), array('creationDate' => 'desc'), 1, 0);
+
         return array(
             'entity' => $entity,
         );

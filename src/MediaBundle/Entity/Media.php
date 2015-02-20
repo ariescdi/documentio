@@ -412,7 +412,7 @@ class Media
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Media
      */
     public function setSlug($slug)
