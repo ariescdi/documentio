@@ -28,6 +28,17 @@
                     "type": "file"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "flipclock/flipclock",
+                "version": "dev-master",
+                "dist": {
+                    "url": "https://github.com/objectivehtml/FlipClock/archive/master.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -49,7 +60,8 @@
         "stof/doctrine-extensions-bundle": "~1.1",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "sensio/generator-bundle": "~2.3",
-        "knplabs/knp-paginator-bundle": "~2.4"
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "flipclock/flipclock": "dev-master"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"
