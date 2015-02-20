@@ -119,6 +119,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
             uploadable: true
+            sluggable: true
 
 # FOSUser Configuration
 fos_user:
@@ -133,3 +134,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+services:
+ twig.extension.text:
+     class: Twig_Extensions_Extension_Text
+     tags:
+         - { name: twig.extension }

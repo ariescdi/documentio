@@ -50,7 +50,7 @@ background-color: #23a3de;
 	background-color: #23a3de!important;
 	background-image: none!important;
 	color:#fff;
-
+    overflow: auto;
 }
 
 .panel{

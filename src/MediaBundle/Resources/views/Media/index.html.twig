@@ -50,6 +50,8 @@
         </tbody>
     </table>
 
+    {{ knp_pagination_render(entities) }}
+
     <div class="btn btn-default">
         <a href="{{ path('media_new') }}">
             <i class="glyphicon glyphicon-plus"></i> Ajouter un nouveau média

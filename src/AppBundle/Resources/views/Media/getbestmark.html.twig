@@ -1,0 +1,13 @@
+<div class="panel  panel-primary">
+    <div class="panel-heading">
+        <p>Mieux notés</p>
+    </div>
+    <div class="panel-body">
+        {% for data in datas %}
+            <h3><a href="{{ path('document_show', { 'slug': data.slug }) }}">{{ data.name }}</a></h3>
+            <em>note : {{ data.mark }}</em>
+            <p>{{data.comment | truncate(50) }}</p>
+            <p ><span class="text-left">Le {{ data.creationDate|date('d-m-Y') }}</span class="text-right">Par {{ data.owner.username }}<span></span></p>
+        {% endfor %}
+    </div>
+</div>
