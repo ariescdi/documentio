@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
 use MediaBundle\Entity\Media;
 use MediaBundle\Entity\MediaCategory;
 
@@ -125,7 +124,6 @@ class SiteController extends Controller
         );
     }
 
-
     /**
      * Search for a media.
      *
@@ -144,7 +142,7 @@ class SiteController extends Controller
                     'label' => false,
                     'attr' => array(
                         'placeholder' => 'Recherche',
-                    ))
+                    ), )
                 )
                 ->add('submit', 'submit', array(
                     'label' => ' ',
@@ -168,7 +166,6 @@ class SiteController extends Controller
                 1/*limit per page*/
             );
 
-
             return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result));
         }
 
@@ -184,7 +181,6 @@ class SiteController extends Controller
      */
     public function mainSearchAction(Request $request)
     {
-
         $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('media_search'))
                 ->setMethod('POST')
@@ -192,7 +188,7 @@ class SiteController extends Controller
                     'label' => false,
                     'attr' => array(
                         'placeholder' => 'Recherche',
-                    ))
+                    ), )
                 )
                 ->add('submit', 'submit', array(
                     'label' => ' ',
@@ -214,7 +210,7 @@ class SiteController extends Controller
      * @Method("GET")
      * @Template("AppBundle:Media:getBestCategory.html.twig")
      */
-    public function BestCategoryAction()
+    public function bestCategoryAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -225,18 +221,17 @@ class SiteController extends Controller
         );
     }
 
-
     /**
      * @Route("/categorie/{slug}", name="list_category")
      * @Template("AppBundle:Media:list_category.html.twig")
      */
-    public function MediaByCategoryAction($slug)
+    public function mediaByCategoryAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->mediaByCategory($slug);
 
-        $category =$em->getRepository('MediaBundle:MediaCategory')->findOneBySlug($slug);
+        $category = $em->getRepository('MediaBundle:MediaCategory')->findOneBySlug($slug);
 
         if (!$entities) {
             throw $this->createNotFoundException('Impossible de trouver des medias pour cette catégorie.');
@@ -251,6 +246,4 @@ class SiteController extends Controller
 
         return array('entities' => $entities,'category' => $category);
     }
-
-
 }

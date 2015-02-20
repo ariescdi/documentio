@@ -143,7 +143,7 @@ class MediaCategory
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string        $slug
      * @return MediaCategory
      */
     public function setSlug($slug)
@@ -156,7 +156,7 @@ class MediaCategory
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {

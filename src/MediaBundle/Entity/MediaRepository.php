@@ -147,7 +147,8 @@ WHERE m.id IN (
     {
         $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished =1";
         $p =
-        $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug' , $slug);;
+        $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);
+
         return $q->getResult();
     }
 }
