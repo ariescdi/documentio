@@ -126,3 +126,11 @@ aside .panel-body h3{
 	margin-top:5px;
 	font-size:20px;
 }
+
+/* HORLOGE - MODIFICATIONS BERTRAND - 20/02/15 */
+.digiclock {
+    margin: 15px 0px 0px;
+    display: inline-block;
+    text-align: center;
+    width: 270px;
+}
