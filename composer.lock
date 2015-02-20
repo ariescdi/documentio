@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4d63dbf00f6f08e18ed2b45337bf046d",
+    "hash": "0b3b1dc627c465745139aa6a2f998fc0",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -880,6 +880,17 @@
             "dist": {
                 "type": "file",
                 "url": "https://raw.githubusercontent.com/enyo/dropzone/master/dist/dropzone.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "flipclock/flipclock",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/objectivehtml/FlipClock/archive/master.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2337,7 +2348,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "flipclock/flipclock": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

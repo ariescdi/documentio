@@ -9,5 +9,6 @@
 	{% if is_granted('ROLE_USER') %}
 		<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
 	{% endif %}
+	<div class="clock" style="margin:2em;"></div>
 </div>
 </footer>

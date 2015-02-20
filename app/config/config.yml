@@ -51,6 +51,8 @@ assetic:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
+                - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.css
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/flipclock.css
             filters:
                 - cssrewrite
             output: css/main.css
@@ -59,6 +61,7 @@ assetic:
                 - %kernel.root_dir%/../vendor/jquery/jquery/*
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../vendor/dropzone/dropzone/dropzone.js
+                - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.js
             output: js/main.js
 
 # Doctrine Configuration
