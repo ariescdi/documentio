@@ -1,30 +1,39 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{entity[0].name}}{% endblock %}
+{% block title %}{{entity.name}}{% endblock %}
 
 {% block body -%}
 
 <div class="panel  panel-primary">
     <div class="panel-heading">
-        <p style="float:left;">{{entity[0].name}}</p>
-        <p style="float:right;">Le {{ entity[0].creationdate|date('d-m-Y') }} par <em>{{entity[0].owner.username}}</em></p>
+        <p style="float:left;">{{entity.name}}</p>
+        <p style="float:right;">Le {{ entity.creationdate|date('d-m-Y') }} par <em>{{entity.owner.username}}</em></p>
     </div>
 
     <div class="panel-body">
-        <object data='{{ asset(entity[0].webpath) }}#view=FitH'
-                    type='{{ entity[0].type.mimetype }}'
+        <object data='{{ asset(entity.webpath) }}#view=FitH'
+                    type='{{ entity.type.mimetype }}'
                     width='100%'
                     height='100%'>
 
-                <p>It appears your Web browser is not configured to display {{ entity[0].type.name }} files.
-                    No worries, just <a href='{{ entity[0].webpath }}'>click here to download {{ entity[0].name }}.</a>
+                <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
+                    No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
                     Or here to <a class="plugin-search">search for plugin</a>.
                 </p>
 
         </object>
-        <p>{{ entity[0].comment }}</p>
-        <p>Note : {{entity[0].mark}}</p>
-        <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="#"  download="#">Télécharger {{entity[0].name }}</a><p/>
+        <p>{{ entity.comment }}</p>
+        <p>Note : {{entity.mark}}</p>
+
+        {% if is_granted('ROLE_USER') %}
+
+
+        <p><a class="btn btn-default glyphicon glyphicon-hand-down" href="{{ path('media_decrease_mark', { 'id': entity.id }) }}" title="J'aime pas !"></a>
+                            <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
+        <p/>
+         {% endif %}
+    {{entity.webpath}}
+         <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
     </div>
 </div>
 
@@ -32,7 +41,7 @@
 
 {% block javascripts %}
     <script>
-        var url = "https://www.google.com/search?q=" + navigator.appCodeName + "+{{ entity[0].type.mimetype }}+viewer";
+        var url = "https://www.google.com/search?q=" + navigator.appCodeName + "+{{ entity.type.mimetype }}+viewer";
         $(".plugin-search").attr("href", url);
     </script>
 {% endblock %}

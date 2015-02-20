@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+ {% block title %}Résultat de la recherche{% endblock %}
+
+
+{% block body -%}
+
+<div class="input-group" id="form-index">
+{{ render (path( 'media_main_search' ))}}
+</div>
+
+    <h1>Résultat de la recherche</h1>
+
+    <table class="records_list table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
+        <thead>
+            <tr>
+                <th data-field="name" data-align="right" data-sortable="true">Nom</th>
+                <th data-field="path" data-align="right" data-sortable="true">Catégorie</th>
+                <th data-field="path" data-align="right" data-sortable="true">Type de fichier</th>
+                <th data-field="path" data-align="right" data-sortable="true">Auteur</th>
+                <th data-field="creation_date" data-align="right" data-sortable="true">Date de création</th>
+                <th data-field="mark" data-align="right" data-sortable="true">Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></td>
+                    <td>{{ entity.category.name }}</td>
+                    <td>{{ entity.type.name }}</td>
+                    <td>{{ entity.owner.username }}</td>
+                    <td>{% if entity.creationdate %}{{ entity.creationdate|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ entity.mark }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(entities) }}
+
+{% endblock %}
+
+

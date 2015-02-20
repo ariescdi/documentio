@@ -110,46 +110,6 @@ class MediaController extends Controller
     }
 
     /**
-     * Search for a media.
-     *
-     * @Route("/search", name="media_search")
-     */
-    public function searchAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $mediaRepo = $em->getRepository('MediaBundle:Media');
-
-        $form = $this->createFormBuilder()
-                ->setAction($this->generateUrl('media_search'))
-                ->setMethod('POST')
-                ->add('search', 'search', array(
-                    'label' => false,
-                ))
-                ->add('submit', 'submit', array(
-                    'label' => ' ',
-                    'attr' => array(
-                        'class' => 'glyphicon glyphicon-search',
-                    ),
-                ))
-                ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $keywords = $form->get('search')->getData();
-            $keywords = explode(" ", $keywords);
-            $result = $mediaRepo->findByKeywords($keywords);
-
-            return $this->render('MediaBundle:Media:index.html.twig', array('entities' => $result));
-        }
-
-        return $this->render('MediaBundle:Media:search_form.html.twig', array(
-            'form'      => $form->createView(),
-        ));
-    }
-
-    /**
      * Decreases media mark.
      *
      * @Route("/{id}/decrease_mark", name="media_decrease_mark")
