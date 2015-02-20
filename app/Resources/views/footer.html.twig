@@ -1,9 +1,11 @@
 <footer class="jumbotron " >
 	<div class="container">
 	<p>
-		toto<br />
-		tata<br />
-		titi<br />
+	<!-- FICHIER CSS - OVERRIDE.CSS -->
+		<div class="digiclock">
+			<script type="text/javascript" src="http://localtimes.info/clock.php?continent=Europe&country=France&city=Paris&cp1_Hex=23a3de&cp2_Hex=FFFFFF&cp3_Hex=000000&fwdt=200&ham=0&hbg=0&hfg=0&sid=0&mon=0&wek=0&wkf=0&sep=0&widget_number=1024">
+			</script>
+		</div>
 	</p>
     <a href="{{ path('fos_user_security_login') }}">Admin</a>
 	{% if is_granted('ROLE_USER') %}
