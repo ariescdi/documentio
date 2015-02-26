@@ -6,23 +6,21 @@
 	margin:auto;
 	padding: 40px 0px;
 }
-nav{
-	margin:auto;
-	background-color: transparent!important;
-	background-image: none!important;
-	border: none!important;}
-
 .background-nav {
-	background-color: #23a3de;
+    background-color: #23a3de;
 }
+nav{
+    margin:auto;
+    background-color: transparent!important;
+    background-image: none!important;
+    border: none!important;
+}
+
 nav ul li{
 	line-height: 50px!important
 }
-nav ul li a{
-	background-color: #fff;
-	border-left:1px solid #23a3de;
-	border-right:1px solid #23a3de;
-	  -webkit-transition: all 0.5s;
+.nav >li >a{
+    -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -32,17 +30,23 @@ nav ul li a{
     line-height: 35px!important;
     padding: 0px 10px!important;
     margin-top:7.5px;
-    	-webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-right: 10px;
 }
 
-
-nav ul li:hover a{
-color:#fff!important;
-background-color: #23a3de;
+.nav > li > a:hover,.nav > li > a:active{
+    background-color: #e7e7e7!important;
 }
 
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 .panel > .panel-heading{
 	border-color: #23a3de!important;
 	background-color: #23a3de!important;
@@ -95,8 +99,8 @@ background-color: #23a3de;
 	padding: 5px;
 	display: inline-block;
 	-webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 footer{
@@ -119,7 +123,6 @@ footer{
 	color:#fff;
 }
 
-
 #form-index .btn{
 	border-color: #23a3de!important;
 	background-color: #23a3de!important;
@@ -130,4 +133,15 @@ footer{
 aside .panel-body h3{
 	margin-top:5px;
 	font-size:20px;
+}
+@media (max-width: 768px){
+    .background-nav{
+        background-color: transparent;
+    }
+
+    .nav{
+        background-color: #fff;
+        margin:0px;
+    }
+
 }
