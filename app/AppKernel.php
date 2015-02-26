@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
             new AppBundle\AppBundle(),
             new MediaBundle\MediaBundle(),
             new UserBundle\UserBundle(),
