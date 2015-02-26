@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aceb8fe4e531bdced81b8032c152f1ac",
+    "hash": "b816688a5d97dbb4dee72adbbaad6c02",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2140,6 +2140,17 @@
             "time": "2015-02-02 18:02:30"
         },
         {
+            "name": "tagcanvas/tagcanvas",
+            "version": "dev-master",
+            "dist": {
+                "type": "file",
+                "url": "http://www.goat1000.com/jquery.tagcanvas.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "v3.3.2",
             "source": {
@@ -2411,7 +2422,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
-        "flipclock/flipclock": 20
+        "flipclock/flipclock": 20,
+        "tagcanvas/tagcanvas": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
