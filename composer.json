@@ -39,6 +39,17 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "tagcanvas/tagcanvas",
+                "version": "dev-master",
+                "dist": {
+                    "url": "http://www.goat1000.com/jquery.tagcanvas.js",
+                    "type": "file"
+                }
+            }
         }
     ],
     "require": {
@@ -62,7 +73,8 @@
         "sensio/generator-bundle": "~2.3",
         "knplabs/knp-paginator-bundle": "~2.4",
         "flipclock/flipclock": "dev-master",
-        "presta/sitemap-bundle": "~1.4"
+        "presta/sitemap-bundle": "~1.4",
+        "tagcanvas/tagcanvas": "dev-master"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"

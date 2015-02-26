@@ -62,6 +62,7 @@ assetic:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../vendor/dropzone/dropzone/dropzone.js
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.js
+                - %kernel.root_dir%/../vendor/tagcanvas/tagcanvas/jquery.tagcanvas.js
             output: js/main.js
 
 # Doctrine Configuration

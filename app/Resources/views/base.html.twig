@@ -31,6 +31,12 @@
                 $('.clock').FlipClock({
                   clockFace: 'TwentyFourHourClock'
                 });
+
+                $('#tags-canvas').tagcanvas({
+                  textColour: '#23A3DE',
+                  outlineColour: '#23A3DE',
+                  maxSpeed: 0.5
+                }, 'tags');
               });
             </script>
         {% endblock %}
