@@ -75,7 +75,8 @@
         "flipclock/flipclock": "dev-master",
         "presta/sitemap-bundle": "~1.4",
         "tagcanvas/tagcanvas": "dev-master",
-        "craue/config-bundle": "~1.1"
+        "craue/config-bundle": "~1.1",
+        "friendsofsymfony/jsrouting-bundle": "~1.5"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"

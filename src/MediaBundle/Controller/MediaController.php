@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use MediaBundle\Entity\Media;
+use AppBundle\Entity\Notification;
 use MediaBundle\Entity\MediaKeyword;
 use MediaBundle\Form\MediaType;
 
@@ -423,6 +424,8 @@ class MediaController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+        $this->addNotification($entity, 'edit', 'édité');
+
         return $this->render('MediaBundle:Media:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -535,6 +538,8 @@ class MediaController extends Controller
         $em->remove($entity);
         $em->flush();
 
+        $this->addNotification($entity, 'delete', 'supprimé');
+
         return $this->redirect($this->generateUrl('media'));
     }
 
@@ -564,5 +569,55 @@ class MediaController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
         return $user;
+    }
+
+    /**
+     * Add a notification
+     *
+     * @param Media $entity The entity
+     * @param Feedback for Notification
+     * @param Status for Notification Message
+     *
+     */
+    public function addNotification(Media $media, $feedback, $status)
+    {
+        $user = $this->getUser();
+        $notification = new Notification();
+        $notification->setMessage('Le média ' . $media->getName() . ' a été ' . $status . ' par ' . $user);
+        $notification->setFeedback($feedback);
+        $notification->setUser($media->getOwner());
+        $notification->setMedia($media);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($notification);
+        $em->flush();
+    }
+
+    /**
+     * @Route("/notifications", name="notifications")
+     *
+     */
+    public function getUserNotificationsAction()
+    {
+        //$user = $this->getUser();
+        //$userId = $user->getId();
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Notification')->findUserNotifications($this->getUser());
+        $count = count($entities);
+        return $this->render('MediaBundle:Notif:notif.html.twig', array(
+            'count' => $count,
+            'notifs' => $entities
+        ));
+    }
+
+    /**
+     * @Route("/seenNotification/{id}", name="seen_notification")
+     *
+     */
+    public function seenNotification($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Notification')->find($id);
+        $entity->setHasSeen(1);
     }
 }

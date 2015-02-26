@@ -25,11 +25,17 @@ class User extends BaseUser
      **/
     private $medias;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Notification", mappedBy="user")
+     */
+    protected $notifications;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->medias = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -54,5 +60,58 @@ class User extends BaseUser
     public function getMedias()
     {
         return $this->medias;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Remove medias
+     *
+     * @param \MediaBundle\Entity\Media $medias
+     */
+    public function removeMedia(\MediaBundle\Entity\Media $medias)
+    {
+        $this->medias->removeElement($medias);
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \AppBundle\Entity\Notification $notifications
+     * @return User
+     */
+    public function addNotification(\AppBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \AppBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\AppBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }

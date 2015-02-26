@@ -25,6 +25,16 @@
 		      	</div>
 		    </section>
 	  	</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+			{{ render(controller('MediaBundle:Media:getUserNotifications')) }}
+	        <!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
+	        {{ render(path('best_category')) }}
+	    </ul>
+	    <div class="navbar-form navbar-right">
+		{{ render (path( 'media_search' ))}}
+	    </div>
+      </div>
 	</nav>
 </div>
 {{ render(path('gettag')) }}

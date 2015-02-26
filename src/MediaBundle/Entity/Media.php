@@ -4,6 +4,7 @@ namespace MediaBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Media
@@ -108,6 +109,19 @@ class Media
      * @ORM\Column(name="is_published",type="boolean")
      */
     private $isPublished = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Notification", mappedBy="media")
+     */
+    protected $notifications;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->keywords = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -271,13 +285,7 @@ class Media
     {
         return $this->updateDate;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->keywords = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Add keyword
@@ -430,5 +438,38 @@ class Media
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \AppBundle\Entity\Notification $notifications
+     * @return Media
+     */
+    public function addNotification(\AppBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \AppBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\AppBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }

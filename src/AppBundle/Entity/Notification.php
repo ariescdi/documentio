@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Notification
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="NotificationRepository")
  */
 class Notification
 {
@@ -31,15 +31,34 @@ class Notification
     /**
      * @var string
      *
-     * @ORM\Column(name="feedback", type="string", length=255)
+     * @ORM\Column(name="feedback", type="string", length=255, options={"default":0})
      */
     private $feedback;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MediaBundle\Entity\User", inversedBy="notifications")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MediaBundle\Entity\Media", inversedBy="notifications")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     */
+    protected $media;
+
+    /**
+    * @var boolean $hasSeen
+    *
+    * @ORM\Column(name="hasSeen", type="boolean")
+    */
+    private $hasSeen;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +81,7 @@ class Notification
     /**
      * Get message
      *
-     * @return string 
+     * @return string
      */
     public function getMessage()
     {
@@ -85,10 +104,56 @@ class Notification
     /**
      * Get feedback
      *
-     * @return string 
+     * @return string
      */
     public function getFeedback()
     {
         return $this->feedback;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \MediaBundle\Entity\User $user
+     * @return Notification
+     */
+    public function setUser(\MediaBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \MediaBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set media
+     *
+     * @param \MediaBundle\Entity\Media $media
+     * @return Notification
+     */
+    public function setMedia(\MediaBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Get media
+     *
+     * @return \MediaBundle\Entity\Media
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }
