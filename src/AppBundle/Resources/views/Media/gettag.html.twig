@@ -3,11 +3,15 @@
         <div class="panel-heading">
              <h3 class="panel-title">Mots-clés</h3>
         </div>
+        {% if entities is empty %}
+         <p><small>{{ result }}</small></p>
+        {% else %}
         <div class="panel-body">
             {% for entity in entities %}
                 <a href="{{ path('document_show', { 'slug': entity.medias[0].slug }) }}">{{entity.word}}</a>
             {% endfor %}
         </div>
+        {% endif %}
 
     </div>
 </div>
