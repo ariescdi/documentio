@@ -110,6 +110,16 @@ class SiteController extends Controller
     }
 
     /**
+     * @Route("/clock", name="clock")
+     * @Method("GET")
+     * @Template("AppBundle:Media:clock.html.twig")
+     */
+    public function clockAction()
+    {
+        return [];
+    }
+
+    /**
      * get last 2 medium
      *
      * @Route("/gettag/", name="gettag")
