@@ -91,17 +91,17 @@ class SiteController extends Controller
      */
     public function getBestMarkAction($count)
     {
-        $datas = $this->getDoctrine()->getManager()
+        $entities = $this->getDoctrine()->getManager()
                         ->getRepository('MediaBundle:Media')
                         ->findTop($count);
 
         $result = true;
-        if (!$datas) {
+        if (!$entities) {
             $result = 'Aucun document n\'a encore été publié';
         }
 
         return array(
-            'datas' => $datas,
+            'entities' => $entities,
             'result' => $result
         );
     }

@@ -3,15 +3,15 @@
         <p>Mieux notés</p>
     </div>
 
-    {% if datas is empty %}
+    {% if entities is empty %}
         <p><small>{{ result }}</small></p>
     {% else %}
         <div class="panel-body">
-            {% for data in datas %}
-                <h3><a href="{{ path('document_show', { 'slug': data.slug }) }}">{{ data.name }}</a></h3>
-                <em>note : {{ data.mark }}</em>
-                <p>{{data.comment | truncate(50) }}</p>
-                <p ><span class="text-left">Le {{ data.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ data.owner.username }}<span></span></p>
+            {% for entity in entities %}
+                <h3><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></h3>
+                <em>note : {{ entity.mark }}</em>
+                <p>{{entity.comment | truncate(50) }}</p>
+                <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ entity.owner.username }}<span></span></p>
             {% endfor %}
         </div>
     {% endif %}
