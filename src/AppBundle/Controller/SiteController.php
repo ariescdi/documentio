@@ -70,13 +70,15 @@ class SiteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' => 1), array('creationDate' => 'desc'), 1, 0);
-
+        $result = true;
         if (!$entity) {
-            throw $this->createNotFoundException('Impossible de trouver ce document.');
+            // throw $this->createNotFoundException('Impossible de trouver ce document.');
+            $result = 'Aucun document n\'a encore été publié';
         }
 
         return array(
             'entity' => $entity,
+            'result' => $result
         );
     }
 
@@ -93,12 +95,14 @@ class SiteController extends Controller
                         ->getRepository('MediaBundle:Media')
                         ->findTop($count);
 
+        $result = true;
         if (!$datas) {
-            throw $this->createNotFoundException('Impossible de trouver ce document.');
+            $result = 'Aucun document n\'a encore été publié';
         }
 
         return array(
             'datas' => $datas,
+            'result' => $result
         );
     }
 
