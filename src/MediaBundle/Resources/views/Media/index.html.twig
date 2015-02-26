@@ -40,9 +40,11 @@
                                 <li>
                                     <a href="{{ path('media_show', { 'id': entity.id }) }}">Voir</a>
                                 </li>
-                                <li>
-                                    <a href="{{ path('media_edit', { 'id': entity.id }) }}">Editer</a>
-                                </li>
+                                {% if user_id == entity.owner.id or is_granted('ROLE_ADMIN') %}
+                                    <li>
+                                        <a href="{{ path('media_edit', { 'id': entity.id }) }}">Editer</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>

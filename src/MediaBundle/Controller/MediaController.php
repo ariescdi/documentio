@@ -260,6 +260,7 @@ class MediaController extends Controller
      */
     public function indexAction()
     {
+        $userId = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->findBy(array(), array('isPublished' => 'asc'));
@@ -267,11 +268,12 @@ class MediaController extends Controller
         $entities = $paginator->paginate(
             $entities,
             $this->get('request')->query->get('page', 1)/*page number*/,
-            1/*limit per page*/
+            10/*limit per page*/
         );
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
             'entities' => $entities,
+            'user_id'   => $userId
         ));
     }
     /**
@@ -383,9 +385,11 @@ class MediaController extends Controller
      */
     public function showAction($id)
     {
+        $userId = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
+        $ownerId = $entity->getOwner()->getId();
 
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
@@ -396,6 +400,8 @@ class MediaController extends Controller
         return $this->render('MediaBundle:Media:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'user_id'      => $userId,
+            'owner_id'     => $ownerId
         ));
     }
 
@@ -408,9 +414,11 @@ class MediaController extends Controller
      */
     public function editAction($id)
     {
+        $userId = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:Media')->find($id);
+        $entity  = $em->getRepository('MediaBundle:Media')->find($id);
+        $ownerId = $entity->getOwner()->getId();
 
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
@@ -423,6 +431,8 @@ class MediaController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'user_id'      => $userId,
+            'owner_id'     => $ownerId
         ));
     }
 
@@ -550,5 +560,13 @@ class MediaController extends Controller
                 ))
             ->getForm()
         ;
+    }
+
+    public function getUser()
+    {
+        $securityContext = $this->container->get('security.context');
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        return $user;
     }
 }

@@ -49,6 +49,7 @@
 
     <div class="btn-toolbar">
         <div class="btn-group">
+            {% if user_id == owner_id or is_granted('ROLE_ADMIN') %}
             <div class="btn btn-default">
                 <a href="{{ path('media_edit', { 'id': entity.id }) }}">
                     <i class="glyphicon glyphicon-edit"></i> Editer
@@ -59,6 +60,7 @@
                     <i class="glyphicon glyphicon-backward"></i> Supprimer
                 </a>
             </div>
+            {% endif %}
             <div class="btn btn-default">
                 <a href="{{ path('media') }}">
                     <i class="glyphicon glyphicon-backward"></i> Retour à la liste
