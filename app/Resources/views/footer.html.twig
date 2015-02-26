@@ -1,9 +1,30 @@
 <footer class="jumbotron " >
-	<div class="container">
-    <a href="{{ path('fos_user_security_login') }}">Admin</a>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4 list-group">
+                    <h3 class="list-group-item active">Site</h3>
+                    <a class="list-group-item" href="{{ path('admin_index') }}">Accueil</a>
+                    <a class="list-group-item" href="{{ path('fos_user_security_login') }}">Admin</a>
+                    <a class="list-group-item"  href="{{ path('contact') }}">Contact</a></li>
+                    <a class="list-group-item"  href="{{ path('admin_index') }}">Mentions légales</a>
+                    <a class="list-group-item"  href="{{ path('admin_index') }}">Site Map</a>
+            </div>
+            <div class="col-md-4 list-group">
+                <h3 class="list-group-item active">Liste des categories </h3>
+
+                {{ render(path('best_category_footer')) }}
+
+            </div>
+            <div class="col-md-4 list-group">
+                <h3 class="list-group-item active">Contact</h3>
+
+                      
+                    {% include '::address.html.twig' %}
+        </div>
+        
 	{% if is_granted('ROLE_USER') %}
 		<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
 	{% endif %}
 	<div class="clock" style="margin:2em;"></div>
-</div>
+   </div>
 </footer>
