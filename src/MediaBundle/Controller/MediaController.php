@@ -86,10 +86,6 @@ class MediaController extends Controller
 
         $kwRepo = $em->getRepository('MediaBundle:MediaKeyword');
 
-        // preg_replace : ponctuation -> space
-        $keywords = array_merge($keywords, explode(' ', preg_replace('/[^\s\p{L}]/u', ' ', $entity->getName())));
-        $keywords = array_merge($keywords, explode(' ', preg_replace('/[^\s\p{L}]/u', ' ', $entity->getComment())));
-
         foreach ($keywords as $k) {
             $k = strtolower($k);
             if (strlen($k)) {
