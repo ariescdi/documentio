@@ -3,23 +3,4 @@
 		<a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"></a>
 	</div>
 </div>
-<div class="background-nav">
-	<nav class="navbar navbar-default container">
-		 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <ul class="nav navbar-nav">
-	    	<li role="presentation"><a href="{{ path('admin_index') }}">Accueil Admin</a></li>
-	        <li role="presentation"><a href="{{ path('media') }}">Media</a></li>
-	        <li role="presentation"><a href="{{ path('mediacategory') }}">Catégorie</a></li>
-	        <li role="presentation"><a href="{{ path('mediatype') }}">Type de média</a></li>
-	        <li role="presentation"><a href="{{ path('mediakeyword') }}">Mots clef</a></li>
-	        {% if is_granted('ROLE_ADMIN') %}
-	        <li role="presentation"><a href="{{ path('user') }}">Utilisateurs</a></li>
-	        {% endif %}
-	        <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-	    </ul>
-
-      </div>
-	</nav>
-
-
-</div>
+{{ render(path('menuadmin')) }}
