@@ -61,7 +61,8 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "sensio/generator-bundle": "~2.3",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "flipclock/flipclock": "dev-master"
+        "flipclock/flipclock": "dev-master",
+        "presta/sitemap-bundle": "~1.4"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"
