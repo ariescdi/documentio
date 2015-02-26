@@ -145,3 +145,35 @@ aside .panel-body h3{
     }
 
 }
+
+/** footer nav **/
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
+    background:#23a3de;
+    border:none;
+}
+
+/** css pour rendre la iframe de la gmap responsive **/
+.google-maps {
+        position: relative;
+        padding-bottom: 75%; // This is the aspect ratio
+        height: 0;
+        overflow: hidden;
+    }
+
+.google-maps iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+/*/////////////fin de css pour responsive Gmap*/
+
+.contactFooter address{
+    margin-top:20px;
+    background:white;
+    padding:10px;
+}
+.contactFooter span{
+color:#23a3de ;
+}

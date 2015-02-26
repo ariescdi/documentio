@@ -1,0 +1,3 @@
+{% for entity in entities %}
+        <a class="list-group-item" href="{{ path('list_category', { 'slug': entity.slug }) }}">{{entity.name}}</a>
+{% endfor %}

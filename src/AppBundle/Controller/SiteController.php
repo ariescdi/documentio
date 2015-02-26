@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use MediaBundle\Entity\Media;
 use MediaBundle\Entity\MediaCategory;
+use AppBundle\Entity\Enquiry;
+use AppBundle\Form\EnquiryType;
+
 
 class SiteController extends Controller
 {
@@ -104,6 +107,16 @@ class SiteController extends Controller
             'entities' => $entities,
             'result' => $result
         );
+    }
+
+    /**
+     * @Route("/clock", name="clock")
+     * @Method("GET")
+     * @Template("AppBundle:Media:clock.html.twig")
+     */
+    public function clockAction()
+    {
+        return [];
     }
 
     /**
@@ -226,6 +239,24 @@ class SiteController extends Controller
             'entities' => $entities,
         );
     }
+    
+    /**
+     * Lists all MediaCategory entities.
+     *
+     * @Route("/liste-category-footer", name="best_category_footer")
+     * @Method("GET")
+     * @Template("AppBundle:Media:getBestFooterCategory.html.twig")
+     */
+    public function bestFooterCategoryAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MediaBundle:MediaCategory')->findbestCategory(8);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
 
     /**
      * @Route("/categorie/{slug}", name="list_category")
@@ -251,5 +282,40 @@ class SiteController extends Controller
         );
 
         return array('entities' => $entities,'category' => $category);
+    }
+    
+    /**
+     * @Route("/contact", name="contact")
+     * @Template("AppBundle:Site:contact.html.twig")
+     */
+    public function contactAction(){
+        $enquiry = new Enquiry();
+        $form = $this->createForm(new EnquiryType(), $enquiry);
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Contact enquiry from symblog')
+                    ->setFrom('enquiries@symblog.co.uk')
+                    ->setTo('email@email.com')
+                    ->setBody($this->renderView('AppBundle:Site:contactEmail.txt.twig', array('enquiry' => $enquiry)));
+                $this->get('mailer')->send($message);
+
+                // $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
+
+                // Redirect - This is important to prevent users re-posting
+                // the form if they refresh the page
+                return $this->redirect($this->generateUrl('contact'));
+                
+            }
+            
+        }
+        return array(
+            'form' => $form->createView()
+        );
     }
 }
