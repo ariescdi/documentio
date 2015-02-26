@@ -2,10 +2,16 @@
     <div class="panel-heading">
         <p>Dernier posté</p>
     </div>
-    <div class="panel-body">
-        <h3><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></h3>
-        <em>note : {{ entity.mark }}</em>
-        <p>{{entity.comment | truncate(50) }}</p>
-        <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ entity.owner.username }}<span></span></p>
-    </div>
+
+    {% if entity is null %}
+         <p><small>{{ result }}</small></p>
+    {% else %}
+        <div class="panel-body">
+            <h3><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></h3>
+            <em>note : {{ entity.mark }}</em>
+            <p>{{entity.comment | truncate(50) }}</p>
+            <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ entity.owner.username }}<span></span></p>
+        </div>
+    {% endif %}
+
 </div>
