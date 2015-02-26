@@ -3,6 +3,8 @@
 {% block body -%}
     <h1>Media edit</h1>
 
+    {% if user_id == owner_id or is_granted('ROLE_ADMIN') %}
+
     {{ form(edit_form) }}
 
     <div class="btn-toolbar">
@@ -19,4 +21,9 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <p class="alert alert-danger">
+        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Vous ne disponez pas des autorisations nécessaires pour modifier ce média
+    </p>
+    {% endif %}
 {% endblock %}

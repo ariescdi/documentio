@@ -52,7 +52,7 @@ class SiteController extends Controller
         $entities = $paginator->paginate(
             $entities,
             $this->get('request')->query->get('page', 1)/*page number*/,
-            1/*limit per page*/
+            10/*limit per page*/
         );
 
         return array('entities' => $entities);
@@ -169,7 +169,7 @@ class SiteController extends Controller
             $result = $paginator->paginate(
                 $result,
                 $this->get('request')->query->get('page', 1)/*page number*/,
-                1/*limit per page*/
+                10/*limit per page*/
             );
 
             return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result));
