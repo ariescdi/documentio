@@ -119,12 +119,14 @@ class SiteController extends Controller
 
         $entities = $em->getRepository('MediaBundle:MediaKeyword')->findBy(array(), array(), 10, 0);
 
+        $result = true;
         if (!$entities) {
-            throw $this->createNotFoundException('Impossible de trouver ce document.');
+            $result = 'Aucun tag n\'a encore été ajouté';
         }
 
         return array(
             'entities' => $entities,
+            'result' => $result
         );
     }
 
