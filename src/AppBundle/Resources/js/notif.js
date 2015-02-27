@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     // SET EVENT TO PASS hasSeen TO TRUE
 
-    $('.notifContent').click('.notifSeen', function(e){
+    $('.notifContent').on('click', '.notifSeen', function(e){
         var id = $(e.target).closest('li').data('notif');
         var route = Routing.generate('seen_notification', { id: id });
         $.ajax({
