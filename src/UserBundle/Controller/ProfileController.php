@@ -29,6 +29,24 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ProfileController extends BaseController
 {
+    public function showAction()
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        // Appel de la fonction - Création d'un nouvel objet ??!
+        $em = $this->getDoctrine()->getManager();
+        $docs = $em->getRepository('MediaBundle:Media')->findByConnectedUser($user);
+
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'docs' => $docs,
+        ));
+    }
+
     /**
      * Edit the user
      */
