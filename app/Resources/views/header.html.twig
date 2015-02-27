@@ -6,35 +6,25 @@
 <div class="background-nav">
 	<nav class="container navbar navbar-default">
 		<section class="col-lg-12">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-	    		</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				    <ul class="nav navbar-nav">
-				        <!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
-				        {{ render(path('best_category')) }}
-				    </ul>
-				    <div class="navbar-form navbar-right">
-						{{ render (path( 'media_search' ))}}
-				    </div>
-		      	</div>
-		    </section>
-	  	</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <ul class="nav navbar-nav">
-			{{ render(controller('MediaBundle:Media:getUserNotifications')) }}
-	        <!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
-	        {{ render(path('best_category')) }}
-	    </ul>
-	    <div class="navbar-form navbar-right">
-		{{ render (path( 'media_search' ))}}
-	    </div>
-      </div>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse custom" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
+					{{ render(path('best_category')) }}
+				</ul>
+				<div class="navbar-form navbar-right">
+					{{ render (path( 'media_search' ))}}
+				</div>
+			</div>
+		</section>
 	</nav>
 </div>
+
 {{ render(path('gettag')) }}

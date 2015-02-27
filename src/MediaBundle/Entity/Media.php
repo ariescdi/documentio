@@ -111,7 +111,7 @@ class Media
     private $isPublished = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Notification", mappedBy="media")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Notification", mappedBy="media", cascade={"remove"})
      */
     protected $notifications;
 

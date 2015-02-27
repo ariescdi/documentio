@@ -76,7 +76,7 @@ assetic:
             output: css/override_blue.css
         main_js:
             inputs:
-                - %kernel.root_dir%/../vendor/jquery/jquery/*
+                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../vendor/dropzone/dropzone/dropzone.js
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.js

@@ -1,16 +1,14 @@
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
     {% if count > 1 %}
-        Notifications
+        Notifications ({{ count }})
     {% else %}
-        Notification
+        Notification ({{ count }})
     {% endif %}
-     <span class="badge">{{ count }}</span> <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
     {% for notif in notifs %}
-        <li><a href="{{ path('media_show', {'id': notif.media.id}) }}">{{ notif.message }}</a><span class="glyphicon glyphicon-ok notifSeen" aria-hidden="true"></li>
-        <li class="divider"></li>
+        <div class="notifContent">
+            <ul>
+
+            </ul>
+            <!-- <a href="{{ path('media_show', {'id': notif.media.id}) }}">{{ notif.message }}</a> <span class="glyphicon glyphicon-ok notifSeen" aria-hidden="true" data-notif="{{ notif.id }}"> -->
+        </div>
     {% endfor %}
-  </ul>
-</div>

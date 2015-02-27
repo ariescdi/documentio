@@ -156,4 +156,27 @@ class Notification
     {
         return $this->media;
     }
+
+    /**
+     * Set hasSeen
+     *
+     * @param boolean $hasSeen
+     * @return Notification
+     */
+    public function setHasSeen($hasSeen)
+    {
+        $this->hasSeen = $hasSeen;
+
+        return $this;
+    }
+
+    /**
+     * Get hasSeen
+     *
+     * @return boolean 
+     */
+    public function getHasSeen()
+    {
+        return $this->hasSeen;
+    }
 }

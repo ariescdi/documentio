@@ -29,15 +29,12 @@
         {% include '::footer.html.twig' %}
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-            <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             <script type="text/javascript">
               $(document).ready(function () {
                 // SCRIPT HORLOGE
                 $('.clock').FlipClock({
                   clockFace: 'TwentyFourHourClock'
                 });
-
                 $('#tags-canvas').tagcanvas({
                   textColour: '#23A3DE',
                   outlineColour: '#23A3DE',

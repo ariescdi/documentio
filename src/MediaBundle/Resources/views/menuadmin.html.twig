@@ -134,6 +134,16 @@
                         </li>
                         {% endif %}
                     </ul>
+                    <div class="navbar-form navbar-right notifButton">
+                        <button class="glyphicon glyphicon-bell btn"></button>
+                        <div class="notifCount"></div>
+                    </div>
+                    <div class="notifBlock">
+                        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                        <h3>Notification(s) DocumentIO</h3>
+                        <ul class="notifContent">
+                        </ul>
+                    </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                     </ul>

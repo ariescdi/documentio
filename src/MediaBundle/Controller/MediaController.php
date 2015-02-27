@@ -12,6 +12,8 @@ use MediaBundle\Entity\Media;
 use AppBundle\Entity\Notification;
 use MediaBundle\Entity\MediaKeyword;
 use MediaBundle\Form\MediaType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Media controller.
@@ -376,7 +378,7 @@ class MediaController extends Controller
     /**
      * Finds and displays a Media entity.
      *
-     * @Route("/{id}", name="media_show")
+     * @Route("/{id}", name="media_show", options={"expose"=true})
      * @Method("GET")
      * @Template()
      */
@@ -424,8 +426,6 @@ class MediaController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $this->addNotification($entity, 'edit', 'édité');
-
         return $this->render('MediaBundle:Media:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -472,6 +472,8 @@ class MediaController extends Controller
         /* @var $entity Media */
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
+        $entityPublished = $entity->getIsPublished();
+
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
@@ -483,6 +485,9 @@ class MediaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            $isPublished = $entity->getIsPublished();
+
             if ($entity->getFile()) {
                 $f = $entity->getFile();
 
@@ -511,6 +516,10 @@ class MediaController extends Controller
 
             $em->flush();
 
+            if (!$entityPublished && $isPublished) $this->addNotification($entity, 'pusblish', 'publié');
+                elseif ($entityPublished && !$isPublished) $this->addNotification($entity, 'unpusblish', 'dépublié');
+                else $this->addNotification($entity, 'edit', 'édité');
+
             return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
         }
 
@@ -538,7 +547,7 @@ class MediaController extends Controller
         $em->remove($entity);
         $em->flush();
 
-        $this->addNotification($entity, 'delete', 'supprimé');
+        //$this->addNotification($entity, 'delete', 'supprimé');
 
         return $this->redirect($this->generateUrl('media'));
     }
@@ -587,6 +596,7 @@ class MediaController extends Controller
         $notification->setFeedback($feedback);
         $notification->setUser($media->getOwner());
         $notification->setMedia($media);
+        $notification->setHasSeen(0);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($notification);
@@ -594,7 +604,7 @@ class MediaController extends Controller
     }
 
     /**
-     * @Route("/notifications", name="notifications")
+     * @Route("/notifications", name="notifications", options={"expose"=true})
      *
      */
     public function getUserNotificationsAction()
@@ -602,16 +612,16 @@ class MediaController extends Controller
         //$user = $this->getUser();
         //$userId = $user->getId();
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AppBundle:Notification')->findUserNotifications($this->getUser());
+        $entities = $em->getRepository('AppBundle:Notification')->findUserNotifications($this->getUser()->getId());
         $count = count($entities);
-        return $this->render('MediaBundle:Notif:notif.html.twig', array(
-            'count' => $count,
-            'notifs' => $entities
-        ));
+        //return json_encode($entities);
+        $response = new JsonResponse();
+        $response->setData($entities);
+        return $response;
     }
 
     /**
-     * @Route("/seenNotification/{id}", name="seen_notification")
+     * @Route("/seenNotification/{id}", name="seen_notification", options={"expose"=true})
      *
      */
     public function seenNotification($id)
@@ -619,5 +629,9 @@ class MediaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Notification')->find($id);
         $entity->setHasSeen(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($entity);
+        $em->flush();
+        return new Response();
     }
 }
