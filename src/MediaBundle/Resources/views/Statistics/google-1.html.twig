@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Mot clés');
+        data.addColumn('number', '%');
+
+        data.addRows([
+        {% for keyword in keywords %}
+            ["{{keyword.word}}", {{keyword.compteur}}],
+        {% endfor %}
+        ]);
+
+        // Set chart options
+        var options = {'title':'Mots clés',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div_key_word'));
+        chart.draw(data, options);
+
+      }
+
+
+  </script>

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  google.load("visualization", "1.1", {packages:["bar"]});
+  google.setOnLoadCallback(drawStuff);
+
+  function drawStuff() {
+    var data = new google.visualization.arrayToDataTable([
+      ['Liste des médias', 'Connection'],
+        {% for user in users %}
+          ["{{user.username  }}", {{user.nbConnection}}],
+        {% endfor %}
+    ]);
+
+    var options = {
+      title: 'Nombre de connection',
+      width: 900,
+      legend: { position: 'none' },
+      chart: { title: 'Nombre de connection par utilisateur'},
+      bars: 'vertical', // Required for Material Bar Charts.
+      axes: {
+        x: {
+          0: { side: 'top', label: 'Nombre de connection'} // Top x-axis.
+        }
+      },
+      bar: { groupWidth: "90%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('columnchart_values'));
+    chart.draw(data, options);
+  };
+</script>

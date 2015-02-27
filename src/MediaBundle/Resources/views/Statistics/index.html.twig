@@ -1,0 +1,21 @@
+{% extends '::base_admin.html.twig' %}
+
+{% block body -%}
+    <h1>Statistiques</h1>
+
+    <div id="chart_div_key_word" style="width:400; height:300"></div>
+    <div id="top_x_div" style="width: 900px; height: 500px;"></div>
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    {% include 'MediaBundle:Statistics:google-1.html.twig' with keywords %}
+    {% include 'MediaBundle:Statistics:google-2.html.twig' with medias  %}
+    {% include 'MediaBundle:Statistics:google-3.html.twig' with users  %}
+{% endblock %}
