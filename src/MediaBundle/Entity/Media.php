@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Media
+ * Media.
  *
  * @ORM\Table(name="dio_media")
  * @ORM\Entity(repositoryClass="MediaRepository")
@@ -116,7 +116,7 @@ class Media
     protected $notifications;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -124,7 +124,7 @@ class Media
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -135,6 +135,7 @@ class Media
 
     /**
      * Get type.
+     *
      * @return MediaType The type.
      */
     public function getType()
@@ -144,6 +145,7 @@ class Media
 
     /**
      * Get category.
+     *
      * @return MediaType The category.
      */
     public function getCategory()
@@ -153,6 +155,7 @@ class Media
 
     /**
      * Get name.
+     *
      * @return string The name.
      */
     public function getName()
@@ -162,6 +165,7 @@ class Media
 
     /**
      * Get comment.
+     *
      * @return string The comment.
      */
     public function getComment()
@@ -171,6 +175,7 @@ class Media
 
     /**
      * Get path.
+     *
      * @return string The path.
      */
     public function getPath()
@@ -180,6 +185,7 @@ class Media
 
     /**
      * Get owner.
+     *
      * @return User The owner.
      */
     public function getOwner()
@@ -206,6 +212,7 @@ class Media
 
     /**
      * Set name.
+     *
      * @param string $name The name.
      */
     public function setName($name)
@@ -215,6 +222,7 @@ class Media
 
     /**
      * Set comment.
+     *
      * @param string $comment The comment.
      */
     public function setComment($comment)
@@ -224,6 +232,7 @@ class Media
 
     /**
      * Set path.
+     *
      * @param string $path The path.
      */
     public function setPath($path)
@@ -233,6 +242,7 @@ class Media
 
     /**
      * Set owner.
+     *
      * @param User $owner The owner.
      */
     public function setOwner(User $owner)
@@ -241,9 +251,10 @@ class Media
     }
 
     /**
-     * Set creationDate
+     * Set creationDate.
      *
-     * @param  \DateTime $creationDate
+     * @param \DateTime $creationDate
+     *
      * @return Media
      */
     public function setCreationDate($creationDate)
@@ -254,7 +265,7 @@ class Media
     }
 
     /**
-     * Get creationDate
+     * Get creationDate.
      *
      * @return \DateTime
      */
@@ -264,9 +275,10 @@ class Media
     }
 
     /**
-     * Set updateDate
+     * Set updateDate.
      *
-     * @param  \DateTime $updateDate
+     * @param \DateTime $updateDate
+     *
      * @return Media
      */
     public function setUpdateDate($updateDate)
@@ -277,7 +289,7 @@ class Media
     }
 
     /**
-     * Get updateDate
+     * Get updateDate.
      *
      * @return \DateTime
      */
@@ -286,11 +298,11 @@ class Media
         return $this->updateDate;
     }
 
-
     /**
-     * Add keyword
+     * Add keyword.
      *
-     * @param  MediaKeyword $keyword
+     * @param MediaKeyword $keyword
+     *
      * @return Media
      */
     public function addKeyword(MediaKeyword $keyword)
@@ -301,7 +313,7 @@ class Media
     }
 
     /**
-     * Remove keywords
+     * Remove keywords.
      *
      * @param MediaKeyword $keyword
      */
@@ -311,7 +323,7 @@ class Media
     }
 
     /**
-     * Get keywords
+     * Get keywords.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -321,7 +333,7 @@ class Media
     }
 
     /**
-     * Increment mark
+     * Increment mark.
      *
      * @return Media
      */
@@ -332,7 +344,7 @@ class Media
         return $this;
     }
     /**
-     * Decrement mark
+     * Decrement mark.
      *
      * @return Media
      */
@@ -344,7 +356,7 @@ class Media
     }
 
     /**
-     * Get mark
+     * Get mark.
      *
      * @return integer
      */
@@ -355,6 +367,7 @@ class Media
 
     /**
      * Get webpath.
+     *
      * @return string The web accessible URL.
      */
     public function getWebPath()
@@ -382,9 +395,10 @@ class Media
     }
 
     /**
-     * Set mark
+     * Set mark.
      *
-     * @param  integer $mark
+     * @param integer $mark
+     *
      * @return Media
      */
     public function setMark($mark)
@@ -395,9 +409,10 @@ class Media
     }
 
     /**
-     * Set isPublished
+     * Set isPublished.
      *
-     * @param  boolean $isPublished
+     * @param boolean $isPublished
+     *
      * @return Media
      */
     public function setIsPublished($isPublished)
@@ -408,7 +423,7 @@ class Media
     }
 
     /**
-     * Get isPublished
+     * Get isPublished.
      *
      * @return boolean
      */
@@ -418,9 +433,10 @@ class Media
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
-     * @param  string $slug
+     * @param string $slug
+     *
      * @return Media
      */
     public function setSlug($slug)
@@ -431,7 +447,7 @@ class Media
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -441,9 +457,10 @@ class Media
     }
 
     /**
-     * Add notifications
+     * Add notifications.
      *
      * @param \AppBundle\Entity\Notification $notifications
+     *
      * @return Media
      */
     public function addNotification(\AppBundle\Entity\Notification $notifications)
@@ -454,7 +471,7 @@ class Media
     }
 
     /**
-     * Remove notifications
+     * Remove notifications.
      *
      * @param \AppBundle\Entity\Notification $notifications
      */
@@ -464,7 +481,7 @@ class Media
     }
 
     /**
-     * Get notifications
+     * Get notifications.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

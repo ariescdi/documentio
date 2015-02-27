@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Controller managing the password change
+ * Controller managing the password change.
  *
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
@@ -31,7 +31,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ChangePasswordController extends BaseController
 {
     /**
-     * Change user password
+     * Change user password.
      */
     public function changePasswordAction(Request $request)
     {

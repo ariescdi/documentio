@@ -6,14 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * MediaKeyWord
+ * MediaKeyWord.
  *
  * @ORM\Table(name="dio_mediakeyword",indexes={@ORM\Index(name="search_idx", columns={"word"})})
  * @ORM\Entity(repositoryClass="MediaKeywordRepository")
  */
 class MediaKeyword
 {
-
     /**
      * @var integer
      *
@@ -54,7 +53,9 @@ class MediaKeyword
 
     /**
      * Add a media.
-     * @param  Media        $media The media to add.
+     *
+     * @param Media $media The media to add.
+     *
      * @return MediaKeyword Allows chained call.
      */
     public function addMedia(Media $media)
@@ -68,6 +69,7 @@ class MediaKeyword
 
     /**
      * Get medias.
+     *
      * @return Media[]|ArrayCollection The media array.
      */
     public function getMedias()
@@ -77,7 +79,9 @@ class MediaKeyword
 
     /**
      * Set word.
-     * @param  string       $word The word.
+     *
+     * @param string $word The word.
+     *
      * @return MediaKeyword Allows chained call.
      */
     public function setWord($word)
@@ -87,6 +91,7 @@ class MediaKeyword
 
     /**
      * Get word.
+     *
      * @return string The word.
      */
     public function getWord()
@@ -95,7 +100,7 @@ class MediaKeyword
     }
 
     /**
-     * Remove medias
+     * Remove medias.
      *
      * @param Media $media
      */

@@ -7,11 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * MediaType
+ * MediaType.
  *
  * @ORM\Table(name="dio_mediacategory")
  * @ORM\Entity(repositoryClass="MediaCategoryRepository")
- *
  */
 class MediaCategory
 {
@@ -48,6 +47,7 @@ class MediaCategory
 
     /**
      * @ORM\OneToMany(targetEntity="Media", mappedBy="category")
+     *
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;
@@ -58,7 +58,7 @@ class MediaCategory
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -69,6 +69,7 @@ class MediaCategory
 
     /**
      * Get name.
+     *
      * @return string The name.
      */
     public function getName()
@@ -78,6 +79,7 @@ class MediaCategory
 
     /**
      * Get comment.
+     *
      * @return string The comment.
      */
     public function getComment()
@@ -87,6 +89,7 @@ class MediaCategory
 
     /**
      * Get medias.
+     *
      * @return Media[]|\Doctrine\Common\Collections\Collection Medias list.
      */
     public function getMedias()
@@ -96,6 +99,7 @@ class MediaCategory
 
     /**
      * Set name.
+     *
      * @param string $name The name.
      */
     public function setName($name)
@@ -105,6 +109,7 @@ class MediaCategory
 
     /**
      * Set comment.
+     *
      * @param string $comment The comment.
      */
     public function setComment($comment)
@@ -114,6 +119,7 @@ class MediaCategory
 
     /**
      * Add a media.
+     *
      * @param Media $media The media to add.
      */
     public function addMedia(Media $media)
@@ -131,7 +137,7 @@ class MediaCategory
     }
 
     /**
-     * Remove media
+     * Remove media.
      *
      * @param Media $media
      */
@@ -141,9 +147,10 @@ class MediaCategory
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
-     * @param  string        $slug
+     * @param string $slug
+     *
      * @return MediaCategory
      */
     public function setSlug($slug)
@@ -154,7 +161,7 @@ class MediaCategory
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */

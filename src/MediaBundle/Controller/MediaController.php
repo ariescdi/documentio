@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class MediaController extends Controller
 {
-
     private static function getUploadRoot()
     {
         return 'uploads/dio';
@@ -79,7 +78,8 @@ class MediaController extends Controller
     }
 
     /**
-     * Update media keywords
+     * Update media keywords.
+     *
      * @param string $keywords splitted by spaces
      * @param Media  $entity
      */
@@ -148,6 +148,7 @@ class MediaController extends Controller
      * Show media for a given category.
      *
      * @Route("/show/category/{id}", name="media_show_category")
+     *
      * @Method("GET")
      */
     public function showCategoryAction($id)
@@ -163,6 +164,7 @@ class MediaController extends Controller
      * Configures dropped file.
      *
      * @Route("/drop_config", name="media_drop_config")
+     *
      * @Method("POST")
      */
     public function dropConfigAction(Request $request)
@@ -217,6 +219,7 @@ class MediaController extends Controller
      * Handles file drop.
      *
      * @Route("/drop", name="media_drop")
+     *
      * @Method("POST")
      */
     public function dropAction(Request $request)
@@ -254,6 +257,7 @@ class MediaController extends Controller
      * Lists all Media entities.
      *
      * @Route("/", name="media")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -272,13 +276,14 @@ class MediaController extends Controller
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
             'entities' => $entities,
-            'user_id'   => $userId
+            'user_id'   => $userId,
         ));
     }
     /**
      * Creates a new Media entity.
      *
      * @Route("/", name="media_create")
+     *
      * @Method("POST")
      * @Template("MediaBundle:Media:new.html.twig")
      */
@@ -361,6 +366,7 @@ class MediaController extends Controller
      * Displays a form to create a new Media entity.
      *
      * @Route("/new", name="media_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -379,6 +385,7 @@ class MediaController extends Controller
      * Finds and displays a Media entity.
      *
      * @Route("/{id}", name="media_show", options={"expose"=true})
+     *
      * @Method("GET")
      * @Template()
      */
@@ -400,7 +407,7 @@ class MediaController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
             'user_id'      => $userId,
-            'owner_id'     => $ownerId
+            'owner_id'     => $ownerId,
         ));
     }
 
@@ -408,6 +415,7 @@ class MediaController extends Controller
      * Displays a form to edit an existing Media entity.
      *
      * @Route("/{id}/edit", name="media_edit")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -431,7 +439,7 @@ class MediaController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'user_id'      => $userId,
-            'owner_id'     => $ownerId
+            'owner_id'     => $ownerId,
         ));
     }
 
@@ -462,6 +470,7 @@ class MediaController extends Controller
      * Edits an existing Media entity.
      *
      * @Route("/{id}", name="media_update")
+     *
      * @Method("PUT")
      * @Template("MediaBundle:Media:edit.html.twig")
      */
@@ -485,7 +494,6 @@ class MediaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-
             $isPublished = $entity->getIsPublished();
 
             if ($entity->getFile()) {
@@ -516,9 +524,13 @@ class MediaController extends Controller
 
             $em->flush();
 
-            if (!$entityPublished && $isPublished) $this->addNotification($entity, 'pusblish', 'publié');
-                elseif ($entityPublished && !$isPublished) $this->addNotification($entity, 'unpusblish', 'dépublié');
-                else $this->addNotification($entity, 'edit', 'édité');
+            if (!$entityPublished && $isPublished) {
+                $this->addNotification($entity, 'pusblish', 'publié');
+            } elseif ($entityPublished && !$isPublished) {
+                $this->addNotification($entity, 'unpusblish', 'dépublié');
+            } else {
+                $this->addNotification($entity, 'edit', 'édité');
+            }
 
             return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
         }
@@ -533,6 +545,7 @@ class MediaController extends Controller
      * Deletes a Media entity.
      *
      * @Route("/delete/{id}", name="media_delete")
+     *
      * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
@@ -581,18 +594,17 @@ class MediaController extends Controller
     }
 
     /**
-     * Add a notification
+     * Add a notification.
      *
      * @param Media $entity The entity
      * @param Feedback for Notification
      * @param Status for Notification Message
-     *
      */
     public function addNotification(Media $media, $feedback, $status)
     {
         $user = $this->getUser();
         $notification = new Notification();
-        $notification->setMessage('Le média ' . $media->getName() . ' a été ' . $status . ' par ' . $user);
+        $notification->setMessage('Le média '.$media->getName().' a été '.$status.' par '.$user);
         $notification->setFeedback($feedback);
         $notification->setUser($media->getOwner());
         $notification->setMedia($media);
@@ -605,7 +617,6 @@ class MediaController extends Controller
 
     /**
      * @Route("/notifications", name="notifications", options={"expose"=true})
-     *
      */
     public function getUserNotificationsAction()
     {
@@ -617,12 +628,12 @@ class MediaController extends Controller
         //return json_encode($entities);
         $response = new JsonResponse();
         $response->setData($entities);
+
         return $response;
     }
 
     /**
      * @Route("/seenNotification/{id}", name="seen_notification", options={"expose"=true})
-     *
      */
     public function seenNotification($id)
     {
@@ -632,6 +643,7 @@ class MediaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($entity);
         $em->flush();
+
         return new Response();
     }
 }

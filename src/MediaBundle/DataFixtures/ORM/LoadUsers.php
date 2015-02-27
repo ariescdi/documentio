@@ -8,7 +8,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use MediaBundle\Entity\User;
 
 /**
- * Description of LoadUsers
+ * Description of LoadUsers.
  *
  * @author Sylvain Garcia
  */

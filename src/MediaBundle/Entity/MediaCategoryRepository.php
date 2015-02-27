@@ -4,7 +4,6 @@ namespace MediaBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-
 class MediaCategoryRepository extends EntityRepository
 {
     public function findbestCategory($count)

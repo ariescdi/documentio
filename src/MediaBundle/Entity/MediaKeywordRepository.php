@@ -4,7 +4,6 @@ namespace MediaBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-
 class MediaKeywordRepository extends EntityRepository
 {
     public function topKeyWord()

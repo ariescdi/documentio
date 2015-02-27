@@ -27,9 +27,9 @@ class User extends BaseUser
      */
     private $nbConnection = 0;
 
-
     /**
      * @ORM\OneToMany(targetEntity="Media", mappedBy="owner")
+     *
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;
@@ -49,8 +49,10 @@ class User extends BaseUser
 
     /**
      * Add a media.
-     * @param  Media $media
-     * @return User  Allow chained call.
+     *
+     * @param Media $media
+     *
+     * @return User Allow chained call.
      */
     public function addMedia($media)
     {
@@ -64,7 +66,7 @@ class User extends BaseUser
 
     /**
      * Get medias.
-     * return Media[]|ArrayCollection
+     * return Media[]|ArrayCollection.
      */
     public function getMedias()
     {
@@ -72,7 +74,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -82,7 +84,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove medias
+     * Remove medias.
      *
      * @param \MediaBundle\Entity\Media $medias
      */
@@ -92,9 +94,10 @@ class User extends BaseUser
     }
 
     /**
-     * Add notifications
+     * Add notifications.
      *
      * @param \AppBundle\Entity\Notification $notifications
+     *
      * @return User
      */
     public function addNotification(\AppBundle\Entity\Notification $notifications)
@@ -105,7 +108,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove notifications
+     * Remove notifications.
      *
      * @param \AppBundle\Entity\Notification $notifications
      */
@@ -115,7 +118,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get notifications
+     * Get notifications.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -125,9 +128,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set nbConnection
+     * Set nbConnection.
      *
      * @param integer $nbConnection
+     *
      * @return User
      */
     public function setNbConnection($nbConnection)
@@ -138,7 +142,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get nbConnection
+     * Get nbConnection.
      *
      * @return integer
      */

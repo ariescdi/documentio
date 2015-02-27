@@ -17,11 +17,11 @@ use MediaBundle\Form\MediaTypeType;
  */
 class MediaTypeController extends Controller
 {
-
     /**
      * Lists all MediaType entities.
      *
      * @Route("/", name="mediatype")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -39,6 +39,7 @@ class MediaTypeController extends Controller
      * Creates a new MediaType entity.
      *
      * @Route("/", name="mediatype_create")
+     *
      * @Method("POST")
      * @Template("MediaBundle:MediaType:new.html.twig")
      */
@@ -85,6 +86,7 @@ class MediaTypeController extends Controller
      * Displays a form to create a new MediaType entity.
      *
      * @Route("/new", name="mediatype_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -103,6 +105,7 @@ class MediaTypeController extends Controller
      * Finds and displays a MediaType entity.
      *
      * @Route("/{id}", name="mediatype_show")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -128,6 +131,7 @@ class MediaTypeController extends Controller
      * Displays a form to edit an existing MediaType entity.
      *
      * @Route("/{id}/edit", name="mediatype_edit")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -173,6 +177,7 @@ class MediaTypeController extends Controller
      * Edits an existing MediaType entity.
      *
      * @Route("/{id}", name="mediatype_update")
+     *
      * @Method("PUT")
      * @Template("MediaBundle:MediaType:edit.html.twig")
      */
@@ -206,6 +211,7 @@ class MediaTypeController extends Controller
      * Deletes a MediaType entity.
      *
      * @Route("/delete/{id}", name="mediatype_delete")
+     *
      * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)

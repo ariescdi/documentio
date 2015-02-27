@@ -17,11 +17,11 @@ use MediaBundle\Form\MediaKeywordType;
  */
 class MediaKeywordController extends Controller
 {
-
     /**
      * Lists all MediaKeyword entities.
      *
      * @Route("/", name="mediakeyword")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -39,6 +39,7 @@ class MediaKeywordController extends Controller
      * Creates a new MediaKeyword entity.
      *
      * @Route("/", name="mediakeyword_create")
+     *
      * @Method("POST")
      * @Template("MediaBundle:MediaKeyword:new.html.twig")
      */
@@ -85,6 +86,7 @@ class MediaKeywordController extends Controller
      * Displays a form to create a new MediaKeyword entity.
      *
      * @Route("/new", name="mediakeyword_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -103,6 +105,7 @@ class MediaKeywordController extends Controller
      * Finds and displays a MediaKeyword entity.
      *
      * @Route("/{id}", name="mediakeyword_show")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -128,6 +131,7 @@ class MediaKeywordController extends Controller
      * Displays a form to edit an existing MediaKeyword entity.
      *
      * @Route("/{id}/edit", name="mediakeyword_edit")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -173,6 +177,7 @@ class MediaKeywordController extends Controller
      * Edits an existing MediaKeyword entity.
      *
      * @Route("/{id}", name="mediakeyword_update")
+     *
      * @Method("PUT")
      * @Template("MediaBundle:MediaKeyword:edit.html.twig")
      */
@@ -206,6 +211,7 @@ class MediaKeywordController extends Controller
      * Deletes a MediaKeyword entity.
      *
      * @Route("/delete/{id}", name="mediakeyword_delete")
+     *
      * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)

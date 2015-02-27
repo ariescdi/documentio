@@ -8,7 +8,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use MediaBundle\Entity\MediaCategory;
 
 /**
- * Description of LoadCategores
+ * Description of LoadCategores.
  *
  * @author Sylvain Garcia
  */

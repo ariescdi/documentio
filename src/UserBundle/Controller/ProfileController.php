@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Controller managing the user profile
+ * Controller managing the user profile.
  *
  * @author Christophe Coevoet <stof@notk.org>
  */
@@ -40,7 +40,6 @@ class ProfileController extends BaseController
         $em = $this->getDoctrine()->getManager();
         $docs = $em->getRepository('MediaBundle:Media')->findByConnectedUser($user);
 
-
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'docs' => $docs,
@@ -48,7 +47,7 @@ class ProfileController extends BaseController
     }
 
     /**
-     * Edit the user
+     * Edit the user.
      */
     public function editAction(Request $request)
     {

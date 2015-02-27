@@ -3,7 +3,6 @@
 namespace AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 

@@ -7,20 +7,20 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Entity;
 
 /**
- * Description of MediaRepository
+ * Description of MediaRepository.
  *
  * @author sylvain
  *
  * Please ensure repository is registered :
- *
- *
  */
 class MediaRepository extends EntityRepository
 {
     /**
      * Find media by given keywords.
-     * @param  string[] $keywords
-     * @return Media[]  Matched medias.
+     *
+     * @param string[] $keywords
+     *
+     * @return Media[] Matched medias.
      */
     /*
 
@@ -125,7 +125,8 @@ WHERE m.id IN (
         return $medias;
     }
 
-    public function findByConnectedUser($User) {
+    public function findByConnectedUser($User)
+    {
         // ** FONCTION POUR RECUPERER TOUT LES DOCUMENTS CHARGES PAR L'UTILISATEUR CONNECTE ** //
 
         return $this->createQueryBuilder("m")->where("m.owner = :owner")->setParameter(":owner", $User)->getQuery()->getResult();

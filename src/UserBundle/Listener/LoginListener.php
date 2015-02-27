@@ -6,7 +6,6 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 
-
 /**
  * Custom login listener.
  */
@@ -19,7 +18,7 @@ class LoginListener
     private $em;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param SecurityContext $securityContext
      * @param Doctrine        $doctrine
@@ -37,11 +36,9 @@ class LoginListener
      */
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-
         if ($this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $event->getAuthenticationToken()->getUser();
             $this->em->getRepository('MediaBundle:User')->addConnection($user);
         }
-
     }
 }

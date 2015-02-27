@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * MediaType
+ * MediaType.
  *
  * @ORM\Table(name="dio_mediatype")
  * @ORM\Entity
@@ -52,6 +52,7 @@ class MediaType
 
     /**
      * @ORM\OneToMany(targetEntity="Media", mappedBy="type")
+     *
      * @var Media[]|\Doctrine\Common\Collections\Collection
      **/
     private $medias;
@@ -62,7 +63,7 @@ class MediaType
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -73,6 +74,7 @@ class MediaType
 
     /**
      * Get name.
+     *
      * @return string The name.
      */
     public function getName()
@@ -82,6 +84,7 @@ class MediaType
 
     /**
      * Get extension.
+     *
      * @return string The extension.
      */
     public function getExt()
@@ -91,6 +94,7 @@ class MediaType
 
     /**
      * Get comment.
+     *
      * @return string The comment.
      */
     public function getComment()
@@ -100,6 +104,7 @@ class MediaType
 
     /**
      * Get the mime type.
+     *
      * @return string The code.
      */
     public function getMimetype()
@@ -109,6 +114,7 @@ class MediaType
 
     /**
      * Get medias.
+     *
      * @return Media[]|\Doctrine\Common\Collections\Collection Medias list.
      */
     public function getMedias()
@@ -118,6 +124,7 @@ class MediaType
 
     /**
      * Set name.
+     *
      * @param string $name The name.
      */
     public function setName($name)
@@ -127,6 +134,7 @@ class MediaType
 
     /**
      * Set extension.
+     *
      * @param string $ext The extention.
      */
     public function setExt($ext)
@@ -136,6 +144,7 @@ class MediaType
 
     /**
      * Set comment.
+     *
      * @param string $comment The comment.
      */
     public function setComment($comment)
@@ -145,6 +154,7 @@ class MediaType
 
     /**
      * Set display code.
+     *
      * @param string $code The code to use to display the media.
      */
     public function setMimetype($code)
@@ -154,6 +164,7 @@ class MediaType
 
     /**
      * Add a media.
+     *
      * @param Media $media The media to add.
      */
     public function addMedia(Media $media)
@@ -171,7 +182,7 @@ class MediaType
     }
 
     /**
-     * Remove medias
+     * Remove medias.
      *
      * @param Media $media
      */

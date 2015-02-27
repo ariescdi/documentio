@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Notification
+ * Notification.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="NotificationRepository")
@@ -48,15 +48,14 @@ class Notification
     protected $media;
 
     /**
-    * @var boolean $hasSeen
-    *
-    * @ORM\Column(name="hasSeen", type="boolean")
-    */
+     * @var boolean
+     *
+     * @ORM\Column(name="hasSeen", type="boolean")
+     */
     private $hasSeen;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -66,9 +65,10 @@ class Notification
     }
 
     /**
-     * Set message
+     * Set message.
      *
      * @param string $message
+     *
      * @return Notification
      */
     public function setMessage($message)
@@ -79,7 +79,7 @@ class Notification
     }
 
     /**
-     * Get message
+     * Get message.
      *
      * @return string
      */
@@ -89,9 +89,10 @@ class Notification
     }
 
     /**
-     * Set feedback
+     * Set feedback.
      *
      * @param string $feedback
+     *
      * @return Notification
      */
     public function setFeedback($feedback)
@@ -102,7 +103,7 @@ class Notification
     }
 
     /**
-     * Get feedback
+     * Get feedback.
      *
      * @return string
      */
@@ -112,9 +113,10 @@ class Notification
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \MediaBundle\Entity\User $user
+     *
      * @return Notification
      */
     public function setUser(\MediaBundle\Entity\User $user = null)
@@ -125,7 +127,7 @@ class Notification
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \MediaBundle\Entity\User
      */
@@ -135,9 +137,10 @@ class Notification
     }
 
     /**
-     * Set media
+     * Set media.
      *
      * @param \MediaBundle\Entity\Media $media
+     *
      * @return Notification
      */
     public function setMedia(\MediaBundle\Entity\Media $media = null)
@@ -148,7 +151,7 @@ class Notification
     }
 
     /**
-     * Get media
+     * Get media.
      *
      * @return \MediaBundle\Entity\Media
      */
@@ -158,9 +161,10 @@ class Notification
     }
 
     /**
-     * Set hasSeen
+     * Set hasSeen.
      *
      * @param boolean $hasSeen
+     *
      * @return Notification
      */
     public function setHasSeen($hasSeen)
@@ -171,9 +175,9 @@ class Notification
     }
 
     /**
-     * Get hasSeen
+     * Get hasSeen.
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getHasSeen()
     {

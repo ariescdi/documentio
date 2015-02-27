@@ -17,11 +17,11 @@ use MediaBundle\Form\MediaCategoryType;
  */
 class MediaCategoryController extends Controller
 {
-
     /**
      * Lists all MediaCategory entities.
      *
      * @Route("/", name="mediacategory")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -39,6 +39,7 @@ class MediaCategoryController extends Controller
      * Creates a new MediaCategory entity.
      *
      * @Route("/", name="mediacategory_create")
+     *
      * @Method("POST")
      * @Template("MediaBundle:MediaCategory:new.html.twig")
      */
@@ -85,6 +86,7 @@ class MediaCategoryController extends Controller
      * Displays a form to create a new MediaCategory entity.
      *
      * @Route("/new", name="mediacategory_new")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -103,6 +105,7 @@ class MediaCategoryController extends Controller
      * Finds and displays a MediaCategory entity.
      *
      * @Route("/{id}", name="mediacategory_show")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -128,6 +131,7 @@ class MediaCategoryController extends Controller
      * Displays a form to edit an existing MediaCategory entity.
      *
      * @Route("/{id}/edit", name="mediacategory_edit")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -173,6 +177,7 @@ class MediaCategoryController extends Controller
      * Edits an existing MediaCategory entity.
      *
      * @Route("/{id}", name="mediacategory_update")
+     *
      * @Method("PUT")
      * @Template("MediaBundle:MediaCategory:edit.html.twig")
      */
@@ -206,6 +211,7 @@ class MediaCategoryController extends Controller
      * Deletes a MediaCategory entity.
      *
      * @Route("/delete/{id}", name="mediacategory_delete")
+     *
      * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)

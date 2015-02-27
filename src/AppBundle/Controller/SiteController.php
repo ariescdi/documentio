@@ -12,11 +12,11 @@ use MediaBundle\Entity\MediaCategory;
 use AppBundle\Entity\Enquiry;
 use AppBundle\Form\EnquiryType;
 
-
 class SiteController extends Controller
 {
     /**
      * Creates a new Medium entity.
+     *
      * @Route("/", name="index")
      * @Template()
      */
@@ -24,18 +24,20 @@ class SiteController extends Controller
     {
         return [];
     }
-    
+
     /**
      * Creates a new Medium entity.
+     *
      * @Route("/config/{name}/{value}", name="config")
      */
     public function configAction($name, $value)
     {
         $this->get('craue_config')->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
+
         return $this->redirect($referer);
     }
-    
+
     /**
      * @Route("/document/{slug}", name="document_show")
      * @Template("AppBundle:Media:show.html.twig")
@@ -74,9 +76,10 @@ class SiteController extends Controller
     }
 
     /**
-     * get last 2 medium
+     * get last 2 medium.
      *
      * @Route("/getLast/", name="getlast")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:getlast.html.twig")
      */
@@ -93,14 +96,15 @@ class SiteController extends Controller
 
         return array(
             'entity' => $entity,
-            'result' => $result
+            'result' => $result,
         );
     }
 
     /**
-     * get last 2 medium
+     * get last 2 medium.
      *
      * @Route("/getbestmark/{count}", name="getbestmark")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:getbestmark.html.twig")
      */
@@ -117,12 +121,13 @@ class SiteController extends Controller
 
         return array(
             'entities' => $entities,
-            'result' => $result
+            'result' => $result,
         );
     }
 
     /**
      * @Route("/clock", name="clock")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:clock.html.twig")
      */
@@ -132,9 +137,10 @@ class SiteController extends Controller
     }
 
     /**
-     * get last 2 medium
+     * get last 2 medium.
      *
      * @Route("/gettag/", name="gettag")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:gettag.html.twig")
      */
@@ -151,7 +157,7 @@ class SiteController extends Controller
 
         return array(
             'entities' => $entities,
-            'result' => $result
+            'result' => $result,
         );
     }
 
@@ -238,6 +244,7 @@ class SiteController extends Controller
      * Lists all MediaCategory entities.
      *
      * @Route("/liste-category", name="best_category")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:getBestCategory.html.twig")
      */
@@ -251,11 +258,12 @@ class SiteController extends Controller
             'entities' => $entities,
         );
     }
-    
+
     /**
      * Lists all MediaCategory entities.
      *
      * @Route("/liste-category-footer", name="best_category_footer")
+     *
      * @Method("GET")
      * @Template("AppBundle:Media:getBestFooterCategory.html.twig")
      */
@@ -295,12 +303,13 @@ class SiteController extends Controller
 
         return array('entities' => $entities,'category' => $category);
     }
-    
+
     /**
      * @Route("/contact", name="contact")
      * @Template("AppBundle:Site:contact.html.twig")
      */
-    public function contactAction(){
+    public function contactAction()
+    {
         $enquiry = new Enquiry();
         $form = $this->createForm(new EnquiryType(), $enquiry);
 
@@ -309,7 +318,6 @@ class SiteController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Contact enquiry from symblog')
                     ->setFrom('enquiries@symblog.co.uk')
@@ -322,12 +330,11 @@ class SiteController extends Controller
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
                 return $this->redirect($this->generateUrl('contact'));
-                
             }
-            
         }
+
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         );
     }
 }
