@@ -134,6 +134,7 @@ aside .panel-body h3{
 	margin-top:5px;
 	font-size:20px;
 }
+
 @media (max-width: 768px){
     .background-nav{
         background-color: transparent;
@@ -176,4 +177,31 @@ aside .panel-body h3{
 }
 .contactFooter span{
 color:#23a3de ;
+}
+
+.logo.container a {
+    text-decoration: none;
+}
+
+.logoIO {
+    font-size: 70px;
+    font-weight: bolder;
+    vertical-align: middle;
+    font-family: "trebuchet ms", "arial";
+}
+
+.blue {
+    color: #23a3de!important;
+}
+
+.green {
+    color: #96c573!important;
+}
+
+.pink {
+    color: #f66578!important;
+}
+
+.mg20px {
+    margin: 20px;
 }

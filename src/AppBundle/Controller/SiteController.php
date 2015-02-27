@@ -24,6 +24,18 @@ class SiteController extends Controller
     {
         return [];
     }
+    
+    /**
+     * Creates a new Medium entity.
+     * @Route("/config/{name}/{value}", name="config")
+     */
+    public function configAction($name, $value)
+    {
+        $this->get('craue_config')->set($name, $value);
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->redirect($referer);
+    }
+    
     /**
      * @Route("/document/{slug}", name="document_show")
      * @Template("AppBundle:Media:show.html.twig")
