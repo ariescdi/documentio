@@ -125,6 +125,12 @@ WHERE m.id IN (
         return $medias;
     }
 
+    public function findByConnectedUser($User) {
+        // ** FONCTION POUR RECUPERER TOUT LES DOCUMENTS CHARGES PAR L'UTILISATEUR CONNECTE ** //
+
+        return $this->createQueryBuilder("m")->where("m.owner = :owner")->setParameter(":owner", $User)->getQuery()->getResult();
+    }
+
     public function findLastModified($count = 5)
     {
         $dql = "SELECT m FROM MediaBundle:Media m ORDER BY m.update_date DESC";
