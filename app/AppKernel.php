@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new MediaBundle\MediaBundle(),
             new UserBundle\UserBundle(),
             new Craue\ConfigBundle\CraueConfigBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

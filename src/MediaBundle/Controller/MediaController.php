@@ -9,8 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use MediaBundle\Entity\Media;
+use AppBundle\Entity\Notification;
 use MediaBundle\Entity\MediaKeyword;
 use MediaBundle\Form\MediaType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Media controller.
@@ -375,7 +378,7 @@ class MediaController extends Controller
     /**
      * Finds and displays a Media entity.
      *
-     * @Route("/{id}", name="media_show")
+     * @Route("/{id}", name="media_show", options={"expose"=true})
      * @Method("GET")
      * @Template()
      */
@@ -469,6 +472,8 @@ class MediaController extends Controller
         /* @var $entity Media */
         $entity = $em->getRepository('MediaBundle:Media')->find($id);
 
+        $entityPublished = $entity->getIsPublished();
+
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
         }
@@ -480,6 +485,9 @@ class MediaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            $isPublished = $entity->getIsPublished();
+
             if ($entity->getFile()) {
                 $f = $entity->getFile();
 
@@ -508,6 +516,10 @@ class MediaController extends Controller
 
             $em->flush();
 
+            if (!$entityPublished && $isPublished) $this->addNotification($entity, 'pusblish', 'publié');
+                elseif ($entityPublished && !$isPublished) $this->addNotification($entity, 'unpusblish', 'dépublié');
+                else $this->addNotification($entity, 'edit', 'édité');
+
             return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
         }
 
@@ -534,6 +546,8 @@ class MediaController extends Controller
 
         $em->remove($entity);
         $em->flush();
+
+        //$this->addNotification($entity, 'delete', 'supprimé');
 
         return $this->redirect($this->generateUrl('media'));
     }
@@ -564,5 +578,60 @@ class MediaController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
         return $user;
+    }
+
+    /**
+     * Add a notification
+     *
+     * @param Media $entity The entity
+     * @param Feedback for Notification
+     * @param Status for Notification Message
+     *
+     */
+    public function addNotification(Media $media, $feedback, $status)
+    {
+        $user = $this->getUser();
+        $notification = new Notification();
+        $notification->setMessage('Le média ' . $media->getName() . ' a été ' . $status . ' par ' . $user);
+        $notification->setFeedback($feedback);
+        $notification->setUser($media->getOwner());
+        $notification->setMedia($media);
+        $notification->setHasSeen(0);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($notification);
+        $em->flush();
+    }
+
+    /**
+     * @Route("/notifications", name="notifications", options={"expose"=true})
+     *
+     */
+    public function getUserNotificationsAction()
+    {
+        //$user = $this->getUser();
+        //$userId = $user->getId();
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Notification')->findUserNotifications($this->getUser()->getId());
+        $count = count($entities);
+        //return json_encode($entities);
+        $response = new JsonResponse();
+        $response->setData($entities);
+        return $response;
+    }
+
+    /**
+     * @Route("/seenNotification/{id}", name="seen_notification", options={"expose"=true})
+     *
+     */
+    public function seenNotification($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Notification')->find($id);
+        $entity->setHasSeen(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($entity);
+        $em->flush();
+        return new Response();
     }
 }

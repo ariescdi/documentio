@@ -176,7 +176,82 @@ aside .panel-body h3{
     padding:10px;
 }
 .contactFooter span{
-color:#23a3de ;
+    color:#23a3de ;
+}
+
+.notifButton {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 5;
+}
+
+.notifCount {
+    border-radius:50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 8px;
+    right: -10px;
+    z-index: 10;
+    background-color: #222222;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.notifBlock {
+    background-color: rgba(251, 251, 251, 1);
+    width: 360px;
+    position: relative;
+    border-color: #CCC;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 1000;
+}
+
+.notifBlock > span {
+    position: absolute;
+    top: -13px;
+    right: 20px;
+    font-size: 20px;
+    color: #E5E5E5;
+}
+
+.notifSeen {
+    float: right;
+    cursor: pointer;
+}
+
+.notifBlock h3 {
+    text-align: center;
+}
+
+.notifContent {
+    list-style: none;
+    position: relative;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+.notifContent > li {
+    border-radius: 2px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin: 0 auto 10px auto;
+    padding: 5px 10px;
+    box-sizing:border-box;
+    background: white;
+}
+
+.collapse.navbar-collapse.custom {
+    position: relative;
 }
 
 .logo.container a {
