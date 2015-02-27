@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * MediaKeyWord
  *
  * @ORM\Table(name="dio_mediakeyword",indexes={@ORM\Index(name="search_idx", columns={"word"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MediaKeywordRepository")
  */
 class MediaKeyword
 {

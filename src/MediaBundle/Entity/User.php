@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="dio_user")
+ * @ORM\Entity(repositoryClass="UserRepository")
  */
 class User extends BaseUser
 {
@@ -18,6 +19,14 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_connection", type="integer")
+     */
+    private $nbConnection = 0;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Media", mappedBy="owner")
@@ -113,5 +122,28 @@ class User extends BaseUser
     public function getNotifications()
     {
         return $this->notifications;
+    }
+
+    /**
+     * Set nbConnection
+     *
+     * @param integer $nbConnection
+     * @return User
+     */
+    public function setNbConnection($nbConnection)
+    {
+        $this->nbConnection = $nbConnection;
+
+        return $this;
+    }
+
+    /**
+     * Get nbConnection
+     *
+     * @return integer
+     */
+    public function getNbConnection()
+    {
+        return $this->nbConnection;
     }
 }

@@ -7,30 +7,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use MediaBundle\Entity\Media;
-use MediaBundle\Entity\MediaCategory;
-use MediaBundle\Entity\MediaKeyword;
-use MediaBundle\Entity\MediaType;
-use MediaBundle\Entity\User;
 
 class AdminController extends Controller
 {
 
     /**
-     * Lists all MediaCategory entities.
+     * Statistics
      *
      * @Route("/", name="admin_index")
      * @Method("GET")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->findAll();
+        if (($this->get('security.context')->isGranted('ROLE_ADMIN'))) {
 
-        return $this->render('MediaBundle::index.html.twig', array(
-            'entities' => $entities,
-        ));
+            $em = $this->getDoctrine()->getManager();
+
+            $keywords = $em->getRepository('MediaBundle:MediaKeyword')->topKeyWord();
+            $medias = $em->getRepository('MediaBundle:Media')->findTop(10);
+            $users = $em->getRepository('MediaBundle:User')->findConnection();
+
+            return $this->render('MediaBundle:Statistics:index.html.twig',array(
+                'keywords'  => $keywords,
+                'medias'    => $medias,
+                'users'     => $users
+            ));
+        }else{
+            return $this->render('MediaBundle:Statistics:index_user.html.twig');
+        }
+
     }
     /**
      * Lists all MediaCategory entities.

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  google.load("visualization", "1.1", {packages:["bar"]});
+  google.setOnLoadCallback(drawStuff);
+
+  function drawStuff() {
+    var data = new google.visualization.arrayToDataTable([
+      ['Liste des médias', 'Note'],
+      {% for media in medias %}
+        ["{{media.name  }}", {{media.mark}}],
+      {% endfor %}
+    ]);
+
+    var options = {
+      title: 'Les mieux notés',
+      width: 900,
+      legend: { position: 'none' },
+      chart: { title: 'Les mieux notés'},
+      bars: 'horizontal', // Required for Material Bar Charts.
+      axes: {
+        x: {
+          0: { side: 'top', label: 'Note'} // Top x-axis.
+        }
+      },
+      bar: { groupWidth: "90%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+    chart.draw(data, options);
+  };
+</script>

@@ -15,6 +15,11 @@
                 <td>{{ entity.username }}</td>
             </tr>
             <tr>
+                <th data-field="id" data-align="right" data-sortable="true">Nombre de connection</th>
+                <td>{{ entity.nbConnection }}</td>
+            </tr>
+
+            <tr>
                 <th data-field="id" data-align="right" data-sortable="true">Rôle</th>
                 <td>{% for role in entity.roles %}
                         {{ role }}&nbsp;
