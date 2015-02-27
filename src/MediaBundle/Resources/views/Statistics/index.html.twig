@@ -10,15 +10,12 @@
 </div>
 {% endblock %}
 
-
-
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-    <script type="text/javascript" src"https://www.google.com/jsapi"></script>
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
     {% include 'MediaBundle:Statistics:google-1.html.twig' with keywords %}
     {% include 'MediaBundle:Statistics:google-2.html.twig' with medias  %}
     {% include 'MediaBundle:Statistics:google-3.html.twig' with users  %}
-
-
 {% endblock %}
