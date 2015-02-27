@@ -1,6 +1,18 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <div class="pull-right mg20px">
+    Couleur du site
+        <div class="btn-group">
+           <a class="btn btn-default btn-sm blue" href="{{ path('config', {name:'theme', value:'blue'}) }}">bleu</a>
+           <a class="btn btn-default btn-sm green" href="{{ path('config', {name:'theme', value:'green'}) }}">vert</a>
+           <a class="btn btn-default btn-sm pink" href="{{ path('config', {name:'theme', value:'pink'}) }}">rose</a>
+       </div>
+    </div>
+{% endif %}
+
 <div class="background-header">
-	<div class="logo container">
-		<a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"></a>
-	</div>
+    <div class="logo container">
+        <a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"><span class="logoIO">IO</span></a>
+    </div>
 </div>
+
 {{ render(path('menuadmin')) }}

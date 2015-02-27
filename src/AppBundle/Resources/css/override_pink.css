@@ -1,0 +1,91 @@
+.background-nav {
+	background-color: #f66578;
+}
+
+nav ul li a{
+	border-left:1px solid #f66578;
+	border-right:1px solid #f66578;
+}
+
+
+nav ul li:hover a{
+background-color: #f66578;
+}
+
+.panel > .panel-heading{
+	border-color: #f66578!important;
+	background-color: #f66578!important;
+}
+
+.panel{
+	border-color: #f66578!important;
+}
+
+#form-index .btn{
+	border-color: #f66578!important;
+	background-color: #f66578!important;
+}
+
+a {
+    color: #f66578!important;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom, #f66578 0%, #c03447 100%);
+    border-color: #c03447;
+}
+
+.btn.btn-primary {
+    background-color: #f66578!important;
+    color: #ffffff!important;
+}
+
+
+.flip-clock-wrapper ul {
+  background: #7dac5a; /* couleur des coins */
+}
+
+.flip-clock-wrapper ul li a div div.inn {
+  text-shadow: 0 1px 2px #c03447; /* couleur ombre des chiffres */
+  background-color: #f66578; /* couleur arrière-plan des chiffres */
+}
+
+.flip-clock-dot {
+  background: #c03447; /* couleur des points */
+}
+
+.flip-clock-wrapper ul.play li.flip-clock-before .up .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, #c03447));
+  background: linear, top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.1) 0%, #c03447 100%;
+}
+
+.flip-clock-wrapper ul.play li.flip-clock-active .up .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, #c03447));
+  background: linear, top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #c03447 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.1) 0%, #c03447 100%;
+}
+
+.flip-clock-wrapper ul.play li.flip-clock-before .down .shadow {
+  background: -moz-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c03447), color-stop(100%, rgba(0, 0, 0, 0.1)));
+  background: linear, top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%;
+  background: -o-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: -ms-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear, to bottom, #c03447 0%, rgba(0, 0, 0, 0.1) 100%;
+}
+
+.flip-clock-wrapper ul.play li.flip-clock-active .down .shadow {
+  background: -moz-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c03447), color-stop(100%, rgba(0, 0, 0, 0.1)));
+  background: linear, top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%;
+  background: -o-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: -ms-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear, to bottom, #c03447 0%, rgba(0, 0, 0, 0.1) 100%;
+}

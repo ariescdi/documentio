@@ -74,7 +74,8 @@
         "knplabs/knp-paginator-bundle": "~2.4",
         "flipclock/flipclock": "dev-master",
         "presta/sitemap-bundle": "~1.4",
-        "tagcanvas/tagcanvas": "dev-master"
+        "tagcanvas/tagcanvas": "dev-master",
+        "craue/config-bundle": "~1.1"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"

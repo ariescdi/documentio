@@ -36,7 +36,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        []
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -56,6 +56,24 @@ assetic:
             filters:
                 - cssrewrite
             output: css/main.css
+        pink_css:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_pink.css
+            filters:
+                - cssrewrite
+            output: css/override_pink.css
+        green_css:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_green.css
+            filters:
+                - cssrewrite
+            output: css/override_green.css
+        blue_css:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_blue.css
+            filters:
+                - cssrewrite
+            output: css/override_blue.css
         main_js:
             inputs:
                 - %kernel.root_dir%/../vendor/jquery/jquery/*

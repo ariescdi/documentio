@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new MediaBundle\MediaBundle(),
             new UserBundle\UserBundle(),
+            new Craue\ConfigBundle\CraueConfigBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
