@@ -184,7 +184,7 @@ class SiteController extends Controller
                 ->add('submit', 'submit', array(
                     'label' => ' ',
                     'attr' => array(
-                        'class' => 'glyphicon glyphicon-search',
+                        'class' => 'glyphicon glyphicon-search btn btn-primary',
                     ),
                 ))
                 ->getForm();
