@@ -56,7 +56,7 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/document/", name="document")
+     * @Route("/media/", name="listMedia")
      * @Template("AppBundle:Media:list.html.twig")
      */
     public function documentListAction()

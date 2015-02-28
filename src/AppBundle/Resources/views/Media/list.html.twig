@@ -4,7 +4,7 @@
 
 {% block body -%}
 
-    <h1>Liste des média</h1>
+    <h1>Liste des médias</h1>
 
     <table class="records_list table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
         <thead>
@@ -13,10 +13,8 @@
                 <th data-field="path" data-align="right" data-sortable="true">Catégorie</th>
                 <th data-field="path" data-align="right" data-sortable="true">Type de fichier</th>
                 <th data-field="path" data-align="right" data-sortable="true">Auteur</th>
-                <th data-field="isPublished" data-align="right" data-sortable="true">Publié</th>
                 <th data-field="creation_date" data-align="right" data-sortable="true">Date de création</th>
                 <th data-field="mark" data-align="right" data-sortable="true">Note</th>
-                <th data-field="voir" data-align="center" data-sortable="false">Voir</th>
             </tr>
         </thead>
         <tbody>
@@ -26,15 +24,8 @@
                     <td>{{ entity.category.name }}</td>
                     <td>{{ entity.type.name }}</td>
                     <td>{{ entity.owner.username }}</td>
-                    <td>
-                        {% if entity.isPublished == false %} Non {% else %}Oui{% endif %}
-                    </td>
                     <td>{% if entity.creationdate %}{{ entity.creationdate|date('Y-m-d') }}{% endif %}</td>
-                    <td>{% if entity.updatedate %}{{ entity.updatedate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.mark }}</td>
-                    <td style='min-width: 132px'>
-                        <a href="{{ path('document_show', { 'slug': entity.slug }) }}">Voir</a>
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>
