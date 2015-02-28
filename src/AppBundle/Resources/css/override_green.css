@@ -7,11 +7,6 @@ nav ul li a{
 	border-right:1px solid #96c573;
 }
 
-
-nav ul li:hover a{
-background-color: #96c573;
-}
-
 .panel > .panel-heading{
 	border-color: #96c573!important;
 	background-color: #96c573!important;
