@@ -59,7 +59,7 @@ class SiteController extends Controller
      * @Route("/media/", name="listMedia")
      * @Template("AppBundle:Media:list.html.twig")
      */
-    public function documentListAction()
+    public function ListMediaAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -336,5 +336,15 @@ class SiteController extends Controller
         return array(
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * Mentions légales
+     *
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionLegalesAction()
+    {
+        return $this->render('AppBundle:Site:mentions-legales.html.twig');
     }
 }
