@@ -26,7 +26,7 @@ background-color: #f66578;
 	background-color: #f66578!important;
 }
 
-a {
+a, address span {
     color: #f66578!important;
 }
 
@@ -40,6 +40,9 @@ a {
     color: #ffffff!important;
 }
 
+.list-group-item.active{
+  background-color: #f66578 !important;
+}
 
 .flip-clock-wrapper ul {
   background: #7dac5a; /* couleur des coins */

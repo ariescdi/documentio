@@ -26,8 +26,7 @@ background-color: #96c573;
 	background-color: #96c573!important;
 }
 
-
-a {
+a, address span {
     color: #96c573!important;
 }
 
@@ -39,6 +38,10 @@ a {
 .btn.btn-primary {
     background-color: #96c573!important;
     color: #ffffff!important;
+}
+
+.list-group-item.active{
+  background-color: #96c573 !important;
 }
 
 .flip-clock-wrapper ul {
