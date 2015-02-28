@@ -35,9 +35,18 @@
                 $('.clock').FlipClock({
                   clockFace: 'TwentyFourHourClock'
                 });
+
                 $('#tags-canvas').tagcanvas({
-                  textColour: '#23A3DE',
-                  outlineColour: '#23A3DE',
+                    {% if craue_setting('theme') == 'green' %}
+                        textColour: '#96c573',
+                        outlineColour: '#96c573',
+                    {% elseif craue_setting('theme') == 'pink' %}
+                        textColour: '#f66578',
+                        outlineColour: '#f66578',
+                    {% else %}
+                        textColour: '#23A3DE',
+                        outlineColour: '#23A3DE',
+                    {% endif %}
                   maxSpeed: 0.5
                 }, 'tags');
               });
