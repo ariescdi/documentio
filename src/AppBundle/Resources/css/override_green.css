@@ -2,16 +2,6 @@
 	background-color: #96c573;
 }
 
-nav ul li a{
-	border-left:1px solid #96c573;
-	border-right:1px solid #96c573;
-}
-
-
-nav ul li:hover a{
-background-color: #96c573;
-}
-
 .panel > .panel-heading{
 	border-color: #96c573!important;
 	background-color: #96c573!important;
@@ -26,8 +16,7 @@ background-color: #96c573;
 	background-color: #96c573!important;
 }
 
-
-a {
+a, address span {
     color: #96c573!important;
 }
 
@@ -39,6 +28,10 @@ a {
 .btn.btn-primary {
     background-color: #96c573!important;
     color: #ffffff!important;
+}
+
+.list-group-item.active{
+  background-color: #96c573 !important;
 }
 
 .flip-clock-wrapper ul {

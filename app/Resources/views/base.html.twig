@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %} | DocumentIO</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/override_'~craue_setting('theme')~'.css') }}" />
@@ -15,8 +15,8 @@
         <div class="container">
             <aside class="col-lg-3">
                 {{ render(path('getbestmark',{'count':2})) }}
-                {{ render(path('clock')) }}
                 {{ render(path('getlast')) }}
+                {{ render(path('clock')) }}
             </aside>
             <section class="col-lg-9">
                 <div class="panel panel-default">
@@ -35,9 +35,18 @@
                 $('.clock').FlipClock({
                   clockFace: 'TwentyFourHourClock'
                 });
+
                 $('#tags-canvas').tagcanvas({
-                  textColour: '#23A3DE',
-                  outlineColour: '#23A3DE',
+                    {% if craue_setting('theme') == 'green' %}
+                        textColour: '#96c573',
+                        outlineColour: '#96c573',
+                    {% elseif craue_setting('theme') == 'pink' %}
+                        textColour: '#f66578',
+                        outlineColour: '#f66578',
+                    {% else %}
+                        textColour: '#23A3DE',
+                        outlineColour: '#23A3DE',
+                    {% endif %}
                   maxSpeed: 0.5
                 }, 'tags');
               });

@@ -13,7 +13,7 @@ class EnquiryType extends AbstractType
         $builder->add('email', 'email', array('label' => "Votre adresse mail (requis) :"));
         $builder->add('subject', 'text', array('label' => "Votre objet (requis) :"));
         $builder->add('body', 'textarea', array('label' => "Votre message (requis) :"));
-        $builder->add('submit', 'submit');
+        $builder->add('Envoyer', 'submit', array('attr' => array('class' => 'btn btn-primary') ));
     }
 
     public function getName()

@@ -56,10 +56,10 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/document/", name="document")
+     * @Route("/media/", name="listMedia")
      * @Template("AppBundle:Media:list.html.twig")
      */
-    public function documentListAction()
+    public function ListMediaAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -184,7 +184,7 @@ class SiteController extends Controller
                 ->add('submit', 'submit', array(
                     'label' => ' ',
                     'attr' => array(
-                        'class' => 'glyphicon glyphicon-search',
+                        'class' => 'glyphicon glyphicon-search btn btn-primary',
                     ),
                 ))
                 ->getForm();
@@ -336,5 +336,15 @@ class SiteController extends Controller
         return array(
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * Mentions légales
+     *
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionLegalesAction()
+    {
+        return $this->render('AppBundle:Site:mentions-legales.html.twig');
     }
 }

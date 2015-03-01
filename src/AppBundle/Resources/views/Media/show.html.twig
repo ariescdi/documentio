@@ -32,7 +32,6 @@
                             <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
         <p/>
          {% endif %}
-    {{entity.webpath}}
          <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
     </div>
 </div>

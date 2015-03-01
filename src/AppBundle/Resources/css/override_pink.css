@@ -2,16 +2,6 @@
 	background-color: #f66578;
 }
 
-nav ul li a{
-	border-left:1px solid #f66578;
-	border-right:1px solid #f66578;
-}
-
-
-nav ul li:hover a{
-background-color: #f66578;
-}
-
 .panel > .panel-heading{
 	border-color: #f66578!important;
 	background-color: #f66578!important;
@@ -26,7 +16,7 @@ background-color: #f66578;
 	background-color: #f66578!important;
 }
 
-a {
+a, address span {
     color: #f66578!important;
 }
 
@@ -40,6 +30,9 @@ a {
     color: #ffffff!important;
 }
 
+.list-group-item.active{
+  background-color: #f66578 !important;
+}
 
 .flip-clock-wrapper ul {
   background: #7dac5a; /* couleur des coins */
