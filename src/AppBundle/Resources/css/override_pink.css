@@ -1,4 +1,4 @@
-.background-nav {
+﻿.background-nav {
 	background-color: #f66578;
 }
 
@@ -81,4 +81,12 @@ a, address span {
   background: -o-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
   background: -ms-linear-gradient(top, #c03447 0%, rgba(0, 0, 0, 0.1) 100%);
   background: linear, to bottom, #c03447 0%, rgba(0, 0, 0, 0.1) 100%;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background: none repeat scroll 0 0 #f66578!important;
+}
+
+.contactFooter span{
+    color: #f66578!important;
 }

@@ -82,3 +82,12 @@ a, address span {
   background: -ms-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
   background: linear, to bottom, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%;
 }
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background: none repeat scroll 0 0 #96c573 !important;
+}
+
+.contactFooter span{
+    color: #96c573 !important;
+}
+
