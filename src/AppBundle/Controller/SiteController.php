@@ -26,13 +26,23 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a new Medium entity.
-     *
      * @Route("/config/{name}/{value}", name="config")
      */
     public function configAction($name, $value)
     {
         $this->get('craue_config')->set($name, $value);
+        $referer = $this->getRequest()->headers->get('referer');
+
+        return $this->redirect($referer);
+    }
+    
+    /**
+     * @Route("/session/{name}/{value}", name="session")
+     */
+    public function sessionAction(Request $request,$name, $value)
+    {
+        $session = $request->getSession();
+        $session->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
 
         return $this->redirect($referer);

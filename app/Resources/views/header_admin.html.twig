@@ -1,6 +1,6 @@
 {% if is_granted('ROLE_ADMIN') %}
     <div class="pull-right mg20px">
-    Couleur du site
+    Couleur du site par default :
         <div class="btn-group">
            <a class="btn btn-default btn-sm blue" href="{{ path('config', {name:'theme', value:'blue'}) }}">bleu</a>
            <a class="btn btn-default btn-sm green" href="{{ path('config', {name:'theme', value:'green'}) }}">vert</a>

@@ -1,3 +1,11 @@
+<div class="pull-right mg20px">
+Couleur du site en session : 
+    <div class="btn-group">
+       <a class="btn btn-default btn-sm blue" href="{{ path('session', {name:'theme', value:'blue'}) }}">bleu</a>
+       <a class="btn btn-default btn-sm green" href="{{ path('session', {name:'theme', value:'green'}) }}">vert</a>
+       <a class="btn btn-default btn-sm pink" href="{{ path('session', {name:'theme', value:'pink'}) }}">rose</a>
+   </div>
+</div>
 <div class="background-header">
 	<div class="logo container">
             <a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"><span class="logoIO">IO</span></a>
