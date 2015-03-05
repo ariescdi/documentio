@@ -1,42 +1,85 @@
-.flip-clock-wrapper ul {
-  width: 40px;
-  height: 60px;
-  background: #1b7dab; /* couleur des coins */
+.flip-clock-wrapper *
+{
+    padding: 0;
+}
+
+.flip-clock-wrapper
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 188px;
+}
+
+.flip-clock-wrapper ul
+{
+    position: relative;
+    float: left;
+    margin: 3px;
+    width: 20px;
+    height: 35px;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 87px;
+    border-radius: 3px;
+    background: #1b7dab;
 }
 
 .flip-clock-wrapper ul li {
-  line-height: 60px; /* position des chiffres */
+    line-height: 35px;
 }
 
-.flip-clock-wrapper ul li a div div.inn {
-  color: #fff; /* couleur des chiffres */
-  text-shadow: 0 1px 2px #0f455e; /* couleur ombre des chiffres */
-  background-color: #23a3de; /* couleur arrière-plan des chiffres */
-  font-size: 50px; /* taille de la police de caractère */
+.flip-clock-wrapper ul li a div
+{
+    height: 17px;
 }
 
-.flip-clock-wrapper .flip {
-  box-shadow: 0 2px 5px rgba(11, 51, 69, 0.7); /* couleur ombres des pales */
+.flip-clock-wrapper ul li a div.down
+{
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
-.flip-clock-divider {
-  height: 75px; /* hauteur d'emplacement des deux points */
+.flip-clock-wrapper ul li a div div.inn
+{
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 200%;
+    color: #fff;
+    text-shadow: 0 1px 2px #0f455e;
+    text-align: center;
+    background-color: #23A3DE;
+    border-radius: 3px;
+    font-size: 30px;
 }
 
-.flip-clock-dot {
-  background: #1b7dab; /* couleur des points */
-  width: 8px; /* taille largeur des points */
-  height: 8px; /* taille hauteur des points */
-  box-shadow: 0 0 5px rgba(11, 51, 69, 0.5); /* couleur ombre des points */
-  left: 5px;
+.flip-clock-wrapper .flip
+{
+    box-shadow: 0 2px 5px rgba(11, 51, 69, 0.7);
+}
+
+.flip-clock-divider
+{
+    width: 15px;
+    height: 43px;
+}
+
+.flip-clock-dot
+{
+    background: #1b7dab;
+    width: 5px;
+    height: 5px;
+    box-shadow: 0 0 5px rgba(11, 51, 69, 0.5);
+    left: 5px;
 }
 
 .flip-clock-dot.top {
-  top: 20px; /* position du point du haut par rapport à la hauteur de .flip-clock-divider */
+  top: 12px; /* position du point du haut par rapport à la hauteur de .flip-clock-divider */
 }
 
 .flip-clock-dot.bottom {
-  bottom: 23px; /* position du point du bas par rapport à la hauteur de .flip-clock-divider */
+  bottom: 12px; /* position du point du bas par rapport à la hauteur de .flip-clock-divider */
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-before .up .shadow {

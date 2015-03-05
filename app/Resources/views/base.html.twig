@@ -34,9 +34,11 @@
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
             <script type="text/javascript">
               $(document).ready(function () {
-                // SCRIPT HORLOGE
-                $('.clock').FlipClock({
-                  clockFace: 'TwentyFourHourClock'
+                var dateActu = new Date();
+                var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
+
+                $('.clock').FlipClock(dateActu, {
+                    clockFace: 'TwentyFourHourClock'
                 });
 
                 $('#tags-canvas').tagcanvas({
