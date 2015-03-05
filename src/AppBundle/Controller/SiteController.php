@@ -15,14 +15,38 @@ use AppBundle\Form\EnquiryType;
 class SiteController extends Controller
 {
     /**
-     * Creates a new Medium entity.
-     *
      * @Route("/", name="index")
+     *
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [];
+    }
+
+    /**
+     * @Route("/slider", name="slider")
+     *
+     * @Method("GET")
+     * @Template("AppBundle:Media:slider.html.twig")
+     */
+    public function sliderAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MediaBundle:Media')->findBy(array('isPublished' => 1), array('creationDate' => 'desc'), 5, 0);
+
+        $result = true;
+        if (!$entities) {
+            // throw $this->createNotFoundException('Impossible de trouver ce document.');
+            $result = 'Aucun document n\'a encore été publié';
+        }
+
+        return array(
+            'entities' => $entities,
+            'result' => $result,
+        );
     }
 
     /**
@@ -69,7 +93,7 @@ class SiteController extends Controller
      * @Route("/media/", name="listMedia")
      * @Template("AppBundle:Media:list.html.twig")
      */
-    public function ListMediaAction()
+    public function listMediaAction()
     {
         $em = $this->getDoctrine()->getManager();
 
