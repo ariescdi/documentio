@@ -25,10 +25,38 @@
         </div>
         {% include '::footer.html.twig' %}
         {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/notif.js') }}"></script>
             <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            
+            <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript">
+             $(document).ready(function ()
+             {
+                 var dateActu = new Date();
+                 var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
+
+                 $('.clock').FlipClock(dateActu,
+                 {
+                     clockFace: 'TwentyFourHourClock'
+                 });
+
+                 $('#tags-canvas').tagcanvas(
+                 {
+                     {% if craue_setting('theme') == 'green' %}
+                         textColour: '#96c573',
+                         outlineColour: '#96c573',
+                     {% elseif craue_setting('theme') == 'pink' %}
+                         textColour: '#f66578',
+                         outlineColour: '#f66578',
+                     {% else %}
+                         textColour: '#23A3DE',
+                         outlineColour: '#23A3DE',
+                     {% endif %}
+                     maxSpeed: 0.5
+                 }, 'tags');
+             });
+             </script>
         {% endblock %}
     </body>
 </html>

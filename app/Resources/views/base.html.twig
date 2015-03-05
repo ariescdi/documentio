@@ -16,12 +16,12 @@
     <body>
         {% include '::header.html.twig' %}
         <div class="container">
-            <aside class="col-lg-3">
+            <aside class="col-lg-3"> <!-- Colonne de gauche -->
                 {{ render(path('getbestmark',{'count':2})) }}
                 {{ render(path('getlast')) }}
                 {{ render(path('clock')) }}
             </aside>
-            <section class="col-lg-9">
+            <section class="col-lg-9"> <!-- Colonne de droite -->
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {% block body %}{% endblock %}
@@ -33,15 +33,18 @@
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
             <script type="text/javascript">
-              $(document).ready(function () {
+            $(document).ready(function ()
+            {
                 var dateActu = new Date();
                 var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
 
-                $('.clock').FlipClock(dateActu, {
+                $('.clock').FlipClock(dateActu,
+                {
                     clockFace: 'TwentyFourHourClock'
                 });
 
-                $('#tags-canvas').tagcanvas({
+                $('#tags-canvas').tagcanvas(
+                {
                     {% if craue_setting('theme') == 'green' %}
                         textColour: '#96c573',
                         outlineColour: '#96c573',
@@ -52,9 +55,9 @@
                         textColour: '#23A3DE',
                         outlineColour: '#23A3DE',
                     {% endif %}
-                  maxSpeed: 0.5
+                    maxSpeed: 0.5
                 }, 'tags');
-              });
+            });
             </script>
         {% endblock %}
     </body>

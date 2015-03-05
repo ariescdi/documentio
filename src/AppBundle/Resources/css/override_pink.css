@@ -35,12 +35,17 @@ a, address span {
 }
 
 .flip-clock-wrapper ul {
-  background: #7dac5a; /* couleur des coins */
+  background: #bf4f5d; /* couleur des coins */
 }
 
 .flip-clock-wrapper ul li a div div.inn {
   text-shadow: 0 1px 2px #c03447; /* couleur ombre des chiffres */
   background-color: #f66578; /* couleur arrière-plan des chiffres */
+}
+
+.flip-clock-wrapper .flip
+{
+    box-shadow: 0 2px 5px rgba(128, 52, 62, 0.7);
 }
 
 .flip-clock-dot {
