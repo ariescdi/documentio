@@ -1,9 +1,9 @@
 {% extends '::base_admin.html.twig' %}
-
-{% block body -%}
+{% block h1 -%}
     <h1>{{ entity.name }}</h1>
+{% endblock %}
+{% block body -%}
     <div class="container">
-
         <div class="well container-fluid">
             <div class='col-md-8'>
                 {{ entity.comment }}
@@ -36,12 +36,10 @@
                     type='{{ entity.type.mimetype }}'
                     width='100%'
                     height='100%'>
-
                 <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
                     No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
                     Or here to <a class="plugin-search">search for plugin</a>.
                 </p>
-
             </object>
             {#{% endif %}#}
         </div>
@@ -57,7 +55,8 @@
             </div>
         </div>
     </div>
-</div>{% endblock %}
+</div>
+{% endblock %}
 
 {% block javascripts %}
     <script>

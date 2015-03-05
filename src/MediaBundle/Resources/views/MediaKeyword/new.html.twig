@@ -1,10 +1,9 @@
 {% extends '::base_admin.html.twig' %}
-
-{% block body -%}
+{% block h1 -%}
     <h1>Créer un nouveau mot clef</h1>
-
-
- {{ form(form) }}
+{% endblock %}
+{% block body -%}
+    {{ form(form) }}
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">

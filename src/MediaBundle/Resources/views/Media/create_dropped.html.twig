@@ -1,7 +1,8 @@
 {% extends '::base_admin.html.twig' %}
-
-{% block body -%}
+{% block h1 -%}
     <h1>Création du fichier déposé</h1>
+{% endblock %}
+{% block body -%}
     {% for data in datas %}
         <div class="well">
             <h2>{{ data.filename }} configuration</h2>

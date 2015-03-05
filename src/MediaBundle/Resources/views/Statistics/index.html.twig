@@ -1,9 +1,8 @@
 {% extends '::base_admin.html.twig' %}
-
-{% block body -%}
-
+{% block h1 -%}
 	<h1>Statistiques</h1>
-
+{% endblock %}
+{% block body -%}
 	<div class="col-lg-4 stat">
 		<div class="panel  panel-primary">
 			<div class="panel-heading">
@@ -34,7 +33,6 @@
 				<div id="columnchart_values" class="chart"></div>
 			</div>
 		</div>
-	</div>
 	</div>
 {% endblock %}
 
