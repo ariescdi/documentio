@@ -296,3 +296,24 @@ a {
     background-color: #23a3de!important;
     color: #ffffff!important;
 }
+
+.three-block{
+    width: 33.33333333332%;
+    float: left;
+}
+
+.chart {
+  width: 100%;
+  height: 300px;
+}
+
+.chart2 .chart{
+    height: 300px!important;
+}
+
+.chart2 .chart{
+    height: 300px!important;
+}
+.stat h3{
+    margin: 0px!important;
+}

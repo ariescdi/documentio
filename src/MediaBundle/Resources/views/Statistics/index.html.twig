@@ -1,21 +1,49 @@
 {% extends '::base_admin.html.twig' %}
 
 {% block body -%}
-    <h1>Statistiques</h1>
 
-    <div id="chart_div_key_word" style="width:400; height:300"></div>
-    <div id="top_x_div" style="width: 900px; height: 500px;"></div>
-    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+	<h1>Statistiques</h1>
 
-</div>
+	<div class="col-lg-4 stat">
+		<div class="panel  panel-primary">
+			<div class="panel-heading">
+				<h3>Mots clés</h3>
+			</div>
+			<div class="panel-body chart2">
+				<div id="chart_div_key_word" class="chart"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 stat">
+		<div class="panel  panel-primary">
+			<div class="panel-heading">
+				<h3>Les mieux notés</h3>
+			</div>
+			<div class="panel-body chart2">
+				<div id="top_x_div" class="chart" ></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 stat">
+		<div class="panel  panel-primary">
+			<div class="panel-heading">
+				<h3>Nombre de connection</h3>
+			</div>
+			<div class="panel-body">
+
+				<div id="columnchart_values" class="chart"></div>
+			</div>
+		</div>
+	</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
+{{ parent() }}
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-    {% include 'MediaBundle:Statistics:google-1.html.twig' with keywords %}
-    {% include 'MediaBundle:Statistics:google-2.html.twig' with medias  %}
-    {% include 'MediaBundle:Statistics:google-3.html.twig' with users  %}
+{% include 'MediaBundle:Statistics:google-1.html.twig' with keywords %}
+{% include 'MediaBundle:Statistics:google-2.html.twig' with medias  %}
+{% include 'MediaBundle:Statistics:google-3.html.twig' with users  %}
 {% endblock %}
