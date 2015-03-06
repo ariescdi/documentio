@@ -10,7 +10,7 @@
             <h3><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></h3>
             <em>note : {{ entity.mark }}</em>
             <p>{{entity.comment | truncate(50) }}</p>
-            <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ entity.owner.username }}<span></span></p>
+            <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par <a href="mailto:{{ entity.owner.email }}">{{ entity.owner.username }}</a><span></span></p>
         </div>
     {% endif %}
 
