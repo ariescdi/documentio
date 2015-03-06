@@ -26,9 +26,7 @@ Couleur du site en session :
 			<div class="collapse navbar-collapse custom" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-					   {{ render(path('best_category')) }}
-                    {% endif %}
+				   {{ render(path('best_category')) }}
 				</ul>
 				<div class="navbar-form navbar-right">
 					{{ render (path( 'media_search' ))}}

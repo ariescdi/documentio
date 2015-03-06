@@ -12,143 +12,217 @@
                     </button>
                 </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li role="presentation"><a href="{{ path('admin_index') }}">Accueil Admin</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Media<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('media_new') }}">Ajouter un média</a></li>
-                                <li><a href="{{ path('media') }}">Liste des médias</a></li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Voir</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiesmedia %}
-                                            <li><a href="{{ path('media_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Editer</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiesmedia %}
-                                            <li><a href="{{ path('media_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catégorie<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('mediacategory_new') }}">Ajouter une catégorie</a></li>
-                                <li><a href="{{ path('mediacategory') }}">Liste des catégorie</a></li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Voir</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiescategorie %}
-                                            <li><a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Editer</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiescategorie %}
-                                            <li><a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Type de média<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('mediatype_new') }}">Ajouter une type de media</a></li>
-                                <li><a href="{{ path('mediatype') }}">Liste des type de média</a></li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Voir</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiestype %}
-                                            <li><a href="{{ path('mediatype_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Editer</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiestype %}
-                                            <li><a href="{{ path('mediatype_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mots clefs<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('mediakeyword_new') }}">Ajouter un mot clef</a></li>
-                                <li><a href="{{ path('mediakeyword') }}">Liste des mot clef</a></li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Voir</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitieskeyword %}
-                                            <li><a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">{{ entity.word }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Editer</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitieskeyword %}
-                                            <li><a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">{{ entity.word }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('fos_user_registration_register') }}">Ajouter un utilisateur</a></li>
-                                <li><a href="{{ path('user') }}">Liste des utilisateur</a></li>
-                                <!-- <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li> -->
-                                <li class="dropdown-submenu">
-                                    <a href="#">Voir</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiesuser %}
-                                            <li><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Editer</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        {% for entity in entitiesuser %}
-                                            <li><a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">{{ entity.username }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ path('clock') }}">Réglage de l'horloge</a></li>
-                        {% endif %}
-                    </ul>
-                    <div class="navbar-form navbar-right notifButton">
-                        <button class="glyphicon glyphicon-bell btn"></button>
-                        <div class="notifCount"></div>
-                    </div>
-                    <div class="notifBlock">
-                        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                        <h3>Notification(s) DocumentIO</h3>
-                        <ul class="notifContent">
+
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li role="presentation"><a href="{{ path('admin_index') }}">Accueil Admin</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Media<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('media_new') }}">Ajouter un média</a></li>
+                                    <li><a href="{{ path('media') }}">Liste des médias</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Voir</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiesmedia %}
+                                                <li><a href="{{ path('media_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Editer</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiesmedia %}
+                                                <li><a href="{{ path('media_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catégorie<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('mediacategory_new') }}">Ajouter une catégorie</a></li>
+                                    <li><a href="{{ path('mediacategory') }}">Liste des catégorie</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Voir</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiescategorie %}
+                                                <li><a href="{{ path('mediacategory_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Editer</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiescategorie %}
+                                                <li><a href="{{ path('mediacategory_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Type de média<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('mediatype_new') }}">Ajouter une type de media</a></li>
+                                    <li><a href="{{ path('mediatype') }}">Liste des type de média</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Voir</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiestype %}
+                                                <li><a href="{{ path('mediatype_show', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Editer</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiestype %}
+                                                <li><a href="{{ path('mediatype_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mots clefs<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('mediakeyword_new') }}">Ajouter un mot clef</a></li>
+                                    <li><a href="{{ path('mediakeyword') }}">Liste des mot clef</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Voir</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitieskeyword %}
+                                                <li><a href="{{ path('mediakeyword_show', { 'id': entity.id }) }}">{{ entity.word }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Editer</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitieskeyword %}
+                                                <li><a href="{{ path('mediakeyword_edit', { 'id': entity.id }) }}">{{ entity.word }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateurs<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('fos_user_registration_register') }}">Ajouter un utilisateur</a></li>
+                                    <li><a href="{{ path('user') }}">Liste des utilisateur</a></li>
+                                    <!-- <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li> -->
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Voir</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiesuser %}
+                                                <li><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Editer</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for entity in entitiesuser %}
+                                                <li><a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">{{ entity.username }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                            <li><a href="{{ path('clock') }}">Réglage de l'horloge</a></li>
                         </ul>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+                        <div class="navbar-form navbar-right notifButton">
+                            <button class="glyphicon glyphicon-bell btn"></button>
+                            <div class="notifCount"></div>
+                        </div>
+                        <div class="notifBlock">
+                            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                            <h3>Notification(s) DocumentIO</h3>
+                            <ul class="notifContent"></ul>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> User Card</a>
+                            </li>
+                        </ul>
+                        <div class="userCardBlock">
+                            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                            <div class="userCardContent">
+                                {% for entity in entitiesuser %}
+                                    {% if entity.username == app.user %}
+                                        <div class="card-container">
+                                            <div class="card">
+                                                <div class="front">
+                                                    <div class="cover">
+                                                        <img src="{{ asset('images/fond.png') }}">
+                                                    </div>
+                                                    <div class="user">
+                                                        <img class="img-circle" src="{{ asset('images/userCard.png') }}">
+                                                    </div>
+                                                    <div class="content">
+                                                        <div class="main">
+                                                            <h3 class="name">{{ entity.username }}</h3>
+                                                            <p class="profession">{% for role in entity.roles %} {{ role }}&nbsp; {% endfor %}</p>
+                                                            <h5>
+                                                                <i class="glyphicon glyphicon-heart"></i>&nbsp;
+                                                                {% if entity.sex == 1 %}
+                                                                    Homme
+                                                                {% elseif entity.sex == 2 %}
+                                                                    Femme
+                                                                {% elseif entity.sec == 3 %}
+                                                                    Autre
+                                                                {% endif %}
+                                                            </h5>
+                                                            <h5>
+                                                                <i class="glyphicon glyphicon-globe"></i>&nbsp;
+                                                                {% if entity.nbConnection == 1 %}
+                                                                    {{ entity.nbConnection}} connexion
+                                                                {% elseif entity.nbConnection > 1 %}
+                                                                    {{ entity.nbConnection}} connexions
+                                                                {% endif %}
+                                                            </h5>
+                                                            <h5>
+                                                                <i class="glyphicon glyphicon-envelope"></i>&nbsp;
+                                                                    {{ entity.email }}
+                                                            </h5>
+                                                        </div>
+                                                        <div class="footer">
+                                                            <div class="btn-toolbar">
+
+                                                                    <div class="label label-primary labelCustom">
+                                                                        <a href="{{ path('user') }}">
+                                                                            <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="label label-primary labelCustom">
+                                                                        <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">
+                                                                            <i class="glyphicon glyphicon-edit"></i> Editer
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="label label-primary labelCustom">
+                                                                        <a href="{{ path('fos_user_change_password', { 'id': entity.id }) }}">
+                                                                            <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
+                                                                        </a>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div><!-- /.navbar-collapse -->
+                {% endif %}
             </section>
         </div>
     </nav>

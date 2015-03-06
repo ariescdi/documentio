@@ -121,9 +121,7 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        $em2 = $this->getDoctrine()->getManager();
-        $docs = $em2->getRepository('MediaBundle:Media')->findByConnectedUser($id);
-
+        $docs = $em->getRepository('MediaBundle:Media')->findByConnectedUser($id);
 
         $paginator  = $this->get('knp_paginator');
         $docs = $paginator->paginate(
