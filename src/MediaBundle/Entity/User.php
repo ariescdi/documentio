@@ -39,6 +39,13 @@ class User extends BaseUser
      */
     protected $notifications;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sex", type="integer", nullable=false)
+     */
+    private $sex;
+
     public function __construct()
     {
         parent::__construct();
@@ -149,5 +156,28 @@ class User extends BaseUser
     public function getNbConnection()
     {
         return $this->nbConnection;
+    }
+
+    /**
+     * Set sex
+     *
+     * @param integer $sex
+     * @return User
+     */
+    public function setSex($sex)
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
+    /**
+     * Get sex
+     *
+     * @return integer 
+     */
+    public function getSex()
+    {
+        return $this->sex;
     }
 }
