@@ -1,18 +1,32 @@
 <div id="wrap" class="container">
     <div class="panel panel-default panel-horizontal">
-        {% if entities is empty %}
-            <p><small>{{ result }}</small></p>
-        {% else %}
-            <div class="panel-body" style="text-align: center;">
-                <canvas id="tags-canvas"></canvas>
-                <div id="tags">
-                    <ul>
-                        {% for entity in entities %}
-                            <li><a href="{{ path('document_show', { 'slug': entity.medias[0].slug }) }}">{{entity.word}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <div class="panel-body" style="text-align: center;">
+            <canvas class="tags-canvas"></canvas>
+            <div class="tags">
+                <ul>
+                    {% for entity in tags %}
+                        <li><a href="{{ path('document_show', { 'slug': entity.medias[0].slug }) }}">{{entity.word}}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
-        {% endif %}
+
+            <canvas class="tags-canvas"></canvas>
+            <div class="tags">
+                <ul>
+                    {% for entity in types %}
+                        <li><a>{{ entity.ext }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <canvas class="tags-canvas"></canvas>
+            <div class="tags">
+                <ul>
+                    {% for entity in types %}
+                        <li><a>{{ entity.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

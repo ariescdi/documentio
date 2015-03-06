@@ -158,16 +158,12 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:MediaKeyword')->findBy(array(), array(), 10, 0);
-
-        $result = true;
-        if (!$entities) {
-            $result = 'Aucun tag n\'a encore été ajouté';
-        }
+        $tags = $em->getRepository('MediaBundle:MediaKeyword')->findBy(array(), array(), 10, 0);
+        $types = $em->getRepository('MediaBundle:MediaType')->findBy(array(), array(), 10, 0);
 
         return array(
-            'entities' => $entities,
-            'result' => $result,
+            'tags' => $tags,
+            'types' => $types,
         );
     }
 
