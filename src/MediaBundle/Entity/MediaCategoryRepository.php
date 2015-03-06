@@ -21,4 +21,12 @@ class MediaCategoryRepository extends EntityRepository
 
         return $q->getResult();
     }
+
+    public function nbCategory()
+    {
+        $dql = "SELECT count(c) as nbCategory FROM MediaBundle:MediaCategory c ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getSingleResult();
+    }
 }

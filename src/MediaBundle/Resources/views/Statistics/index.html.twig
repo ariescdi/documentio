@@ -3,35 +3,81 @@
 	<h1>Statistiques</h1>
 {% endblock %}
 {% block body -%}
-	<div class="col-lg-4 stat">
-		<div class="panel  panel-primary">
-			<div class="panel-heading">
-				<h3>Mots clés</h3>
-			</div>
-			<div class="panel-body chart2">
-				<div id="chart_div_key_word" class="chart"></div>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-4 stat">
-		<div class="panel  panel-primary">
-			<div class="panel-heading">
-				<h3>Les mieux notés</h3>
-			</div>
-			<div class="panel-body chart2">
-				<div id="top_x_div" class="chart" ></div>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-4 stat">
-		<div class="panel  panel-primary">
-			<div class="panel-heading">
-				<h3>Nombre de connection</h3>
-			</div>
-			<div class="panel-body">
+	<ul class="list-group">
+	  	<li class="list-group-item">
+	    	<span class="badge">{{ nbMedia.nbMedia}}</span>
+	    	Media
+	  	</li>
 
-				<div id="columnchart_values" class="chart"></div>
+	  	<li class="list-group-item">
+	    	<span class="badge">{{ nbCategory.nbCategory}}</span>
+	    	Catégories
+	  	</li>
+	  	<li class="list-group-item">
+	    	<span class="badge">{{ nbMediaType.nbMediaType}}</span>
+	    	Type de média
+	  </li>
+	</ul>
+
+	<div class="row">
+		<div class="col-lg-4 stat">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3>Mots clés</h3>
+				</div>
+				<div class="panel-body chart2">
+					<div id="chart_div_key_word" class="chart"></div>
+				</div>
 			</div>
+		</div>
+		<div class="col-lg-4 stat">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3>Les mieux notés</h3>
+				</div>
+				<div class="panel-body chart2">
+					<div id="top_x_div" class="chart" ></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 stat">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3>Nombre de connection</h3>
+				</div>
+				<div class="panel-body">
+
+					<div id="columnchart_values" class="chart"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3>Tableau des utilisateurs</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table table-bordered">
+				<thead>
+					<th>Id</th>
+					<th>Utilisateur</th>
+					<th>Media</th>
+				</thead>
+
+				<tbody>
+
+				{% for mediaByOwner in mediaByOwners %}
+					<tr>
+						<td>{{mediaByOwner[0].id}}</td>
+						<td><a href="{{ path('user_show', {'id': mediaByOwner[0].id }) }}">{{mediaByOwner[0].username}}</a></td>
+						<td>{{mediaByOwner.nbMediaByOwner}}</td>
+					</tr>
+				{% endfor %}
+
+				</tbody>
+			</table>
 		</div>
 	</div>
 {% endblock %}

@@ -37,4 +37,12 @@ class UserRepository extends EntityRepository
 
         return $q->getResult();
     }
+
+    public function mediaByOwner()
+    {
+        $dql = "SELECT u, count(u) as nbMediaByOwner FROM MediaBundle:User u JOIN u.medias m GROUP BY u.id ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getResult();
+    }
 }
