@@ -17,9 +17,17 @@ class MediaType extends AbstractType
         $entity = $options['data'];
         if ($entity) {
             $tmp = array();
+
             foreach ($entity->getKeywords() as $k) {
-                $tmp[] = $k->getWord();
+                $w = $k->getWord();
+
+                if (strpos($w, ' ') !== FALSE) {
+                    $w = '"'.$w.'"';
+                }
+
+                $tmp[] = $w;
             }
+
             $defaultKeywords = implode(' ', $tmp);
             $fileRequired = false;
         } else {
