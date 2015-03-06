@@ -317,3 +317,19 @@ a {
 .stat h3{
     margin: 0px!important;
 }
+
+.slide{
+    padding: 10px;
+}
+
+.item{
+    padding-bottom: 40px;
+}
+
+.carousel-indicators li{
+    border-color: #ccc;
+}
+
+.carousel-indicators .active{
+    background-color: #000;
+}
