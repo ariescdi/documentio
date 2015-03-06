@@ -520,7 +520,7 @@ class MediaController extends Controller
                 $entity->setPath($entity->getCategory()->getName().'/'.$fname);
             }
 
-            $this->updateKeywords($form->get('keywords')->getData(), $entity);
+            $this->updateKeywords($editForm->get('keywords')->getData(), $entity);
 
             $em->flush();
 
