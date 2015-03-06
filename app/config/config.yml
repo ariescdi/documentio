@@ -86,6 +86,10 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../src/AppBundle/Resources/js/notif.js
             output: js/notif.js
+        userCard_js:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/js/userCard.js
+            output: js/userCard.js
 
 # Doctrine Configuration
 doctrine:
