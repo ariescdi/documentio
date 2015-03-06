@@ -18,7 +18,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
      * @return User The created user.
      */
     public function createUser(ObjectManager $manager,
-            $username, $email, $pwd, $isadmin)
+            $username, $email, $pwd, $isadmin, $sex)
     {
         /* @var $user User */
         $user = new User();
@@ -30,6 +30,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         if ($isadmin) {
             $user->addRole('ROLE_ADMIN');
         }
+        $user->setSex($sex);
         $user->setEnabled(true);
         $user->setLocked(false);
 
@@ -45,14 +46,16 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
                 'sylvain',
                 'garcia.6l20@gmail.com',
                 'sgarcia',
-                true);
+                true,
+                1);
 
         // admin
         $this->createUser($manager,
                 'admin',
                 'fake@fake.com',
                 'admin',
-                true);
+                true,
+                1);
 
         $manager->flush();
     }
