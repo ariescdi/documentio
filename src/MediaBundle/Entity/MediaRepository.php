@@ -157,4 +157,53 @@ WHERE m.id IN (
 
         return $q->getResult();
     }
+
+    /**
+     * Get media matching given categories/filetypes.
+     *
+     * @param $caterogySlugs Array of categories' slug to match, can be null or empty.
+     * @param $filetypeIds Array of filetypes' id to match, can be null or empty.
+     *
+     * @return ArrayCollection|Media[] The matching media list.
+     */
+    public function mediaBySlugFiletype($caterogySlugs, $filetypeIds)
+    {
+        $hasSlugs = $caterogySlugs != null || count($caterogySlugs) > 0;
+        $hasFiletypes = $filetypeIds != null || count($filetypeIds) > 0;
+
+        $dql = "SELECT m FROM MediaBundle:Media m";
+
+        if ($hasSlugs) {
+            $dql = $dql." WHERE m.category IN ( "
+                ."SELECT c FROM MediaBundle:MediaCategory c WHERE c.slug IN (:slugs) "
+                .")";
+        }
+
+        if ($hasFiletypes) {
+            if ($hasSlugs) {
+                $dql = $dql." AND";
+            } else {
+                $dql = $dql." WHERE";
+            }
+
+            $dql = $dql." m.type IN ( "
+                ."SELECT t FROM MediaBundle:MediaType t WHERE t.id IN (:types) "
+                .")";
+        }
+
+        if ($hasFiletypes || $hasSlugs) {
+            $dql = $dql." AND";
+        } else {
+            $dql = $dql." WHERE";
+        }
+
+        $dql = $dql." m.isPublished = true";
+
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        $hasSlugs     && $q->setParameter('slugs', array_values($caterogySlugs));
+        $hasFiletypes && $q->setParameter('types', array_values($filetypeIds));
+
+        return $q->getResult();
+    }
 }

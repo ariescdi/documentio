@@ -35,11 +35,11 @@ class SiteController extends Controller
 
         return $this->redirect($referer);
     }
-    
+
     /**
      * @Route("/session/{name}/{value}", name="session")
      */
-    public function sessionAction(Request $request,$name, $value)
+    public function sessionAction(Request $request, $name, $value)
     {
         $session = $request->getSession();
         $session->set($name, $value);
@@ -286,28 +286,48 @@ class SiteController extends Controller
 
     /**
      * @Route("/categorie/{slug}", name="list_category")
+     * @Route("/filetype/{filetype}", name="list_filetype")
      * @Template("AppBundle:Media:list_category.html.twig")
      */
-    public function mediaByCategoryAction($slug)
+    public function mediaByCategoryAction(Request $request, $slug = null, $filetype = null)
     {
+        $categoryFilters = $request->request->get('categoryFilters');
+
+        if (!isset($categoryFilters)) {
+            $categoryFilters = array();
+        }
+
+        $filetypeFilters = $request->request->get('filetypeFilters');
+        if (!isset($filetypeFilters)) {
+            $filetypeFilters = array();
+        }
+
+        if (isset($slug)) {
+            $categoryFilters[] = $slug;
+        }
+
+        if (isset($filetype)) {
+            $filetypeFilters[] = $filetype;
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->mediaByCategory($slug);
-
-        $category = $em->getRepository('MediaBundle:MediaCategory')->findOneBySlug($slug);
-
-        if (!$entities) {
-            throw $this->createNotFoundException('Impossible de trouver des medias pour cette catégorie.');
-        }
+        $entities = $em->getRepository('MediaBundle:Media')->mediaBySlugFiletype($categoryFilters, $filetypeFilters);
 
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
+            $request->query->get('page', 1)/*page number*/,
             10/*limit per page*/
         );
 
-        return array('entities' => $entities,'category' => $category);
+        return array(
+            'entities' => $entities,
+            'categories' => $em->getRepository('MediaBundle:MediaCategory')->findAll(),
+            'filetypes' => $em->getRepository('MediaBundle:MediaType')->findAll(),
+            'categoryFilters' => $categoryFilters,
+            'filetypeFilters' => $filetypeFilters,
+        );
     }
 
     /**
@@ -345,7 +365,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Mentions légales
+     * Mentions légales.
      *
      * @Route("/mentions-legales", name="mentions_legales")
      */
