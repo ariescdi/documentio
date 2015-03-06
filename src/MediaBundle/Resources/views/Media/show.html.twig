@@ -68,15 +68,30 @@
         </div>
         <div class="btn-group">
             <div class="btn btn-default">
-                <a href="{{ path('media') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Voir le document sur le site
+                <a href="{{ path('document_show', { 'slug': entity.slug }) }}">
+                    <i class="glyphicon glyphicon-forward"></i> Voir le document sur le site
                 </a>
             </div>
             <div class="btn btn-default">
-                <a href="{{ path('media') }}">
-                    <i class="glyphicon glyphicon-backward"></i> Copier l'url du document en front
+                <a href="#" id="copyClipboard">
+                    <i class="glyphicon glyphicon-link"></i> Copier l'url du document
                 </a>
             </div>
         </div>
     </div>
+
 {% endblock %}
+
+{% block javascripts %}
+        {{parent()  }}
+        <script>
+            $('#copyClipboard').click(function(event){
+                event.preventDefault();
+                prompt( "Copier le lien : Ctrl+C","{{path('document_show', { 'slug': entity.slug }) }} ");
+            });
+
+
+        </script>
+{% endblock %}
+
+
