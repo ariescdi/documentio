@@ -143,7 +143,7 @@ WHERE m.id IN (
 
     public function findTop($count = 5)
     {
-        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = 1 ORDER BY m.mark DESC";
+        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = true ORDER BY m.mark DESC";
         $q = $this->getEntityManager()->createQuery($dql);
         $q->setMaxResults($count);
 
@@ -152,8 +152,7 @@ WHERE m.id IN (
 
     public function mediaByCategory($slug)
     {
-        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished =1";
-        $p =
+        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished = true";
         $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);
 
         return $q->getResult();
