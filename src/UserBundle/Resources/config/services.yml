@@ -5,7 +5,7 @@ services:
         tags:
             - { name: 'kernel.event_listener', event: 'security.interactive_login' }
 
-    user.registration.form.type:
+    acme_user.registration.form.type:
         class: 'UserBundle\Form\Type\RegistrationFormType'
-        tag:
-            - { name: 'form.type', alias: 'acme_user_registration' }
+        tags:
+            - { name: form.type, alias: acme_user_registration }
