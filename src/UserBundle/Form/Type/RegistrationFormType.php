@@ -18,12 +18,13 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // add your custom field
-//         $builder->add('roles', 'choice', array(
-//             'choices' => User::getRolesNames(),
-//             'required'  => true,
-//             )
-//         )
+        $builder->add('sex','choice', array(
+            'label' => 'Genre:',
+            'choices'   => array(
+                    '1' => 'Homme',
+                    '2' => 'Femme'
+            ))
+        );
     }
 
     public function getParent()
