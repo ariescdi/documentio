@@ -9,33 +9,27 @@
 {{ render (path( 'media_main_search' ))}}
 </div>
 
-    <h1>Résultat de la recherche</h1>
+    <div class="page-header">
+        <h1>Résultat de la recherche</h1>
+        {{ entities|length }} resutat{% if entities|length > 1 %}s{% endif %} trouvé{% if entities|length > 1 %}s{% endif %} pour : 
+        {% for kw in keywords %}
+            {{ kw }}{% if loop.last %}.{% else %}, {% endif %}
+        {% endfor %}
+    </div>
 
-    <table class="records_list table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
-        <thead>
-            <tr>
-                <th data-field="name" data-align="right" data-sortable="true">Nom</th>
-                <th data-field="path" data-align="right" data-sortable="true">Catégorie</th>
-                <th data-field="path" data-align="right" data-sortable="true">Type de fichier</th>
-                <th data-field="path" data-align="right" data-sortable="true">Auteur</th>
-                <th data-field="creation_date" data-align="right" data-sortable="true">Date de création</th>
-                <th data-field="mark" data-align="right" data-sortable="true">Note</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></td>
-                    <td>{{ entity.category.name }}</td>
-                    <td>{{ entity.type.name }}</td>
-                    <td><a href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i>{{ entity.owner.username }}</a></td>
-                    <td>{% if entity.creationdate %}<i class="glyphicon glyphicon-calendar"></i> {{ entity.creationdate|date('Y-m-d') }}{% endif %}</td>
-                    <td>{{ entity.mark }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+    <div>
+        {% for entity in entities %}
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4><a style="color:white!important" href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a> <span class="badge">{{ entity.mark }}</span></h4></div>
+                <div class="panel-body">
+                    <div class="col-xs-3">Catégorie : {{ entity.category.name }}</div>
+                    <div class="col-xs-3">Type de fichier : {{ entity.type.name }}</div>
+                    <div class="col-xs-3">{% if entity.creationdate %}<i class="glyphicon glyphicon-calendar"></i> {{ entity.creationdate|date('Y-m-d') }}{% endif %}</div>
+                    <div class="col-xs-3"><a href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i>{{ entity.owner.username }}</a></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     {{ knp_pagination_render(entities) }}
 
 {% endblock %}

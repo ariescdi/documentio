@@ -233,7 +233,7 @@ class SiteController extends Controller
                 10/*limit per page*/
             );
 
-            return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result));
+            return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result, 'keywords' => $keywords ));
         }
 
         return $this->render('AppBundle:Media:search_form.html.twig', array(
