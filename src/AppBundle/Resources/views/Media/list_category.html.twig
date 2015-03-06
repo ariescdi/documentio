@@ -14,6 +14,12 @@
             {
                 var form = '';
                 $.each( args, function( key, value ) {
+                    if(value instanceof Array)
+                    {
+                        if(value.length === 0)
+                            return;                            
+                        value = value.join('|');
+                    }
                     form += '<input type="hidden" name="'+key+'" value="'+value+'">';
                 });
                 $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
@@ -33,16 +39,7 @@
 
         function updateFilters()
         {
-            $.ajax({
-                type: "POST",
-                url: "{{ path('list_category') }}",
-                data: { categoryFilters: categoryFilters, filetypeFilters: filetypeFilters },
-                success: function( result )
-                {
-                    $(document.body).html(result);
-                }
-            });
-            //$.redirectPost( '{{ path('list_category') }}', {categoryFilters: categoryFilters, filetypeFilters: filetypeFilters});
+            $.redirectPost( '{{ path('list_category') }}', {categoryFilters: categoryFilters, filetypeFilters: filetypeFilters});
         }
 
         $('.category-filter').each(function()

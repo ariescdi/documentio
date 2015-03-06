@@ -320,10 +320,18 @@ class SiteController extends Controller
         if (!isset($categoryFilters)) {
             $categoryFilters = array();
         }
+        else
+        {
+            $categoryFilters = explode('|', $categoryFilters);
+        }
 
         $filetypeFilters = $request->request->get('filetypeFilters');
         if (!isset($filetypeFilters)) {
             $filetypeFilters = array();
+        }
+        else
+        {
+            $filetypeFilters = array_map('intval', explode('|', $filetypeFilters));
         }
 
         if (isset($slug)) {
@@ -333,7 +341,7 @@ class SiteController extends Controller
         if (isset($filetype)) {
             $filetypeFilters[] = $filetype;
         }
-
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->mediaBySlugFiletype($categoryFilters, $filetypeFilters);
