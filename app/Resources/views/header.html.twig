@@ -1,5 +1,5 @@
 <div class="pull-right mg20px">
-Couleur du site en session : 
+Couleur du site en session :
     <div class="btn-group">
        <a class="btn btn-default btn-sm blue" href="{{ path('session', {name:'theme', value:'blue'}) }}">bleu</a>
        <a class="btn btn-default btn-sm green" href="{{ path('session', {name:'theme', value:'green'}) }}">vert</a>
@@ -11,6 +11,7 @@ Couleur du site en session :
             <a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"><span class="logoIO">IO</span></a>
 	</div>
 </div>
+
 <div class="background-nav">
 	<nav class="container navbar navbar-default">
 		<section class="col-lg-12">
@@ -25,7 +26,9 @@ Couleur du site en session :
 			<div class="collapse navbar-collapse custom" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
-					{{ render(path('best_category')) }}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+					   {{ render(path('best_category')) }}
+                    {% endif %}
 				</ul>
 				<div class="navbar-form navbar-right">
 					{{ render (path( 'media_search' ))}}

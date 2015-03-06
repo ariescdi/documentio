@@ -18,7 +18,7 @@
             </div>
             <div class="media-body">
 
-                <h4 class="media-heading">Informations Personelles</h4>
+                <h4 class="media-heading">Informations Personnelles</h4>
                     Nom d'utilisateur : {{ user.username }} <br>
                     Mot de passe : <a class='label label-warning' href="{{ path('fos_user_change_password') }}">Modifier le mot de passe</a> <br>
                     Email : {{ user.email }} <br>
@@ -38,8 +38,8 @@
                   <tbody>
                         {% for doc in docs %}
                             <tr>
-                                <th scope="row">1</th>
-                                <td><a href="{{ path('media_show', { 'id': doc.id }) }}" title='Aller vers ce document'>{{ doc.name }}</a></td> <!-- AJOUTER UN LIEN VERS LE DOCUMENT - Utiliser fonction getDocumentById ?-->
+                                <th scope="row"></th>
+                                <td><a href="{{ path('media_show', { 'id': doc.id }) }}" title='Aller vers ce document'>{{ doc.name }}</a></td>
                                 <td>{{ doc.creationDate | date('d-m-Y') }}</td>
                                 <td>{{ doc.mark }}/20</td>
                             </tr>

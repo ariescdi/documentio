@@ -121,10 +121,32 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $em2 = $this->getDoctrine()->getManager();
+        $docs = $em2->getRepository('MediaBundle:Media')->findByConnectedUser($id);
+
+
+        $paginator  = $this->get('knp_paginator');
+        $docs = $paginator->paginate(
+            $docs,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
+
+    // parameters to template
+    //return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
+
+
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'docs' => $docs,
+            'isAdmin' => $this->isAdmin($entity->getRoles())
         );
+    }
+
+    public function isAdmin($roles) {
+
+        return array($roles, "ROLE_ADMIN");
     }
 
     /**
