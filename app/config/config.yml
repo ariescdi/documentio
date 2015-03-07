@@ -131,6 +131,10 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2
             output: fonts/glyphicons-halflings-regular.wwoff2
+        userCard_js:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/js/userCard.js
+            output: js/userCard.js
 
 # Doctrine Configuration
 doctrine:
