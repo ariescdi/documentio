@@ -6,7 +6,8 @@ $(document).ready(function () {
 
     $('.userCardBlock').hide();
 
-    $('.userCardButton').click(function(){
+    $('.userCardButton').click(function(e){
+        e.preventDefault();
         $('.userCardBlock').toggle("ease-in");
     });
 
