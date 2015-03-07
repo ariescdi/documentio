@@ -143,7 +143,7 @@ WHERE m.id IN (
 
     public function findTop($count = 5)
     {
-        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = 1 ORDER BY m.mark DESC";
+        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = true ORDER BY m.mark DESC";
         $q = $this->getEntityManager()->createQuery($dql);
         $q->setMaxResults($count);
 
