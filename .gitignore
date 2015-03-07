@@ -16,3 +16,4 @@
 /bin/
 /composer.phar
 *~
+/nbproject/private/

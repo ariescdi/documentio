@@ -4,16 +4,23 @@
         <meta charset="UTF-8" />
         <title>{% block title %}{% endblock %} | DocumentIO</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/main.css') }}" />  
-            {% if app.session.get('theme') != "blue" %}
-                <link rel="stylesheet" href="{{ asset('css/override_'~craue_setting('theme')~'.css') }}" />
-                <link rel="stylesheet" href="{{ asset('css/override_'~app.session.get('theme')~'.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+                          
+            {% if app.session.get('theme') %}
+                <link rel="stylesheet" href="{{ asset('css/override_color.css') }}" />
+               {# <link rel="stylesheet" href="{{ path('genererCss', {value: app.session.get('theme') }) }}" /> #}
             {% endif %}
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% if craue_setting('debug') == true %}
+            {{  app.request.attributes.get('_controller') }}<br />
+            session couleur:{{ app.session.get('theme') }}<br />
+            config couleur:{{ craue_setting('theme') }}<br />
+            route:{{ app.request.attributes.get('_route') }}
+        {% endif %}
         {% include '::header.html.twig' %}
         <div class="container">
             <aside class="col-lg-3">
@@ -32,7 +39,7 @@
         {% include '::footer.html.twig' %}
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-            <script type="text/javascript">
+           <script type="text/javascript">
               $(document).ready(function () {
                 var dateActu = new Date();
                 var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
@@ -42,19 +49,62 @@
                 });
 
                 $('#tags-canvas').tagcanvas({
-                    {% if craue_setting('theme') == 'green' %}
-                        textColour: '#96c573',
-                        outlineColour: '#96c573',
-                    {% elseif craue_setting('theme') == 'pink' %}
-                        textColour: '#f66578',
-                        outlineColour: '#f66578',
-                    {% else %}
-                        textColour: '#23A3DE',
-                        outlineColour: '#23A3DE',
+                    {% if craue_setting('theme') %}
+                        textColour: '{{ app.session.get('theme') }}',
+                        outlineColour: '{{ app.session.get('theme') }}',
                     {% endif %}
                   maxSpeed: 0.5
                 }, 'tags');
+                
+
+                $("#colorpicker").spectrum({
+                    preferredFormat: "hex",
+                    showInput: true,
+                    showPalette: true,
+                    showAlpha: true,
+                    maxSelectionSize: 8
+                 });
+                 
+                 $("#colorpicker").on('move.spectrum', function(e, tinycolor) {
+                     
+                     
+                    changeColor(tinycolor);
+                        $.ajax({
+                        url : '{{ path('session', {name:'theme', value:''}) }}',
+                        type : 'POST',
+                        data : 'value=' + tinycolor,
+                        dataType : 'html'
+                     });
+                 });
               });
+              
+              function changeColor(tinycolor) {
+                    $(".background-nav").css("background-color", tinycolor);
+                    $(".panel > .panel-heading").css("border-color", tinycolor);
+                    $(".panel > .panel-heading").css("background-color", tinycolor);
+                    $(".panel").css("border-color", tinycolor);
+                    $("#form-index .btn").css("border-color", tinycolor);
+                    $("#form-index .btn").css("background-color", tinycolor);
+                    $("a").css("color", tinycolor);
+                    $("address span").css("color", tinycolor);
+                    $(".btn-primary").css("background-image", "linear-gradient(to bottom," + tinycolor + "0%, #578634 100%)");
+                    $(".btn-primary").css("border-color", tinycolor);
+                    $(".btn.btn-primary").css("background-color", tinycolor);
+                    $(".btn.btn-primary").css("color", "#ffffff");
+                    $(".btn.btn-primary:hover").css("color", "#ffffff");
+                    $(".btn.btn-primary:hover").css("background-color", tinycolor);
+                    $(".list-group-item.active").css("background-color", tinycolor);
+                    $(".flip-clock-wrapper ul").css("background", tinycolor);
+                    $(".flip-clock-wrapper ul li a div div.inn").css("background-color", tinycolor);
+                    $(".flip-clock-wrapper ul li a div div.inn").css("background-color", tinycolor);
+                    $(".flip-clock-dot").css("background", tinycolor);
+                    $(".list-group-item.active").css("background", "none repeat scroll 0 0" + tinycolor);
+                    $(".list-group-item.active:hover").css("background", "none repeat scroll 0 0" + tinycolor);
+                    $(".list-group-item.active:focus").css("background", "none repeat scroll 0 0" + tinycolor);
+                    $(".contactFooter span").css("color", tinycolor);
+                    $(".navbar-default").css("background-color", tinycolor);     
+                    $("#colorpicker").css("background-color", tinycolor);        
+                }
             </script>
         {% endblock %}
     </body>

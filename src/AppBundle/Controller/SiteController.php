@@ -26,25 +26,59 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/config/{name}/{value}", name="config")
+     * @Route("/config/{name}/{value}", name="config", defaults={"value" = null} )
      */
     public function configAction($name, $value)
     {
+        if ($value === null){
+             $value = $_POST["value"]; 
+        }
         $this->get('craue_config')->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
-
         return $this->redirect($referer);
     }
     
     /**
-     * @Route("/session/{name}/{value}", name="session")
+     * @Route("/genererCss/{name}", name="genererCss" )
      */
-    public function sessionAction(Request $request,$name, $value)
+    public function genererCssAction($value)
     {
+        file_put_contents('css/override_color.css', $css);
+        return $this->redirect($referer);
+    }
+    
+    /**
+     * @Route("/session/{name}/{value}", name="session", defaults={"value" = null} )
+     */
+    public function sessionAction(Request $request, $name, $value)
+    {
+        if ($value === null){
+             $value = $_POST["value"]; 
+        }
+        
+        $css = '.background-nav { background-color: '.$value.'};
+                .panel > .panel-heading{ border-color: '.$value.'; background-color: '.$value.'; }
+                .panel{ border-color: '.$value.';}
+                #form-index .btn{ border-color: '.$value.'; background-color: '.$value.'; }
+                a, address span { color: '.$value.'; }
+                .btn-primary { background: '.$value.'; border-color: #ffffff; }
+                .btn.btn-primary { background-color: '.$value.'; color: #ffffff!important; }
+                .list-group-item.active{ background-color: '.$value.'; }
+                .flip-clock-wrapper ul { background: #ffffff; }
+                .flip-clock-wrapper ul li a div div.inn { text-shadow: 0 1px 2px #000000;  background-color: '.$value.';}
+                .flip-clock-dot { background: '.$value.'; }
+                .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus { background: none repeat scroll 0 0 '.$value.'; }
+                .panel-primary > .panel-heading{ background: '.$value.'; border-color: '.$value.';  }
+                .contactFooter span{ color: '.$value.'; }
+                canvas a { color: '.$value.'; }
+                .navbar-default { background: none; background-color :'.$value.'; border: none; }
+                #colorpicker { background-color: '.$value.'; }';
+        
+        file_put_contents('css/override_color.css', $css);
+
         $session = $request->getSession();
         $session->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
-
         return $this->redirect($referer);
     }
 

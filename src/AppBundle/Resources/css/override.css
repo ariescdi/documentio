@@ -1,6 +1,7 @@
 .background-header{
 	background-color: #eaeaea;
 }
+
 .logo{
 	text-align:center;
 	margin:auto;
@@ -11,13 +12,13 @@
 }
 nav{
     margin:auto;
-    background-color: transparent!important;
-    background-image: none!important;
-    border: none!important;
+    background-color: transparent;
+    background-image: none;
+    border: none;
 }
 
 nav ul li{
-	line-height: 50px!important
+	line-height: 50px
 }
 .nav >li >a{
     -webkit-transition: all 0.5s;
@@ -26,9 +27,9 @@ nav ul li{
     -o-transition: all 0.5s;
     height:35px;
     transition: all 0.5s;
-    display: block!important;
-    line-height: 35px!important;
-    padding: 0px 10px!important;
+    display: block;
+    line-height: 35px;
+    padding: 0px 10px;
     margin-top:7.5px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -38,7 +39,7 @@ nav ul li{
 }
 
 .nav > li > a:hover,.nav > li > a:active{
-    background-color: #e7e7e7!important;
+    background-color: #e7e7e7;
 }
 
 .dropdown-submenu{position:relative;}
@@ -48,15 +49,15 @@ nav ul li{
 .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 .panel > .panel-heading{
-	border-color: #23a3de!important;
-	background-color: #23a3de!important;
-	background-image: none!important;
+	border-color: #23a3de;
+	background-color: #23a3de;
+	background-image: none;
 	color:#fff;
     overflow: auto;
 }
 
 .panel{
-	border-color: #23a3de!important;
+	border-color: #23a3de;
 }
 
 #wrap {
@@ -82,15 +83,15 @@ nav ul li{
     border-bottom-left-radius: 4px;
 }
 .panel.panel-horizontal > .panel-body{
-	padding: 7px 15px!important;
+	padding: 7px 15px;
 }
 .navbar-default .navbar-collapse{
-	padding-left:0px!important;
+	padding-left:0px;
 }
 
 .navbar-default{
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 #wrap a{
@@ -104,7 +105,7 @@ nav ul li{
 }
 
 footer{
-	margin-bottom: 0px!important;
+	margin-bottom: 0px;
 	clear:both;
 }
 
@@ -123,9 +124,9 @@ footer{
 }
 
 #form-index .btn{
-	border-color: #23a3de!important;
-	background-color: #23a3de!important;
-	background-image: none!important;
+	border-color: #23a3de;
+	background-color: #23a3de;
+	background-image: none;
 }
 
 .panel-heading h2{
@@ -167,8 +168,8 @@ aside .panel-body h3{
         position: absolute;
         top: 0;
         left: 0;
-        width: 100% !important;
-        height: 100% !important;
+        width: 100%;
+        height: 100%;
     }
 /*/////////////fin de css pour responsive Gmap*/
 
@@ -268,15 +269,15 @@ aside .panel-body h3{
 }
 
 .blue {
-    color: #23a3de!important;
+    color: #23a3de;
 }
 
 .green {
-    color: #96c573!important;
+    color: #96c573;
 }
 
 .pink {
-    color: #f66578!important;
+    color: #f66578;
 }
 
 .mg20px {
@@ -284,17 +285,22 @@ aside .panel-body h3{
 }
 
 a {
-    color: #23a3de!important;
+    color: #23a3de;
 }
 
 .btn-primary {
-    background-image: linear-gradient(to bottom, #23a3de 0%, #1b7dab 100%);
-    border-color: #1b7dab;
+    background: none;
+    border-color: #ffffff;
 }
 
 .btn.btn-primary {
-    background-color: #23a3de!important;
-    color: #ffffff!important;
+    background-color: #23a3de;
+    color: #ffffff;
+}
+
+.btn.btn-primary:hover {
+    background-color: #ffffff;
+    color: #23a3de;
 }
 
 .three-block{
@@ -308,12 +314,28 @@ a {
 }
 
 .chart2 .chart{
-    height: 300px!important;
+    height: 300px;
 }
 
 .chart2 .chart{
-    height: 300px!important;
+    height: 300px;
 }
 .stat h3{
-    margin: 0px!important;
+    margin: 0px;
+}
+
+#colorpicker{
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #23a3de;
+}
+
+.panel-primary > .panel-heading{
+    background: #23a3de;
+}
+
+.navbar-default {
+    background: none; background-color :#23a3de;
+    border: none;
 }
