@@ -158,6 +158,14 @@ WHERE m.id IN (
         return $q->getResult();
     }
 
+    public function nbMedia()
+    {
+        $dql = "SELECT count(m) as nbMedia FROM MediaBundle:Media m ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getSingleResult();
+    }
+
     /**
      * Get media matching given categories/filetypes.
      *

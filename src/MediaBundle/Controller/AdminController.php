@@ -24,11 +24,19 @@ class AdminController extends Controller
             $keywords = $em->getRepository('MediaBundle:MediaKeyword')->topKeyWord();
             $medias = $em->getRepository('MediaBundle:Media')->findTop(10);
             $users = $em->getRepository('MediaBundle:User')->findConnection();
+            $nbMedia = $em->getRepository('MediaBundle:Media')->nbMedia();
+            $nbCategory = $em->getRepository('MediaBundle:MediaCategory')->nbCategory();
+            $nbMediaType = $em->getRepository('MediaBundle:MediaType')->nbMediaType();
+            $mediaByOwners = $em->getRepository('MediaBundle:User')->mediaByOwner();
 
             return $this->render('MediaBundle:Statistics:index.html.twig', array(
                 'keywords'  => $keywords,
                 'medias'    => $medias,
                 'users'     => $users,
+                'nbMedia'   => $nbMedia,
+                'nbCategory'   => $nbCategory,
+                'nbMediaType'  => $nbMediaType,
+                'mediaByOwners' => $mediaByOwners
             ));
         } else {
             return $this->render('MediaBundle:Statistics:index_user.html.twig');
