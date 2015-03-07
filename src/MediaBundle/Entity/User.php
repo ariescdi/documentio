@@ -159,9 +159,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set sex
+     * Set sex.
      *
      * @param integer $sex
+     *
      * @return User
      */
     public function setSex($sex)
@@ -172,9 +173,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get sex
+     * Get sex.
      *
-     * @return integer 
+     * @return integer
      */
     public function getSex()
     {

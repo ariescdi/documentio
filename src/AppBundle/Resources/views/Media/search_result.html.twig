@@ -11,7 +11,7 @@
 
     <div class="page-header">
         <h1>Résultat de la recherche</h1>
-        {{ entities|length }} resutat{% if entities|length > 1 %}s{% endif %} trouvé{% if entities|length > 1 %}s{% endif %} pour : 
+        {{ entities|length }} resutat{% if entities|length > 1 %}s{% endif %} trouvé{% if entities|length > 1 %}s{% endif %} pour :
         {% for kw in keywords %}
             {{ kw }}{% if loop.last %}.{% else %}, {% endif %}
         {% endfor %}

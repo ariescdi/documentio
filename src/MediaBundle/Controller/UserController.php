@@ -134,7 +134,7 @@ class UserController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
             'docs' => $docs,
-            'isAdmin' => $this->isAdmin($entity->getRoles())
+            'isAdmin' => $this->isAdmin($entity->getRoles()),
         );
     }
 

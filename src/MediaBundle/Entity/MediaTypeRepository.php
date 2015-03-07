@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityRepository;
 
 class MediaTypeRepository extends EntityRepository
 {
-
     public function nbMediaType()
     {
         $dql = "SELECT count(t) as nbMediaType FROM MediaBundle:MediaType t ";

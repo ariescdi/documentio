@@ -18,12 +18,12 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('sex','choice', array(
+        $builder->add('sex', 'choice', array(
             'label' => 'Genre:',
             'choices'   => array(
                     '1' => 'Homme',
-                    '2' => 'Femme'
-            ))
+                    '2' => 'Femme',
+            ), )
         );
     }
 

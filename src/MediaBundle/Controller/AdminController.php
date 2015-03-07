@@ -36,7 +36,7 @@ class AdminController extends Controller
                 'nbMedia'   => $nbMedia,
                 'nbCategory'   => $nbCategory,
                 'nbMediaType'  => $nbMediaType,
-                'mediaByOwners' => $mediaByOwners
+                'mediaByOwners' => $mediaByOwners,
             ));
         } else {
             return $this->render('MediaBundle:Statistics:index_user.html.twig');

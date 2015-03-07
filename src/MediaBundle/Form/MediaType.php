@@ -21,7 +21,7 @@ class MediaType extends AbstractType
             foreach ($entity->getKeywords() as $k) {
                 $w = $k->getWord();
 
-                if (strpos($w, ' ') !== FALSE) {
+                if (strpos($w, ' ') !== false) {
                     $w = '"'.$w.'"';
                 }
 
