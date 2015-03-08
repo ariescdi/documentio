@@ -6,13 +6,23 @@ $(document).ready(function () {
         clockFace: 'TwentyFourHourClock'
     });
 
-    $('#tags-canvas').tagcanvas({
-        {% if craue_setting('theme') %}
-            textColour: '{{ app.session.get('theme') }}',
-            outlineColour: '{{ app.session.get('theme') }}',
-        {% endif %}
-      maxSpeed: 0.5
-    }, 'tags');
+ 	var canvasCounter = 0;
+    $('.tags-canvas').each(function () {
+        var $this = $(this);
+        canvasCounter += 1;
+
+        // The library won't work if the canvas don't have an ID (it throws an exception `0` if so).
+        $this.attr('id', 'canvas' + canvasCounter);
+        $this.next('.tags').attr('id', 'canvas-list' + canvasCounter);
+
+        $this.tagcanvas({
+            {% if craue_setting('theme') %}
+	            textColour: '{{ app.session.get('theme') }}',
+	            outlineColour: '{{ app.session.get('theme') }}',
+        	{% endif %}
+            maxSpeed: 0.5
+        }, 'canvas-list' + canvasCounter);
+    });
 
     $("#colorpicker").spectrum({
         preferredFormat: 'hex',
@@ -69,6 +79,8 @@ $(document).ready(function () {
         }
     }); 
 });
+
+ $('.carousel').carousel();
 
 function changeColor(color) {
       $(".background-nav").css("background-color", color);
