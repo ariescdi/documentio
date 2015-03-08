@@ -124,7 +124,7 @@ class SiteController extends Controller
         $entities = $paginator->paginate(
             $entities,
             $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
+            5/*limit per page*/
         );
 
         return array('entities' => $entities);

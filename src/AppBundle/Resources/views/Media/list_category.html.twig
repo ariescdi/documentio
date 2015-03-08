@@ -1,7 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
+    {% if app.request.get('_route') == 'list_category' %}
         Choix d'une catégorie
+    {% else %}
+        Choix d'un mot clé
+    {% endif %}
+{% endblock %}
+
+{% block h1 %}
+    {% if app.request.get('_route') == 'list_category' %}
+        Choix d'une catégorie
+    {% else %}
+        Choix d'un mot clé
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

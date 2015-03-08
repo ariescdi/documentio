@@ -2,39 +2,41 @@
 
 {% block title %}{{entity.name}}{% endblock %}
 
+{% block h1 %}
+    {{entity.name}}
+    <small style="float:right;color:white!important;">Le {{ entity.creationdate|date('d-m-Y') }} par
+        <a style="color:white!important;" href="mailto:{{ entity.owner.email }}">
+            <i class="glyphicon glyphicon-user"></i><em> {{entity.owner.username}}</em>
+        </a>
+    </small>
+{% endblock %}
+
 {% block body -%}
 
-<div class="panel  panel-primary">
-    <div class="panel-heading">
-        <p style="float:left;">{{entity.name}}</p>
-        <p style="float:right;">Le {{ entity.creationdate|date('d-m-Y') }} par <a style="color:white!important" href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i><em>{{entity.owner.username}}</em></a></p>
-    </div>
 
-    <div class="panel-body">
-        <object data='{{ asset(entity.webpath) }}#view=FitH'
-                    type='{{ entity.type.mimetype }}'
-                    width='100%'
-                    height='100%'>
+<object data='{{ asset(entity.webpath) }}#view=FitH'
+            type='{{ entity.type.mimetype }}'
+            width='100%'
+            height='100%'>
 
-                <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
-                    No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
-                    Or here to <a class="plugin-search">search for plugin</a>.
-                </p>
+        <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
+            No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
+            Or here to <a class="plugin-search">search for plugin</a>.
+        </p>
 
-        </object>
-        <p>{{ entity.comment }}</p>
-        <p>Note : {{entity.mark}}</p>
+</object>
+<p>{{ entity.comment }}</p>
+<p>Note : {{entity.mark}}</p>
 
-        {% if is_granted('ROLE_USER') %}
+{% if is_granted('ROLE_USER') %}
 
 
-        <p><a class="btn btn-default glyphicon glyphicon-hand-down" href="{{ path('media_decrease_mark', { 'id': entity.id }) }}" title="J'aime pas !"></a>
-                            <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
-        <p/>
-         {% endif %}
-         <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
-    </div>
-</div>
+<p><a class="btn btn-default glyphicon glyphicon-hand-down" href="{{ path('media_decrease_mark', { 'id': entity.id }) }}" title="J'aime pas !"></a>
+                    <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
+<p/>
+ {% endif %}
+ <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
+
 
 {% endblock %}
 
