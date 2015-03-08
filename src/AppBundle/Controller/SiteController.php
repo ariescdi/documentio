@@ -73,14 +73,14 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/document/{slug}", name="document_show")
+     * @Route("/media/{slug}", name="document_show")
      * @Template("AppBundle:Media:show.html.twig")
      */
     public function documentShowAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:Media')->findOneBySlug($slug);
+        $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' => 1,'slug' =>$slug), array(), 1, 0);
 
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
@@ -98,6 +98,48 @@ class SiteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->findBy(array('isPublished' => 1), array());
+
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return array('entities' => $entities);
+    }
+
+
+    /**
+     * @Route("/utilisateur/", name="list_user")
+     * @Template("AppBundle:User:list_user.html.twig")
+     */
+    public function listUserAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MediaBundle:User')->mediaPublishedByOwner();
+
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return array('entities' => $entities);
+    }
+
+
+    /**
+     * @Route("/utilisateur/{username}", name="list_media_by_user")
+     * @Template("AppBundle:Media:list.html.twig")
+     */
+    public function listMediaByUserAction($username)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MediaBundle:Media')->findByUser($username);
 
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(

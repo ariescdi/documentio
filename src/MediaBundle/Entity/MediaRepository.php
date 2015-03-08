@@ -132,6 +132,14 @@ WHERE m.id IN (
         return $this->createQueryBuilder("m")->where("m.owner = :owner")->setParameter(":owner", $User)->getQuery()->getResult();
     }
 
+    public function findByUser($username)
+    {
+        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.owner o WHERE o.username = :owner AND m.isPublished = 1 ";
+        $q = $this->getEntityManager()->createQuery($dql)->setParameter('owner', $username);
+
+        return $q->getResult();
+    }
+
     public function findLastModified($count = 5)
     {
         $dql = "SELECT m FROM MediaBundle:Media m ORDER BY m.update_date DESC";
