@@ -3,10 +3,14 @@
 {% block title %}Contact{% endblock %}
 
 {% block body -%}
+    <h1>Contactez-nous : </h1>
 
-<div>
-  {% include '::address.html.twig' %}
-</div>
- {{ form(form) }}
+    <div class="col-lg-7">
+        {{ form(form) }}
+    </div>
+
+    <div class="col-lg-5">
+      {% include '::address.html.twig' %}
+    </div>
 
 {% endblock %}
