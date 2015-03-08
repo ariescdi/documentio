@@ -28,6 +28,17 @@ Couleur du site en session :
 					<!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
 				   {{ render(path('best_category')) }}
 				</ul>
+
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li>
+                        <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> {{ app.security.getToken().getUser().getUsername() | capitalize }}</a>
+                    </li>
+                    {{ render(path('user_card',{'id': app.security.getToken().getUser().getId() })) }}
+
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                {% endif %}
+
 				<div class="navbar-form navbar-right">
 					{{ render (path( 'media_search' ))}}
 				</div>

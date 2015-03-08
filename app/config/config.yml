@@ -82,6 +82,7 @@ assetic:
                 - %kernel.root_dir%/../vendor/dropzone/dropzone/dropzone.js
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.js
                 - %kernel.root_dir%/../vendor/tagcanvas/tagcanvas/jquery.tagcanvas.js
+                - %kernel.root_dir%/../src/AppBundle/Resources/js/userCard.js
             output: js/main.js
         notif_js:
             inputs:
@@ -131,10 +132,6 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2
             output: fonts/glyphicons-halflings-regular.wwoff2
-        userCard_js:
-            inputs:
-                - %kernel.root_dir%/../src/AppBundle/Resources/js/userCard.js
-            output: js/userCard.js
 
 # Doctrine Configuration
 doctrine:

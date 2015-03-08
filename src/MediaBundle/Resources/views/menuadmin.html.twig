@@ -148,79 +148,10 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> User Card</a>
+                                <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> {{ app.security.getToken().getUser().getUsername() | capitalize }}</a>
                             </li>
                         </ul>
-                        <div class="userCardBlock">
-                            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                            <div class="userCardContent">
-                                {% for entity in entitiesuser %}
-                                    {% if entity.username == app.user %}
-                                        <div class="card-container">
-                                            <div class="card">
-                                                <div class="front">
-                                                    <div class="cover">
-                                                        <img src="{{ asset('images/fond.png') }}">
-                                                    </div>
-                                                    <div class="user">
-                                                        <img class="img-circle" src="{{ asset('images/userCard.png') }}">
-                                                    </div>
-                                                    <div class="content">
-                                                        <div class="main">
-                                                            <h3 class="name">{{ entity.username }}</h3>
-                                                            <p class="profession">{% for role in entity.roles %} {{ role }}&nbsp; {% endfor %}</p>
-                                                            <h5>
-                                                                <i class="glyphicon glyphicon-heart"></i>&nbsp;
-                                                                {% if entity.sex == 1 %}
-                                                                    Homme
-                                                                {% elseif entity.sex == 2 %}
-                                                                    Femme
-                                                                {% elseif entity.sex == 3 %}
-                                                                    Autre
-                                                                {% endif %}
-                                                            </h5>
-                                                            <h5>
-                                                                <i class="glyphicon glyphicon-globe"></i>&nbsp;
-                                                                {% if entity.nbConnection == 1 %}
-                                                                    {{ entity.nbConnection}} connexion
-                                                                {% elseif entity.nbConnection > 1 %}
-                                                                    {{ entity.nbConnection}} connexions
-                                                                {% endif %}
-                                                            </h5>
-                                                            <h5>
-                                                                <i class="glyphicon glyphicon-envelope"></i>&nbsp;
-                                                                    {{ entity.email }}
-                                                            </h5>
-                                                        </div>
-                                                        <div class="footer">
-                                                            <div class="btn-toolbar">
-
-                                                                    <div class="label label-primary labelCustom">
-                                                                        <a href="{{ path('user') }}">
-                                                                            <i class="glyphicon glyphicon-backward"></i> Retour à la liste
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="label label-primary labelCustom">
-                                                                        <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">
-                                                                            <i class="glyphicon glyphicon-edit"></i> Editer
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="label label-primary labelCustom">
-                                                                        <a href="{{ path('fos_user_change_password', { 'id': entity.id }) }}">
-                                                                            <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
-                                                                        </a>
-                                                                    </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
+                        {{ render(path('user_card',{'id': app.security.getToken().getUser().getId() })) }}
                     </div><!-- /.navbar-collapse -->
                 {% endif %}
             </section>

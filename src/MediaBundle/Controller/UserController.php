@@ -138,6 +138,30 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * Finds and displays a UserCard.
+     *
+     * @Route("/user-card/{id}", name="user_card")
+     *
+     * @Method("GET")
+     * @Template("MediaBundle:User:user-card.html.twig")
+     */
+    public function userCardAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $userCard = $em->getRepository('MediaBundle:User')->findOneById($id);
+
+
+        if (!$userCard) {
+            throw $this->createNotFoundException('Impossible de trouver cette utilisateur.');
+        }
+
+        return array('userCard'=> $userCard);
+    }
+
+
+
     public function isAdmin($roles)
     {
         return array($roles, "ROLE_ADMIN");
