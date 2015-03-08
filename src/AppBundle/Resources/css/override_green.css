@@ -44,42 +44,26 @@ a, address span {
 }
 
 .flip-clock-dot {
-  background: #7dac5a; /* couleur des points */
+  background: #7dac5a;
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-before .up .shadow {
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, #7dac5a));
   background: linear, top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%;
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
   background: linear, to bottom, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%;
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-active .up .shadow {
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, #7dac5a));
   background: linear, top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%;
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%);
   background: linear, to bottom, rgba(0, 0, 0, 0.1) 0%, #7dac5a 100%;
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow {
-  background: -moz-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7dac5a), color-stop(100%, rgba(0, 0, 0, 0.1)));
   background: linear, top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%;
-  background: -o-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
-  background: -ms-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
   background: linear, to bottom, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%;
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-active .down .shadow {
-  background: -moz-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7dac5a), color-stop(100%, rgba(0, 0, 0, 0.1)));
   background: linear, top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%;
-  background: -o-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
-  background: -ms-linear-gradient(top, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%);
   background: linear, to bottom, #7dac5a 0%, rgba(0, 0, 0, 0.1) 100%;
 }
 
@@ -91,3 +75,4 @@ a, address span {
     color: #96c573 !important;
 }
 
+            

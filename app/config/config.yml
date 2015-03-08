@@ -50,9 +50,10 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css
-                - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/flipclock.css
+                - %kernel.root_dir%/../vendor/bgrins/spectrum/spectrum.css 
+                - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
                 - %kernel.root_dir%/../vendor/components/font-awesome/css/font-awesome.css
             filters:
                 - cssrewrite
@@ -82,6 +83,7 @@ assetic:
                 - %kernel.root_dir%/../vendor/dropzone/dropzone/dropzone.js
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.js
                 - %kernel.root_dir%/../vendor/tagcanvas/tagcanvas/jquery.tagcanvas.js
+                - %kernel.root_dir%/../vendor/bgrins/spectrum/spectrum.js
             output: js/main.js
         notif_js:
             inputs:
