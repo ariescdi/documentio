@@ -2,11 +2,14 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block h1 %}Contactez-nous :{% endblock %}
 {% block body -%}
+    <div class="col-lg-7">
+        {{ form(form) }}
+    </div>
 
-<div>
-  {% include '::address.html.twig' %}
-</div>
- {{ form(form) }}
+    <div class="col-lg-5">
+      {% include '::address.html.twig' %}
+    </div>
 
 {% endblock %}

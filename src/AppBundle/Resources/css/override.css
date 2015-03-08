@@ -545,3 +545,7 @@ a {
 .labelCustom {
     color: white;
 }
+
+object{
+    min-height: 500px;
+}

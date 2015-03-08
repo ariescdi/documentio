@@ -2,46 +2,45 @@
 
 {% block title %}Liste des utilisateurs{% endblock %}
 
+{% block h1 %}Liste des utilisateurs{% endblock %}
+
 {% block body -%}
-
-    <h1>Liste des utilisateurs</h1>
-
-        <div>
-            {% for entity in entities %}
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h2>
-                            <a style="color:white!important" href="{{ path('list_media_by_user', {'username': entity.username } )}}">
-                                {{ entity.username| capitalize }}
-                            </a>
-                        </h2>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <th>Titre</th>
-                                <th>Description</th>
-                                <th>Note</th>
-                            </thead>
-
-                            <tbody>
-                                {% for media in entity.medias|slice(0,3) %}
-                                    <tr>
-                                        <td>
-                                            <a href="{{ path('document_show', { 'slug': media.slug }) }}">
-                                                {{ media.name }}
-                                            </a>
-                                        </td>
-                                        <td>{{ media.comment| truncate(50) }}</td>
-                                        <td>{{ media.mark }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+    <div>
+        {% for entity in entities %}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2>
+                        <a style="color:white!important" href="{{ path('list_media_by_user', {'username': entity.username } )}}">
+                            {{ entity.username| capitalize }}
+                        </a>
+                    </h2>
                 </div>
-            {% endfor %}
-        </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Note</th>
+                        </thead>
+
+                        <tbody>
+                            {% for media in entity.medias|slice(0,3) %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('document_show', { 'slug': media.slug }) }}">
+                                            {{ media.name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ media.comment| truncate(50) }}</td>
+                                    <td>{{ media.mark }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     {{ knp_pagination_render(entities) }}
 
-    {% endblock %}
+{% endblock %}
