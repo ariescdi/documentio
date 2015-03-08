@@ -52,30 +52,12 @@ assetic:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css
                 - %kernel.root_dir%/../vendor/flipclock/flipclock/compiled/flipclock.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/flipclock.css
-                - %kernel.root_dir%/../vendor/bgrins/spectrum/spectrum.css 
+                - %kernel.root_dir%/../vendor/bgrins/spectrum/spectrum.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
                 - %kernel.root_dir%/../vendor/components/font-awesome/css/font-awesome.css
             filters:
                 - cssrewrite
             output: css/main.css
-        pink_css:
-            inputs:
-                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_pink.css
-            filters:
-                - cssrewrite
-            output: css/override_pink.css
-        green_css:
-            inputs:
-                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_green.css
-            filters:
-                - cssrewrite
-            output: css/override_green.css
-        blue_css:
-            inputs:
-                - %kernel.root_dir%/../src/AppBundle/Resources/css/override_blue.css
-            filters:
-                - cssrewrite
-            output: css/override_blue.css
         main_js:
             inputs:
                 - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js

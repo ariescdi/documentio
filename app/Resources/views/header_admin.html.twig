@@ -1,11 +1,9 @@
-{% if is_granted('ROLE_ADMIN') %}
-    <div class="pull-right mg20px">
-    <div class="btn-group">
-       <a id="colorpicker">&nbsp;</a>
+<div class="pull-right mg20px">
+    <div>
+        <input type='text' id="colorpicker" />
+        <a id="palette" >&nbsp;</a>
     </div>
-    </div>
-{% endif %}
-
+</div>
 <div class="background-header">
     <div class="logo container">
         <a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"><span class="logoIO">IO</span></a>
