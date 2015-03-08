@@ -3,7 +3,11 @@
 {% block title %}Index{% endblock %}
 
 {% block body -%}
+
+<div class="panel-body">
     <div class="input-group" id="form-index">
         {{ render (path( 'media_main_search' ))}}
     </div>
+</div>
+    {{ render(path('slider')) }}
 {% endblock %}

@@ -121,10 +121,26 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $docs = $em->getRepository('MediaBundle:Media')->findByConnectedUser($id);
+
+        $paginator  = $this->get('knp_paginator');
+        $docs = $paginator->paginate(
+            $docs,
+            $this->get('request')->query->get('page', 1), // page number
+            6 // limit per page
+        );
+
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'docs' => $docs,
+            'isAdmin' => $this->isAdmin($entity->getRoles()),
         );
+    }
+
+    public function isAdmin($roles)
+    {
+        return array($roles, "ROLE_ADMIN");
     }
 
     /**

@@ -12,7 +12,7 @@ class MediaKeywordRepository extends EntityRepository
             SELECT k.word, COUNT(m) AS compteur
             FROM MediaBundle:MediaKeyword k
             JOIN k.medias m
-            GROUP BY m.id
+            GROUP BY k.id
             ORDER BY compteur DESC
         ';
 

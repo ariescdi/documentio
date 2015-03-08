@@ -1,35 +1,159 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Liste des médias pour la catégorie {{category.name}}{% endblock %}
+{% block title %}
+        Choix d'une catégorie
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // jquery extend function
+        $.extend(
+        {
+            redirectPost: function(location, args)
+            {
+                var form = '';
+                $.each( args, function( key, value ) {
+                    if(value instanceof Array)
+                    {
+                        if(value.length === 0)
+                            return;
+                        value = value.join('|');
+                    }
+                    form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+                });
+                $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
+            }
+        });
+
+        var categoryFilters = [
+            {% for slug in categoryFilters %}
+                '{{ slug }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+        var filetypeFilters = [
+            {% for tid in filetypeFilters %}
+                {{ tid }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        function updateFilters()
+        {
+            $.redirectPost( '{{ path('list_category') }}', {categoryFilters: categoryFilters, filetypeFilters: filetypeFilters});
+        }
+
+        $('.category-filter').each(function()
+        {
+            var slug = $(this).attr('category-filter');
+            var index = categoryFilters.indexOf(slug);
+            if(index !== -1)
+            {
+                $(this).addClass('active');
+            }
+        });
+
+        $('.filetype-filter').each(function()
+        {
+            var id = parseInt($(this).attr('filetype-filter'));
+            var index = filetypeFilters.indexOf(id);
+            if(index !== -1)
+            {
+                $(this).addClass('active');
+            }
+        });
+
+        $('.category-filter').on('click',function()
+        {
+            var slug = $(this).attr('category-filter');
+            var index = categoryFilters.indexOf(slug);
+            if(index === -1)
+            {
+                categoryFilters.push(slug);
+            }
+            else
+            {
+                categoryFilters.splice(index,1);
+            }
+            updateFilters();
+        });
+
+        $('.filetype-filter').on('click',function()
+        {
+            var id = parseInt($(this).attr('filetype-filter'));
+            var index = filetypeFilters.indexOf(id);
+            if(index === -1)
+            {
+                filetypeFilters.push(id);
+            }
+            else
+            {
+                filetypeFilters.splice(index,1);
+            }
+            updateFilters();
+        });
+
+    </script>
+{% endblock %}
 
 {% block body -%}
 
-    <h1>Liste des média pour la catégorie {{category.name}}</h1>
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 
-    <table class="records_list table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
-        <thead>
-            <tr>
-                <th data-field="name" data-align="right" data-sortable="true">Nom</th>
-                <th data-field="path" data-align="right" data-sortable="true">Type de fichier</th>
-                <th data-field="desc" data-align="right" data-sortable="true">Description</th>
-                <th data-field="path" data-align="right" data-sortable="true">Auteur</th>
-                <th data-field="creation_date" data-align="right" data-sortable="true">Date de création</th>
-                <th data-field="mark" data-align="right" data-sortable="true">Note</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="btn-group btn-group-justified" role="group">
+        {% for c in categories %}
+            {% if c.medias|length %}
+                <a class="btn btn-default category-filter"
+                   role="button"
+                   category-filter="{{ c.slug }}"
+                   >
+                    {{ c.name }}
+                    <span class="badge">{{ c.medias|length }}</span>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="btn-group btn-group-justified" role="group">
+        {% for t in filetypes %}
+            {% if t.medias|length %}
+                <a class="btn btn-default filetype-filter"
+                   role="button"
+                   filetype-filter="{{ t.id }}"
+                   >
+                    {{ t.name }}
+                    <span class="badge">{{ t.medias|length }}</span>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if entities|length > 0 %}
+
+        <div style="padding-top: 4em">
             {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></td>
-                    <td>{{ entity.type.name }}</td>
-                    <td>{{ entity.comment| truncate(50) }}</td>
-                    <td>{{ entity.owner.username }}</td>
-                    <td>{% if entity.creationdate %}{{ entity.creationdate|date('Y-m-d') }}{% endif %}</td>
-                    <td>{{ entity.mark }}</td>
-                </tr>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h4><a style="color:white!important" href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a> <span class="badge">{{ entity.mark }}</span></h4></div>
+                    <div class="panel-body">
+                        <div class="col-xs-3">Catégorie : {{ entity.category.name }}</div>
+                        <div class="col-xs-3">Type de fichier : {{ entity.type.name }}</div>
+                        <div class="col-xs-3">{% if entity.creationdate %}<i class="glyphicon glyphicon-calendar"></i> {{ entity.creationdate|date('Y-m-d') }}{% endif %}</div>
+                        <div class="col-xs-3"><a href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i>{{ entity.owner.username }}</a></div>
+                    </div>
+                </div>
             {% endfor %}
-        </tbody>
-    </table>
-    {{ knp_pagination_render(entities) }}
+        </div>
 
-    {% endblock %}
+        {{ knp_pagination_render(entities) }}
+    {% else %}{# if entities|length > 0 #}
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Aucun média trouvé
+        </div>
+    {% endif %}
+
+{% endblock %}

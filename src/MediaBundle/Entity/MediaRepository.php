@@ -143,7 +143,7 @@ WHERE m.id IN (
 
     public function findTop($count = 5)
     {
-        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = 1 ORDER BY m.mark DESC";
+        $dql = "SELECT m FROM MediaBundle:Media m WHERE m.isPublished = true ORDER BY m.mark DESC";
         $q = $this->getEntityManager()->createQuery($dql);
         $q->setMaxResults($count);
 
@@ -152,9 +152,65 @@ WHERE m.id IN (
 
     public function mediaByCategory($slug)
     {
-        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished =1";
-        $p =
+        $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished = true";
         $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);
+
+        return $q->getResult();
+    }
+
+    public function nbMedia()
+    {
+        $dql = "SELECT count(m) as nbMedia FROM MediaBundle:Media m ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getSingleResult();
+    }
+
+    /**
+     * Get media matching given categories/filetypes.
+     *
+     * @param $caterogySlugs Array of categories' slug to match, can be null or empty.
+     * @param $filetypeIds Array of filetypes' id to match, can be null or empty.
+     *
+     * @return ArrayCollection|Media[] The matching media list.
+     */
+    public function mediaBySlugFiletype($caterogySlugs, $filetypeIds)
+    {
+        $hasSlugs = $caterogySlugs != null || count($caterogySlugs) > 0;
+        $hasFiletypes = $filetypeIds != null || count($filetypeIds) > 0;
+
+        $dql = "SELECT m FROM MediaBundle:Media m";
+
+        if ($hasSlugs) {
+            $dql = $dql." WHERE m.category IN ( "
+                ."SELECT c FROM MediaBundle:MediaCategory c WHERE c.slug IN (:slugs) "
+                .")";
+        }
+
+        if ($hasFiletypes) {
+            if ($hasSlugs) {
+                $dql = $dql." AND";
+            } else {
+                $dql = $dql." WHERE";
+            }
+
+            $dql = $dql." m.type IN ( "
+                ."SELECT t FROM MediaBundle:MediaType t WHERE t.id IN (:types) "
+                .")";
+        }
+
+        if ($hasFiletypes || $hasSlugs) {
+            $dql = $dql." AND";
+        } else {
+            $dql = $dql." WHERE";
+        }
+
+        $dql = $dql." m.isPublished = true";
+
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        $hasSlugs     && $q->setParameter('slugs', array_values($caterogySlugs));
+        $hasFiletypes && $q->setParameter('types', array_values($filetypeIds));
 
         return $q->getResult();
     }

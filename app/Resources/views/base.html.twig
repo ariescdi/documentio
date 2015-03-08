@@ -13,12 +13,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% if craue_setting('debug') == true %}
+        {#
             {{  app.request.attributes.get('_controller') }}<br />
             session couleur:{{ app.session.get('theme') }}<br />
             config couleur:{{ craue_setting('theme') }}<br />
             route:{{ app.request.attributes.get('_route') }}
-        {% endif %}
+        #}
         {% include '::header.html.twig' %}
         <div class="container">
             <aside class="col-lg-3">

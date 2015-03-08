@@ -1,21 +1,53 @@
 <footer class="jumbotron " >
     <div class="container">
         <div class="row">
-            <div class="col-md-4 list-group">
-                    <h3 class="list-group-item active">Site</h3>
-                    <a class="list-group-item" href="{{ path('admin_index') }}">Accueil</a>
-                    <a class="list-group-item" href="{{ path('listMedia') }}">Liste des medias</a>
-                    <a class="list-group-item" href="{{ path('fos_user_security_login') }}">Admin</a>
-                    <a class="list-group-item" href="{{ path('contact') }}">Contact</a></li>
-                    <a class="list-group-item" href="{{ path('mentions_legales') }}">Mentions légales</a>
-                    <a class="list-group-item" href="{{ path('admin_index') }}">Site Map</a>
+            <div class="visible-md-block visible-lg-block col-md-4 list-group">
+                    <h3 class="list-group-item active"><i class="fa fa-globe"></i> Site</h3>
+                    <a class="list-group-item" href="{{ path('index') }}"><i class="fa fa-home"></i> Accueil</a>
+                    <a class="list-group-item" href="{{ path('listMedia') }}"><i class="fa fa-medium"></i> Liste des medias</a>
+                    <a class="list-group-item" href="{{ path('fos_user_security_login') }}"><i class="fa fa-wrench"></i> Admin</a>
+                    <a class="list-group-item" href="{{ path('contact') }}"><i class="fa fa-map-marker fa-1x"></i> Contact</a>
+                    <a class="list-group-item" href="{{ path('mentions_legales') }}"><i class="fa fa-file-text"></i> Mentions légales</a>
+                    <a class="list-group-item" href="{{ path('PrestaSitemapBundle_index',{_format:'xml' })}}"><i class="fa fa-sitemap"></i> Site Map</a>
+            </div>
+            <div class="btn-toolbar visible-xs-block" role="toolbar" aria-label="siteMenuFooter">
+                <div class="btn-group" role="group" aria-label="siteMenuAccueil">
+                  <a class="list-group-item" href="{{ path('index') }}">
+                    <i class="fa fa-home fa-3x"></i>
+                  </a>
+                </div>
+                <div class="btn-group" role="group" aria-label="siteMenuMedia">
+                  <a class="list-group-item" href="{{ path('listMedia') }}">
+                    <i class="fa fa-medium fa-3x"></i>
+                  </a>
+                </div>
+                <div class="btn-group" role="group" aria-label="siteMenuAdmin">
+                  <a class="list-group-item" href="{{ path('fos_user_security_login') }}"> 
+                    <i class="fa fa-wrench fa-3x"></i>
+                  </a>
+                </div>
+                <div class="btn-group" role="group" aria-label="siteMenuContact">
+                  <a class="list-group-item" href="{{ path('contact') }}">
+                    <i class="fa fa-map-marker fa-3x"></i>
+                  </a>
+                </div>
+                <div class="btn-group" role="group" aria-label="siteMenuMentionsLegales">
+                  <a class="list-group-item" href="{{ path('mentions_legales') }}">
+                    <i class="fa fa-file-text fa-3x"></i>
+                  </a>
+                </div>
+                <div class="btn-group" role="group" aria-label="siteMenuSiteMap">
+                    <a class="list-group-item" href="{{ path('PrestaSitemapBundle_index',{_format:'xml' })}}">
+                        <i class="fa fa-sitemap fa-3x"></i>
+                    </a>
+                </div>
             </div>
             <div class="col-md-4 list-group">
-                <h3 class="list-group-item active">Liste des categories </h3>
+                <h3 class="list-group-item active"><i class="fa fa-list-ul"></i> Liste des categories </h3>
                 {{ render(path('best_category_footer')) }}
             </div>
             <div class="col-md-4 list-group">
-                <h3 class="list-group-item active">Contact</h3>
+                <h3 class="list-group-item active"><i class="fa fa-map-marker fa-1x"></i> Contact</h3>
                 {% include '::address.html.twig' %}
             </div>
         </div>

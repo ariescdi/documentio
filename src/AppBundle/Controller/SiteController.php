@@ -15,14 +15,38 @@ use AppBundle\Form\EnquiryType;
 class SiteController extends Controller
 {
     /**
-     * Creates a new Medium entity.
-     *
      * @Route("/", name="index")
+     *
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         return [];
+    }
+
+    /**
+     * @Route("/slider", name="slider")
+     *
+     * @Method("GET")
+     * @Template("AppBundle:Media:slider.html.twig")
+     */
+    public function sliderAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MediaBundle:Media')->findBy(array('isPublished' => 1), array('creationDate' => 'desc'), 5, 0);
+
+        $result = true;
+        if (!$entities) {
+            // throw $this->createNotFoundException('Impossible de trouver ce document.');
+            $result = 'Aucun document n\'a encore été publié';
+        }
+
+        return array(
+            'entities' => $entities,
+            'result' => $result,
+        );
     }
 
     /**
@@ -55,7 +79,7 @@ class SiteController extends Controller
         $referer = $this->getRequest()->headers->get('referer');
         return $this->redirect($referer);
     }
-    
+
     /**
      * @Route("/session/{name}/{value}", name="session", defaults={"value" = null} )
      */
@@ -88,7 +112,7 @@ class SiteController extends Controller
      * @Route("/media/", name="listMedia")
      * @Template("AppBundle:Media:list.html.twig")
      */
-    public function ListMediaAction()
+    public function listMediaAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -177,16 +201,12 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:MediaKeyword')->findBy(array(), array(), 10, 0);
-
-        $result = true;
-        if (!$entities) {
-            $result = 'Aucun tag n\'a encore été ajouté';
-        }
+        $tags = $em->getRepository('MediaBundle:MediaKeyword')->findBy(array(), array(), 10, 0);
+        $types = $em->getRepository('MediaBundle:MediaType')->findBy(array(), array(), 10, 0);
 
         return array(
-            'entities' => $entities,
-            'result' => $result,
+            'tags' => $tags,
+            'types' => $types,
         );
     }
 
@@ -232,7 +252,7 @@ class SiteController extends Controller
                 10/*limit per page*/
             );
 
-            return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result));
+            return $this->render('AppBundle:Media:search_result.html.twig', array('entities' => $result, 'keywords' => $keywords ));
         }
 
         return $this->render('AppBundle:Media:search_form.html.twig', array(
@@ -309,28 +329,52 @@ class SiteController extends Controller
 
     /**
      * @Route("/categorie/{slug}", name="list_category")
+     * @Route("/filetype/{filetype}", name="list_filetype")
      * @Template("AppBundle:Media:list_category.html.twig")
      */
-    public function mediaByCategoryAction($slug)
+    public function mediaByCategoryAction(Request $request, $slug = null, $filetype = null)
     {
+        $categoryFilters = $request->request->get('categoryFilters');
+
+        if (!isset($categoryFilters)) {
+            $categoryFilters = array();
+        } else {
+            $categoryFilters = explode('|', $categoryFilters);
+        }
+
+        $filetypeFilters = $request->request->get('filetypeFilters');
+        if (!isset($filetypeFilters)) {
+            $filetypeFilters = array();
+        } else {
+            $filetypeFilters = array_map('intval', explode('|', $filetypeFilters));
+        }
+
+        if (isset($slug)) {
+            $categoryFilters[] = $slug;
+        }
+
+        if (isset($filetype)) {
+            $filetypeFilters[] = $filetype;
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediaBundle:Media')->mediaByCategory($slug);
-
-        $category = $em->getRepository('MediaBundle:MediaCategory')->findOneBySlug($slug);
-
-        if (!$entities) {
-            throw $this->createNotFoundException('Impossible de trouver des medias pour cette catégorie.');
-        }
+        $entities = $em->getRepository('MediaBundle:Media')->mediaBySlugFiletype($categoryFilters, $filetypeFilters);
 
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(
             $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
+            $request->query->get('page', 1)/*page number*/,
             10/*limit per page*/
         );
 
-        return array('entities' => $entities,'category' => $category);
+        return array(
+            'entities' => $entities,
+            'categories' => $em->getRepository('MediaBundle:MediaCategory')->findAll(),
+            'filetypes' => $em->getRepository('MediaBundle:MediaType')->findAll(),
+            'categoryFilters' => $categoryFilters,
+            'filetypeFilters' => $filetypeFilters,
+        );
     }
 
     /**
@@ -368,7 +412,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Mentions légales
+     * Mentions légales.
      *
      * @Route("/mentions-legales", name="mentions_legales")
      */

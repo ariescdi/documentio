@@ -80,16 +80,22 @@ class MediaController extends Controller
     /**
      * Update media keywords.
      *
-     * @param string $keywords splitted by spaces
+     * @param string $keywords splitted by spaces (optionally double quoted)
      * @param Media  $entity
      */
     public function updateKeywords($keywords, Media $entity)
     {
+        // http://stackoverflow.com/questions/2202435/php-explode-the-string-but-treat-words-in-quotes-as-a-single-word
+        preg_match_all('/"(?:\\\\.|[^\\\\"])*"|\S+/', $keywords, $matches);
+
+        $keywords = $matches[0];
+
         $em = $this->getDoctrine()->getManager();
 
         $kwRepo = $em->getRepository('MediaBundle:MediaKeyword');
 
         foreach ($keywords as $k) {
+            $k = trim($k, '"');
             $k = strtolower($k);
             if (strlen($k)) {
                 /** @var Aries\Site\MediaBundle\Entity\MediaKeyword $kwEntity */
@@ -201,9 +207,7 @@ class MediaController extends Controller
 
             $em->persist($entity);
 
-            $keywords = explode(' ', $form->get('keywords')->getData());
-
-            $this->updateKeywords($keywords, $entity);
+            $this->updateKeywords($form->get('keywords')->getData(), $entity);
 
             $em->flush();
 
@@ -315,9 +319,7 @@ class MediaController extends Controller
 
             $em->persist($entity);
 
-            $keywords = explode(' ', $form->get('keywords')->getData());
-
-            $this->updateKeywords($keywords, $entity);
+            $this->updateKeywords($form->get('keywords')->getData(), $entity);
 
             $em->flush();
 
@@ -518,9 +520,7 @@ class MediaController extends Controller
                 $entity->setPath($entity->getCategory()->getName().'/'.$fname);
             }
 
-            $keywords = explode(' ', $editForm->get('keywords')->getData());
-
-            $this->updateKeywords($keywords, $entity);
+            $this->updateKeywords($editForm->get('keywords')->getData(), $entity);
 
             $em->flush();
 

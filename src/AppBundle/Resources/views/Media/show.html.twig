@@ -7,7 +7,7 @@
 <div class="panel  panel-primary">
     <div class="panel-heading">
         <p style="float:left;">{{entity.name}}</p>
-        <p style="float:right;">Le {{ entity.creationdate|date('d-m-Y') }} par <em>{{entity.owner.username}}</em></p>
+        <p style="float:right;">Le {{ entity.creationdate|date('d-m-Y') }} par <a style="color:white!important" href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i><em>{{entity.owner.username}}</em></a></p>
     </div>
 
     <div class="panel-body">

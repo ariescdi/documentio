@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * MediaType.
  *
  * @ORM\Table(name="dio_mediatype")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MediaTypeRepository")
  */
 class MediaType
 {

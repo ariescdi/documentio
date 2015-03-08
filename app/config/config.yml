@@ -54,6 +54,8 @@ assetic:
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/flipclock.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/spectrum.css
                 - %kernel.root_dir%/../src/AppBundle/Resources/css/override.css
+                - %kernel.root_dir%/../vendor/components/font-awesome/css/font-awesome.css
+
             filters:
                 - cssrewrite
             output: css/main.css
@@ -70,6 +72,54 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../src/AppBundle/Resources/js/notif.js
             output: js/notif.js
+        fontawesome_otf:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/FontAwesome.otf
+            output: fonts/FontAwesome.otf
+        fontawesome_eot:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/fontawesome-webfont.eot
+            output: fonts/fontawesome-webfont.eot
+        fontawesome_svg:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/fontawesome-webfont.svg
+            output: fonts/fontawesome-webfont.svg
+        fontawesome_ttf:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/fontawesome-webfont.ttf
+            output: fonts/fontawesome-webfont.ttf
+        fontawesome_woff:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/fontawesome-webfont.woff
+            output: fonts/fontawesome-webfont.woff
+        fontawesome_woff2:
+            inputs:
+                - %kernel.root_dir%/../vendor/components/font-awesome/fonts/fontawesome-webfont.woff2
+            output: fonts/fontawesome-webfont.woff2
+        glyphicons_eot:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.eot
+            output: fonts/glyphicons-halflings-regular.eot
+        glyphicons_svg:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.svg
+            output: fonts/glyphicons-halflings-regular.svg
+        glyphicons_ttf:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf
+            output: fonts/glyphicons-halflings-regular.ttf
+        glyphicons_woff:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff
+            output: fonts/glyphicons-halflings-regular.woff
+        glyphicons_woff2:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2
+            output: fonts/glyphicons-halflings-regular.wwoff2
+        userCard_js:
+            inputs:
+                - %kernel.root_dir%/../src/AppBundle/Resources/js/userCard.js
+            output: js/userCard.js
 
 # Doctrine Configuration
 doctrine:
@@ -136,6 +186,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: MediaBundle\Entity\User
+    registration:
+        form:
+            type: acme_user_registration
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -2,54 +2,115 @@
 
 {% block body -%}
 
-    <h1>{{ entity.username }}</h1>
+<div class="media">
+    <div class="media-left">
+        <a href="">
+            {% if isAdmin %}
+                {% if entity.sex == 1 %}
+                    <!-- ADMIN HOMME -->
+                    <img class="media-object" src="{{ asset('images/adminMale.png') }}">
+                {% elseif entity.sex == 2 %}
+                    <!-- ADMIN FEMME -->
+                    <img class="media-object" src="{{ asset('images/adminFemale.png') }}">
+                {% endif %}
+            {% elseif isAdmin != true %}
+                {% if entity.sex == 1 %}
+                    <!-- ADMIN HOMME -->
+                    <img class="media-object" src="{{ asset('images/userMale.png') }}">
+                {% elseif entity.sex == 2 %}
+                    <!-- ADMIN FEMME -->
+                    <img class="media-object" src="{{ asset('images/userFemale.png') }}">
+                {% endif %}
+            {% endif %}
 
-    <table class="record_properties table table-hover" data-sort-name="name" data-sort-order="id">
-        <tbody>
-            <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Nom</th>
-                <td>{{ entity.username }}</td>
-            </tr>
-            <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Nombre de connection</th>
-                <td>{{ entity.nbConnection }}</td>
-            </tr>
+        </a>
+    </div>
+    <div class="media-body">
 
-            <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Rôle</th>
-                <td>{% for role in entity.roles %}
-                        {{ role }}&nbsp;
-                    {% endfor %}</td>
-            </tr>
-            <tr>
-                <th data-field="id" data-align="right" data-sortable="true">Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h4 class="media-heading">Informations Personnelles</h4>
+        Id : {{ entity.id }}<br>
+        Nom d'utilisateur : {{ entity.username }} <br>
+        Nombre de connexion : {{ entity.nbConnection }} <br>
+        Rôle : {% for role in entity.roles %} {{ role }}&nbsp; {% endfor %} <br>
+        Email : {{ entity.email }} <br>
+        <!-- 1 - Male -->
+        <!-- 2 - Female -->
+        <!-- 3 - Other -->
+        {% if entity.sex == 1 %}
+            Sexe : Homme <br>
+        {% elseif entity.sex == 2 %}
+            Sexe : Femme <br>
+        {% elseif entity.sec == 3 %}
+            Sexe : Homme avec une chatte/ Femme à quequette <br>
+        {% endif %}
+
+        &nbsp;
 
         <div class="btn-toolbar">
-    <div class="btn-group">
-        <div class="btn btn-default">
-            <a href="{{ path('user') }}">
-                <i class="glyphicon glyphicon-backward"></i> Retour à la liste
-            </a>
+            <div class="btn-group">
+                <div class="btn btn-default">
+                    <a href="{{ path('user') }}">
+                        <i class="glyphicon glyphicon-backward"></i> Retour à la liste
+                    </a>
+                </div>
+                <div class="btn btn-default">
+                    <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">
+                        <i class="glyphicon glyphicon-edit"></i> Editer
+                    </a>
+                </div>
+                <div class="btn btn-default">
+                    <a href="{{ path('fos_user_change_password', { 'id': entity.id }) }}">
+                        <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
+                    </a>
+                </div>
+                {{ form(delete_form) }}
+            </div>
         </div>
-                    <div class="btn btn-default">
-                <a href="{{ path('fos_user_profile_edit', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-edit"></i> Editer
-                </a>
-            </div>
-            <div class="btn btn-default">
-                <a href="{{ path('fos_user_change_password', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
-                </a>
-            </div>
-                            {{ form(delete_form) }}
-            </div>
+
+        <hr>
+
+        <h4 class="media-heading">Mes documents partagés</h4>
+        &nbsp;
+
+        <div class="row">
+            {% for doc in docs %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <!-- <img src="..." alt="..."> -->
+                        <!-- <i class="fa fa-file-pdf-o"></i> AJOUTER L'IMAGE POUR LE TYPE DE DOCUMENT -->
+                        <div class="caption">
+
+                            Titre : {{ doc.name }} <br>
+                            Date de création : {{ doc.creationDate | date('d-m-Y') }} <br>
+                            Note : {{ doc.mark }} <br>
+                            &nbsp;
+                            <p>
+                                <a href="{{ path('media_show', { 'id': doc.id }) }}" class="btn btn-primary" role="button">Aller vers le document</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            {% else %}
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <!-- <img src="..." alt="..."> -->
+                        <!-- <i class="fa fa-file-pdf-o"></i> AJOUTER L'IMAGE POUR LE TYPE DE DOCUMENT -->
+                        <center><h3 class="label label-warning">ATTENTION</h3></center>
+                        <div class="caption">
+                            <center><p>Vous n'avez partagé aucun document</p></center>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            {{ knp_pagination_render(docs) }}
+
+        </div>
+
+    </div>
 </div>
+
 {% endblock %}

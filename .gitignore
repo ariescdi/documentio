@@ -2,13 +2,13 @@
 /web/css/
 /web/js/
 /web/uploads/
+/web/fonts/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/app/data/*
 !app/data/.gitkeep
 /app/phpunit.xml
 /build/
