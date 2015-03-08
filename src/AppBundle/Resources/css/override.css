@@ -600,3 +600,7 @@ a {
 .labelCustom {
     color: white;
 }
+
+.nav.navbar-nav li a:hover { 
+    color: #ffffff;
+}
