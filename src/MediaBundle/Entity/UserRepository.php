@@ -45,4 +45,13 @@ class UserRepository extends EntityRepository
 
         return $q->getResult();
     }
+
+    public function mediaPublishedByOwner()
+    {
+        $dql = "SELECT u,m FROM MediaBundle:User u JOIN u.medias m WHERE m.isPublished = 1 ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getResult() ;
+    }
+
 }
