@@ -30,8 +30,8 @@ $(document).ready(function () {
         showPalette: false,
         showAlpha: true,
         showSelectionPalette: true,
-        palette: [["#ffffff", "#000000", "#ff0000", "#ff8000", "#ffff00", "#008000", "#0000ff"]],
-        maxSelectionSize: 7,
+        palette: [ ],
+        maxSelectionSize: 9,
         cancelText: "Annuler",
         chooseText: "Choisir",
         color: '{{ app.session.get('theme') }}', 
@@ -43,7 +43,7 @@ $(document).ready(function () {
         showPalette: true,
         localStorageKey: "spectrum.homepage",
         palette: [],
-        maxSelectionSize: 7,
+        maxSelectionSize: 9,
         color: '{{ app.session.get('theme') }}', 
         showInput: true
     });
