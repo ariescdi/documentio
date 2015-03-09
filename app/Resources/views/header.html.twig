@@ -1,17 +1,14 @@
 <div class="pull-right mg20px">
-Couleur du site en session :
-    <div class="btn-group">
-       <a class="btn btn-default btn-sm blue" href="{{ path('session', {name:'theme', value:'blue'}) }}">bleu</a>
-       <a class="btn btn-default btn-sm green" href="{{ path('session', {name:'theme', value:'green'}) }}">vert</a>
-       <a class="btn btn-default btn-sm pink" href="{{ path('session', {name:'theme', value:'pink'}) }}">rose</a>
-   </div>
+    <div>
+        <input type='text' id="colorpicker" />
+        <a id="palette" >&nbsp;</a>
+    </div>
 </div>
 <div class="background-header">
 	<div class="logo container">
             <a href="{{ path('index') }}"><img src="{{ asset('logo.png') }}"><span class="logoIO">IO</span></a>
 	</div>
 </div>
-
 <div class="background-nav">
 	<nav class="container navbar navbar-default">
 		<section class="col-lg-12">
@@ -41,6 +38,8 @@ Couleur du site en session :
                         {% else %}
                             <li role="presentation"><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
                         {% endif %}
+					<!-- <li role="presentation"><a href="{{ path('index') }}">Home</a></li> -->
+				    {{ render(path('best_category')) }}
 				</ul>
 				<div class="navbar-form navbar-right">
 					{{ render (path( 'media_search' ))}}

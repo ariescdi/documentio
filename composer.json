@@ -50,6 +50,19 @@
                     "type": "file"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package":
+            {
+                "name": "bgrins/spectrum",
+                "version": "1.6.1",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/bgrins/spectrum.git",
+                    "reference": "master"
+                }
+            }
         }
     ],
     "require": {
@@ -77,7 +90,8 @@
         "tagcanvas/tagcanvas": "dev-master",
         "craue/config-bundle": "~1.1",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
-        "components/font-awesome": "~4.3"
+        "components/font-awesome": "~4.3",
+        "bgrins/spectrum": "~1.6"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "~1.4"
