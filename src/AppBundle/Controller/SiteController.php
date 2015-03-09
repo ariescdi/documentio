@@ -50,25 +50,45 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/config/{name}/{value}", name="config")
+     * @Route("/config/{name}/{value}", name="config", defaults={"value" = null} )
      */
     public function configAction($name, $value)
     {
+        if ($value === null){
+             $value = $_POST["value"]; 
+        }
         $this->get('craue_config')->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
 
         return $this->redirect($referer);
     }
+    
+    /**
+     * @Route("/genererCss/{name}", name="genererCss" )
+     */
+    public function genererCssAction(Request $request, $name)
+    {
+        if (isset($_POST["value"])){
+             $value = $_POST["value"]; 
+        }
+        $css = $this->render('AppBundle:Site:override_color.css.twig', array('value' => $value))->getContent();
+
+        file_put_contents('css/override_color.css', $css);
+        
+        $session = $request->getSession();
+        $session->set($name, $value);
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->redirect($referer);
+    }
 
     /**
-     * @Route("/session/{name}/{value}", name="session")
+     * @Route("/session/{name}/{value}", name="session", defaults={"value" = null} )
      */
     public function sessionAction(Request $request, $name, $value)
     {
         $session = $request->getSession();
         $session->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
-
         return $this->redirect($referer);
     }
 

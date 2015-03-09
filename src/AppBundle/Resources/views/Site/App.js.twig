@@ -1,0 +1,111 @@
+$(document).ready(function () {
+    var dateActu = new Date();
+    var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
+
+    $('.clock').FlipClock(dateActu, {
+        clockFace: 'TwentyFourHourClock'
+    });
+
+ 	var canvasCounter = 0;
+    $('.tags-canvas').each(function () {
+        var $this = $(this);
+        canvasCounter += 1;
+
+        // The library won't work if the canvas don't have an ID (it throws an exception `0` if so).
+        $this.attr('id', 'canvas' + canvasCounter);
+        $this.next('.tags').attr('id', 'canvas-list' + canvasCounter);
+
+        $this.tagcanvas({
+            {% if craue_setting('theme') %}
+	            textColour: '{{ app.session.get('theme', '#23A3DE') }}',
+	            outlineColour: '{{ app.session.get('theme', '#23A3DE') }}',
+        	{% endif %}
+            maxSpeed: 0.5
+        }, 'canvas-list' + canvasCounter);
+    });
+
+    $("#colorpicker").spectrum({
+        preferredFormat: 'hex',
+        showInput: true,
+        showPalette: false,
+        showAlpha: true,
+        showSelectionPalette: true,
+        palette: [ ],
+        maxSelectionSize: 9,
+        cancelText: "Annuler",
+        chooseText: "Choisir",
+        color: '{{ app.session.get('theme') }}', 
+     });
+     
+    $("#palette").spectrum({
+        flat: true,
+        showPaletteOnly: true,
+        showPalette: true,
+        localStorageKey: "spectrum.homepage",
+        palette: [],
+        maxSelectionSize: 9,
+        color: '{{ app.session.get('theme') }}', 
+        showInput: true
+    });
+
+    $("#colorpicker").on('move.spectrum', function(e, color) {
+        changeColor(color);
+    });
+
+    $("#colorpicker").on('hide.spectrum', function(e, color) {
+        if (color != '{{ app.session.get('theme') | raw }}'){
+            $.ajax({
+                 url : '{{ path('genererCss', {name:'theme'}) }}',
+                type : 'POST',
+                data : 'value=' + color,
+                dataType : 'html',
+                success : function(){
+                    $(location).attr('href', document.URL);
+                }
+            });
+        }
+    });
+        $("#palette").on('move.spectrum', function(e, color) {
+        if (color != '{{ app.session.get('theme') | raw }}'){
+            $.ajax({
+                 url : '{{ path('genererCss', {name:'theme'}) }}',
+                type : 'POST',
+                data : 'value=' + color,
+                dataType : 'html',
+                success : function(){
+                    $(location).attr('href', document.URL);
+                }
+            });
+        }
+    }); 
+});
+
+ $('.carousel').carousel();
+
+function changeColor(color) {
+      $(".background-nav").css("background-color", color);
+      $(".panel > .panel-heading").css("border-color", color);
+      $(".panel > .panel-heading").css("background-color", color);
+      $(".panel").css("border-color", color);
+      $("#form-index .btn").css("border-color", color);
+      $("#form-index .btn").css("background-color", color);
+      $("a").css("color", color);
+      $("address span").css("color", color);
+      $(".btn-primary").css("background-image", "linear-gradient(to bottom," + color + "0%, #578634 100%)");
+      $(".btn-primary").css("border-color", color);
+      $(".btn.btn-primary").css("background-color", color);
+      $(".btn.btn-primary").css("color", "#ffffff");
+      $(".btn.btn-primary:hover").css("color", "#ffffff");
+      $(".btn.btn-primary:hover").css("background-color", color);
+      $(".list-group-item.active").css("background-color", color);
+      $(".flip-clock-wrapper ul").css("background", color);
+      $(".flip-clock-wrapper ul li a div div.inn").css("background-color", color);
+      $(".flip-clock-wrapper ul li a div div.inn").css("background-color", color);
+      $(".flip-clock-dot").css("background", color);
+      $(".list-group-item.active").css("background", "none repeat scroll 0 0" + color);
+      $(".list-group-item.active:hover").css("background", "none repeat scroll 0 0" + color);
+      $(".list-group-item.active:focus").css("background", "none repeat scroll 0 0" + color);
+      $(".contactFooter span").css("color", color);
+      $(".navbar-default").css("background-color", color);     
+      $("#colorpicker").css("background-color", color);        
+}

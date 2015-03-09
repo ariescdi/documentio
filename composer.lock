@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8dd93ff49a4c69d25161e420c3e117b0",
+    "hash": "98bdb212f14de484a3cddbb0e62326d4",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -45,6 +45,16 @@
                 "transliterator"
             ],
             "time": "2014-05-15 22:08:22"
+        },
+        {
+            "name": "bgrins/spectrum",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bgrins/spectrum.git",
+                "reference": "master"
+            },
+            "type": "library"
         },
         {
             "name": "components/font-awesome",
