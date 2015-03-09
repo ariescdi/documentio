@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    //var route = Routing.generate('seen_notification', { id: {{ notif.id }} });
-
     var $content = $('.notifContent');
     var array = {};
 
@@ -9,7 +7,7 @@ $(document).ready(function () {
     $('.notifBlock').hide();
 
     $('.notifButton').click(function(){
-        $('.notifBlock').toggle("ease-in");
+        $('.notifBlock').toggle('ease-in');
     });
 
     // FIRST FETCH OF EVERY NOTIFICATIONS
@@ -17,22 +15,23 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         url: notif,
-        dataType: "json"
-    }) .done(function( data ) {
+        dataType: 'json'
+    }).done(function (data) {
         var count = data.length;
         var contentCount = $('.notifCount').html(count);
+
         data
-            .filter(function(x){
+            .filter(function (x){
                 return !(x.id in array);
             })
-            .forEach(function(x){
+            .forEach(function (x){
                 var showMedia = Routing.generate('media_show', { id: x.media_id });
                 array[x.id] = true;
                 var $list = $('<li></li>').attr('data-notif', x.id);
                 var $link = $('<a></a>').html(x.message);
                 var $span = $('<span></span>');
-                $span.attr({class:'glyphicon glyphicon-remove notifSeen'});
-                $link.attr({href:showMedia});
+                $span.attr({ class:'glyphicon glyphicon-remove notifSeen' });
+                $link.attr({ href: showMedia });
                 $list.append($link);
                 $list.append($span);
                 $content.append($list);
@@ -41,16 +40,19 @@ $(document).ready(function () {
 
     // SET EVENT TO PASS hasSeen TO TRUE
 
-    $('.notifContent').on('click', '.notifSeen', function(e){
+    $('.notifContent').on('click', '.notifSeen', function (e) {
         var id = $(e.target).closest('li').data('notif');
         var route = Routing.generate('seen_notification', { id: id });
+
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: route,
-        })
-        $(e.target).parent().fadeOut("slow", function(){
+        });
+
+        $(e.target).parent().fadeOut('slow', function () {
             $(this).remove();
         });
+
         var count = parseInt($('.notifCount').html()) - 1;
         $('.notifCount').html(count);
 
@@ -58,34 +60,32 @@ $(document).ready(function () {
 
     // GET DISTINC NOTIFICATIONS EVERY 10s
 
-    setInterval(function() {
+    setInterval(function () {
         var notif = Routing.generate('notifications');
+
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: notif,
-            dataType: "json"
-        }) .done(function( data ) {
+            dataType: 'json'
+        }).done(function (data) {
             var count = data.length;
             var contentCount = $('.notifCount').html(count);
             data
-                .filter(function(x){
+                .filter(function (x) {
                     return !(x.id in array);
                 })
-                .forEach(function(x){
+                .forEach(function (x) {
                     var showMedia = Routing.generate('media_show', { id: x.media_id });
                     array[x.id] = true;
                     var $list = $('<li></li>').attr('data-notif', x.id);
                     var $link = $('<a></a>').html(x.message);
                     var $span = $('<span></span>');
-                    $span.attr({class:'glyphicon glyphicon-remove notifSeen'});
-                    $link.attr({href:showMedia});
+                    $span.attr({ class:'glyphicon glyphicon-remove notifSeen' });
+                    $link.attr({ href:showMedia });
                     $list.append($link);
                     $list.append($span);
-
                     $content.append($list);
-                })
+                });
         });
     }, 10000);
-
-
 });

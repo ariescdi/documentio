@@ -152,15 +152,12 @@ class UserController extends Controller
 
         $userCard = $em->getRepository('MediaBundle:User')->findOneById($id);
 
-
         if (!$userCard) {
             throw $this->createNotFoundException('Impossible de trouver cette utilisateur.');
         }
 
-        return array('userCard'=> $userCard);
+        return array('userCard' => $userCard);
     }
-
-
 
     public function isAdmin($roles)
     {

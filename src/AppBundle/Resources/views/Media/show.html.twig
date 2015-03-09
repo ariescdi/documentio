@@ -13,37 +13,36 @@
 
 {% block body -%}
 
+<object data="{{ asset(entity.webpath) }}#view=FitH"
+        type="{{ entity.type.mimetype }}"
+        width="100%"
+        height="100%">
 
-<object data='{{ asset(entity.webpath) }}#view=FitH'
-            type='{{ entity.type.mimetype }}'
-            width='100%'
-            height='100%'>
-
-        <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
-            No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
-            Or here to <a class="plugin-search">search for plugin</a>.
-        </p>
-
+    <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
+        No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
+        Or here to <a class="plugin-search">search for plugin</a>.
+    </p>
 </object>
+
 <p>{{ entity.comment }}</p>
 <p>Note : {{entity.mark}}</p>
 
 {% if is_granted('ROLE_USER') %}
+    <p>
+        <a class="btn btn-default glyphicon glyphicon-hand-down" href="{{ path('media_decrease_mark', { 'id': entity.id }) }}" title="J'aime pas !"></a>
+        <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
+    <p/>
+{% endif %}
 
-
-<p><a class="btn btn-default glyphicon glyphicon-hand-down" href="{{ path('media_decrease_mark', { 'id': entity.id }) }}" title="J'aime pas !"></a>
-                    <a class="btn btn-default glyphicon glyphicon-hand-up" href="{{ path('media_increase_mark', { 'id': entity.id }) }}" title="J'aime !"></a></p>
-<p/>
- {% endif %}
- <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
-
+<p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+
     <script>
-        var url = "https://www.google.com/search?q=" + navigator.appCodeName + "+{{ entity.type.mimetype }}+viewer";
-        $(".plugin-search").attr("href", url);
+        var url = 'https://www.google.com/search?q=' + navigator.appCodeName + '+{{ entity.type.mimetype }}+viewer';
+        $('.plugin-search').attr('href', url);
     </script>
 {% endblock %}

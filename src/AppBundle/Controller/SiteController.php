@@ -54,30 +54,31 @@ class SiteController extends Controller
      */
     public function configAction($name, $value)
     {
-        if ($value === null){
-             $value = $_POST["value"]; 
+        if ($value === null) {
+            $value = $_POST["value"];
         }
         $this->get('craue_config')->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
 
         return $this->redirect($referer);
     }
-    
+
     /**
      * @Route("/genererCss/{name}", name="genererCss" )
      */
     public function genererCssAction(Request $request, $name)
     {
-        if (isset($_POST["value"])){
-             $value = $_POST["value"]; 
+        if (isset($_POST["value"])) {
+            $value = $_POST["value"];
         }
         $css = $this->render('AppBundle:Site:override_color.css.twig', array('value' => $value))->getContent();
 
         file_put_contents('css/override_color.css', $css);
-        
+
         $session = $request->getSession();
         $session->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
+
         return $this->redirect($referer);
     }
 
@@ -89,6 +90,7 @@ class SiteController extends Controller
         $session = $request->getSession();
         $session->set($name, $value);
         $referer = $this->getRequest()->headers->get('referer');
+
         return $this->redirect($referer);
     }
 
@@ -100,7 +102,7 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' => 1,'slug' =>$slug), array(), 1, 0);
+        $entity = $em->getRepository('MediaBundle:Media')->findOneBy(array('isPublished' => 1, 'slug' => $slug), array(), 1, 0);
 
         if (!$entity) {
             throw $this->createNotFoundException('Impossible de trouver ce document.');
@@ -129,7 +131,6 @@ class SiteController extends Controller
         return array('entities' => $entities);
     }
 
-
     /**
      * @Route("/utilisateur/", name="list_user")
      * @Template("AppBundle:User:list_user.html.twig")
@@ -149,7 +150,6 @@ class SiteController extends Controller
 
         return array('entities' => $entities);
     }
-
 
     /**
      * @Route("/utilisateur/{username}", name="list_media_by_user")

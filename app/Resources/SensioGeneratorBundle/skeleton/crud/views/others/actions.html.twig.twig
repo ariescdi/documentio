@@ -1,16 +1,12 @@
+<div class="btn-group">
+    <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-edit icon-white"></i> Actions</a>
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 
-                <div class="btn-group">
-                    <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-edit icon-white"></i> Actions</a>
-                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-
-                    {%- for action in record_actions %}
-
-                        <li>
-                            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity."~ identifier ~" }) }}" }}">{{ action }}</a>
-                        </li>
-
-                    {%- endfor %}
-
-                    </ul>
-                </div>
+    <ul class="dropdown-menu">
+        {%- for action in record_actions %}
+            <li>
+                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity."~ identifier ~" }) }}" }}">{{ action }}</a>
+            </li>
+        {%- endfor %}
+    </ul>
+</div>

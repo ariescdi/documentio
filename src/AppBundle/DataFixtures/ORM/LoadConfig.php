@@ -15,7 +15,7 @@ class LoadConfig implements FixtureInterface
         $setting->setValue('blue');
         $manager->persist($setting);
         $manager->flush();
-        
+
         $setting = new Setting();
         $setting->setName('debug');
         $setting->setValue(0);

@@ -1,14 +1,10 @@
-
-    {% if count > 1 %}
-        Notifications ({{ count }})
-    {% else %}
-        Notification ({{ count }})
-    {% endif %}
-    {% for notif in notifs %}
-        <div class="notifContent">
-            <ul>
-
-            </ul>
-            <!-- <a href="{{ path('media_show', {'id': notif.media.id}) }}">{{ notif.message }}</a> <span class="glyphicon glyphicon-ok notifSeen" aria-hidden="true" data-notif="{{ notif.id }}"> -->
-        </div>
-    {% endfor %}
+{% if count > 1 %}
+    Notifications ({{ count }})
+{% else %}
+    Notification ({{ count }})
+{% endif %}
+{% for notif in notifs %}
+    <div class="notifContent">
+        <ul></ul>
+    </div>
+{% endfor %}

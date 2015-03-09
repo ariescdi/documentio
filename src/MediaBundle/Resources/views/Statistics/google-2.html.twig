@@ -1,12 +1,12 @@
-<script type="text/javascript">
-  google.load("visualization", "1.1", {packages:["bar"]});
+<script>
+  google.load('visualization', '1.1', {packages:['bar']});
   google.setOnLoadCallback(drawStuff);
 
   function drawStuff() {
     var data = new google.visualization.arrayToDataTable([
       ['Liste des médias', 'Note'],
       {% for media in medias %}
-        ["{{media.name  }}", {{media.mark}}],
+        ['{{media.name  }}', {{media.mark}}],
       {% endfor %}
     ]);
 
@@ -18,7 +18,7 @@
           0: { side: 'top', label: 'Note'} // Top x-axis.
         }
       },
-      bar: { groupWidth: "90%" }
+      bar: { groupWidth: '90%' }
     };
 
     var chart = new google.charts.Bar(document.getElementById('top_x_div'));

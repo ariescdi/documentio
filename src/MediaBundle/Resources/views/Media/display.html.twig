@@ -41,7 +41,6 @@
                     Or here to <a class="plugin-search">search for plugin</a>.
                 </p>
             </object>
-            {#{% endif %}#}
         </div>
         <div class="well">
             <div class="btn-toolbar">
@@ -60,7 +59,7 @@
 
 {% block javascripts %}
     <script>
-        var url = "https://www.google.com/search?q=" + navigator.appCodeName + "+{{ entity.type.mimetype }}+viewer";
-        $(".plugin-search").attr("href", url);
+        var url = 'https://www.google.com/search?q=' + navigator.appCodeName + '+{{ entity.type.mimetype }}+viewer';
+        $('.plugin-search').attr('href', url);
     </script>
 {% endblock %}

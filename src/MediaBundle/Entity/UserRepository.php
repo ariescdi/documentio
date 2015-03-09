@@ -51,7 +51,6 @@ class UserRepository extends EntityRepository
         $dql = "SELECT u,m FROM MediaBundle:User u JOIN u.medias m WHERE m.isPublished = 1 ";
         $q = $this->getEntityManager()->createQuery($dql);
 
-        return $q->getResult() ;
+        return $q->getResult();
     }
-
 }

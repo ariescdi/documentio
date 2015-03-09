@@ -18,23 +18,25 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript">
-        // jquery extend function
-        $.extend(
-        {
-            redirectPost: function(location, args)
-            {
+
+    <script>
+        $.extend({
+            redirectPost: function (location, args) {
                 var form = '';
-                $.each( args, function( key, value ) {
-                    if(value instanceof Array)
-                    {
-                        if(value.length === 0)
+
+                $.each(args, function (key, value) {
+                    if (value instanceof Array) {
+                        if (value.length === 0) {
                             return;
+                        }
+
                         value = value.join('|');
                     }
-                    form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+
+                    form += '<input type="hidden" name="' + key + '" value="' + value + '">';
                 });
-                $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
+
+                $('<form action="' + location+'" method="POST">'+form+'</form>').appendTo('body').submit();
             }
         });
 
@@ -43,67 +45,60 @@
                 '{{ slug }}'{% if not loop.last %},{% endif %}
             {% endfor %}
         ];
+
         var filetypeFilters = [
             {% for tid in filetypeFilters %}
                 {{ tid }}{% if not loop.last %},{% endif %}
             {% endfor %}
         ];
 
-        function updateFilters()
-        {
-            $.redirectPost( '{{ path('list_category') }}', {categoryFilters: categoryFilters, filetypeFilters: filetypeFilters});
+        function updateFilters() {
+            $.redirectPost('{{ path('list_category') }}', { categoryFilters: categoryFilters, filetypeFilters: filetypeFilters });
         }
 
-        $('.category-filter').each(function()
-        {
+        $('.category-filter').each(function () {
             var slug = $(this).attr('category-filter');
             var index = categoryFilters.indexOf(slug);
-            if(index !== -1)
-            {
+
+            if (index !== -1) {
                 $(this).addClass('active');
             }
         });
 
-        $('.filetype-filter').each(function()
-        {
+        $('.filetype-filter').each(function () {
             var id = parseInt($(this).attr('filetype-filter'));
             var index = filetypeFilters.indexOf(id);
-            if(index !== -1)
-            {
+
+            if (index !== -1) {
                 $(this).addClass('active');
             }
         });
 
-        $('.category-filter').on('click',function()
-        {
+        $('.category-filter').on('click', function () {
             var slug = $(this).attr('category-filter');
             var index = categoryFilters.indexOf(slug);
-            if(index === -1)
-            {
+
+            if (index === -1) {
                 categoryFilters.push(slug);
+            } else {
+                categoryFilters.splice(index, 1);
             }
-            else
-            {
-                categoryFilters.splice(index,1);
-            }
+
             updateFilters();
         });
 
-        $('.filetype-filter').on('click',function()
-        {
+        $('.filetype-filter').on('click',function () {
             var id = parseInt($(this).attr('filetype-filter'));
             var index = filetypeFilters.indexOf(id);
-            if(index === -1)
-            {
+
+            if (index === -1) {
                 filetypeFilters.push(id);
+            } else {
+                filetypeFilters.splice(index, 1);
             }
-            else
-            {
-                filetypeFilters.splice(index,1);
-            }
+
             updateFilters();
         });
-
     </script>
 {% endblock %}
 
@@ -160,7 +155,7 @@
         </div>
 
         {{ knp_pagination_render(entities) }}
-    {% else %}{# if entities|length > 0 #}
+    {% else %}
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>

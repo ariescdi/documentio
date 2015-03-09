@@ -76,16 +76,15 @@
     {{ parent() }}
 
     <script type="text/javascript">
-
         Dropzone.autoDiscover = false;
 
-        new Dropzone("#media_dropzone", {
+        new Dropzone('#media_dropzone', {
             maxFilesize: 100, // MB
-            dictDefaultMessage: "Glisser un fichier ici pour l'ajouter",
+            dictDefaultMessage: 'Glisser un fichier ici pour l\'ajouter',
             init: function () {
-                console.log("Initializing Dropzone");
-                this.on("success", function (file, responseText) {
-                    console.log("Dropzone upload successful");
+                console.log('Initializing Dropzone');
+                this.on('success', function (file, responseText) {
+                    console.log('Dropzone upload successful');
                     document.write(responseText);
                     document.close();
                     window.scrollTo(0, 0);

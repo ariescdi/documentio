@@ -5,14 +5,15 @@
 
     {{ form(edit_form) }}
 
-        <div class="btn-toolbar">
-    <div class="btn-group">
-        <div class="btn btn-default">
-            <a href="{{ path('user') }}">
-                <i class="glyphicon glyphicon-backward"></i> Back to the list
-            </a>
-        </div>
-                            {{ form(delete_form) }}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <div class="btn btn-default">
+                <a href="{{ path('user') }}">
+                    <i class="glyphicon glyphicon-backward"></i> Back to the list
+                </a>
             </div>
-</div>
+
+            {{ form(delete_form) }}
+        </div>
+    </div>
 {% endblock %}
