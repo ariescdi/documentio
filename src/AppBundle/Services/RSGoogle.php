@@ -6,4 +6,8 @@ namespace AppBundle\Services;
 
 class RSGoogle
 {
+    public function hello()
+    {
+        return 'GTFO';
+    }
 }
