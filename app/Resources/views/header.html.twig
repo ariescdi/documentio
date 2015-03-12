@@ -34,10 +34,9 @@
                             <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> {{ app.security.getToken().getUser().getUsername() | capitalize }}</a>
                         </li>
                         {{ render(path('user_card',{'id': app.security.getToken().getUser().getId() })) }}
-                        {% else %}
-                            <li role="presentation"><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
-                        {% endif %}
-                    {{ render(path('best_category')) }}
+                    {% else %}
+                        <li role="presentation"><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                    {% endif %}
                 </ul>
                 <div class="navbar-form navbar-right">
                     {{ render (path( 'media_search' ))}}
