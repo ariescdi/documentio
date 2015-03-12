@@ -6,6 +6,8 @@ parameters:
 services:
     RS.facebook:
         class: AppBundle\RSFacebook
+    RS.googleplus:
+        class: AppBundle\Services\RSGoogle.php
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
