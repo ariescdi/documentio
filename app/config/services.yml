@@ -6,7 +6,7 @@ parameters:
 services:
     RS.facebook:
         class: AppBundle\RSFacebook
-    RS.googleplus:
+    RS.google:
         class: AppBundle\Services\RSGoogle.php
     RS.twitter:
         class: AppBundle\Services\RSTwitter.php
