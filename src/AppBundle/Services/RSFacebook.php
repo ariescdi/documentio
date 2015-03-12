@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\RSFacebook;
+namespace AppBundle\Service;
 
-class RSFacebook 
+class RSFacebook
 {
     function hello($name)
     {
-        return "hello sur facebook de ".$name;
+        return 'hello sur facebook de ' . $name;
     }
 }
