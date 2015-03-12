@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
+    RS.facebook:
+        class: AppBundle\RSFacebook
+    RS.googleplus:
+        class: AppBundle\Services\RSGoogle.php
+    RS.twitter:
+        class: AppBundle\Services\RSTwitter.php
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
