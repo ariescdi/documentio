@@ -26,6 +26,17 @@ class SiteController extends Controller
     }
 
     /**
+     * @Route("/social-network", name="social_network")
+     *
+     * @Method("GET")
+     * @Template("AppBundle:Site:social-network.html.twig")
+     */
+    public function socialNetworkAction()
+    {
+        return [];
+    }
+
+    /**
      * @Route("/slider", name="slider")
      *
      * @Method("GET")
