@@ -240,24 +240,19 @@ class SiteController extends Controller
      */
     public function clockAction()
     {
-        $entities = $this->getDoctrine()->getManager()
+        $entity = $this->getDoctrine()->getManager()
                         ->getRepository('MediaBundle:Clock')
-                        ->findBy(array(), array(), 1, 0);
+                        ->find(1);
 
         $result = true;
-        if (!$entities) {
+        if (!$entity) {
             $result = 'Aucun changement horaire';
         }
-    
 
-        
         return array(
-            'entities' => $entities,
+            'entity' => $entity,
             'result' => $result,
         );
-        
-    
-        
     }
 
     /**
