@@ -7,12 +7,15 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
             {% if app.session.get('theme') %}
                 <link rel="stylesheet" href="{{ asset('css/override_color.css') }}" />
+            {% else %}
+                <script>genererCss({{ craue_setting('theme') }});</script>
             {% endif %}
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+       {{ app.session.get('theme') }}
         {% include '::header.html.twig' %}
         <div class="container">
             <aside class="col-lg-3">
