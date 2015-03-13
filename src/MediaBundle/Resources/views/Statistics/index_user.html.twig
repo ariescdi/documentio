@@ -3,8 +3,8 @@
     <h1>Bievenue sur l'admin</h1>
 {% endblock %}
 {% block body -%}
-    <p>En tant qu’utilisateur vous pouvez éditer ou supprimer vos Media avant leurs publications.
+    <p>En tant qu’utilisateur vous pouvez <a href="{{ path('media') }}">éditer ou supprimer vos Media</a> avant leurs publications.
     <br>
-    Gérer les catégories, les mots clés,et les types de média.
+    <a href="{{ path('mediacategory') }}">Gérer les catégories</a>, <a href="{{ path('mediakeyword') }}">les mots clés</a>,et <a href="{{ path('mediatype') }}">les types de média</a>.
     </p>
 {% endblock %}
