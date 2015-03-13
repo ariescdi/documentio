@@ -15,10 +15,10 @@ class ClockType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lagMinutes')
+            ->add('lagMinutes','text', array('label' => 'Temps de décalage en minute : '))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

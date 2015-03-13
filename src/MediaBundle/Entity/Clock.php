@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Clock
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MediaBundle\Entity\ClockRepository")
+ * @ORM\Entity()
  */
 class Clock
 {
@@ -32,7 +32,7 @@ class Clock
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +55,7 @@ class Clock
     /**
      * Get lagMinutes
      *
-     * @return integer 
+     * @return integer
      */
     public function getLagMinutes()
     {
