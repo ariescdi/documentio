@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+Sitemap
+{% endblock %}
+
+{% block h1 %}
+Sitemap
+{% endblock %}
+
+{% block body %}
+
+<h3>Médias</h3>
+
+<ul>
+    {% for media in medias %}
+        <li>
+            <a href="{{ path('document_show', { 'slug': media.slug }) }}">
+                {{ media.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
