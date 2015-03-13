@@ -5,7 +5,7 @@ parameters:
 
 services:
     rs.facebook:
-        class: AppBundle\RSFacebook
+        class: AppBundle\Services\RSFacebook
     rs.google:
         class: AppBundle\Services\RSGoogle
     rs.twitter:
