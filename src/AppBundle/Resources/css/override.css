@@ -17,6 +17,10 @@ nav{
     border: none;
 }
 
+.notifBlock ul li {
+    line-height: 40px
+}
+
 nav ul li{
 	line-height: 50px
 }
@@ -36,6 +40,10 @@ nav ul li{
     border-radius: 3px;
     background-color: #fff;
     margin-right: 10px;
+}
+
+.notifContent i {
+    margin-left: 10px;
 }
 
 .nav > li > a:hover,.nav > li > a:active{
@@ -248,7 +256,7 @@ aside .panel-body h3{
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
     width: 90%;
     margin: 0 auto 10px auto;
-    padding: 5px 10px;
+    padding: 5px 0px;
     box-sizing:border-box;
     background: white;
 }
@@ -605,6 +613,31 @@ object{
     min-height: 500px;
 }
 
-.nav.navbar-nav li a:hover { 
+.nav.navbar-nav li a:hover {
     color: #ffffff;
+}
+
+li[data-feedback='success'] {
+  color: #FFF;
+  background-color: #64C271;
+}
+
+li[data-feedback='warning'] {
+  color: #FFF;
+  background-color: #DB8438;
+}
+
+li[data-feedback='publish'] {
+  color: #FFF;
+  background-color: #3B82B6;
+}
+
+li[data-feedback='unpublish'] {
+  color: #FFF;
+  background-color: #B44B37;
+}
+
+.notifContent li a {
+    color: #FFF;
+    margin-left: 10px;
 }
