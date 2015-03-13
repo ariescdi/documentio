@@ -143,7 +143,21 @@
         <div style="padding-top: 4em">
             {% for entity in entities %}
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h4><a style="color:white!important" href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a> <span class="badge">{{ entity.mark }}</span></h4></div>
+                    <div class="panel-heading">
+                        <h4>
+                            <a style="color:white!important" href="{{ path('document_show', { 'slug': entity.slug }) }}">
+                                {{ entity.name }}
+                            </a>
+                            {% if entity.mark <= 7 %}
+                                <span class="label label-danger label-as-badge">
+                            {% elseif entity.mark <= 14 %}
+                                <span class="label label-warning label-as-badge">
+                            {% else %}
+                                <span class="label label-success label-as-badge">
+                            {% endif %}
+                                {{ entity.mark }}</span>
+                        </h4>
+                    </div>
                     <div class="panel-body">
                         <div class="col-xs-3">Catégorie : {{ entity.category.name }}</div>
                         <div class="col-xs-3">Type de fichier : {{ entity.type.name }}</div>

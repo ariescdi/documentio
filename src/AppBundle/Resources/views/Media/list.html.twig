@@ -13,7 +13,15 @@
                         <a style="color:white!important" href="{{ path('document_show', { 'slug': entity.slug }) }}">
                             {{ entity.name }}
                         </a>
-                        <span class="badge">{{ entity.mark }}</span>
+
+                        {% if entity.mark <= 7 %}
+                            <span class="label label-danger label-as-badge">
+                        {% elseif entity.mark <= 14 %}
+                            <span class="label label-warning label-as-badge">
+                        {% else %}
+                            <span class="label label-success label-as-badge">
+                        {% endif %}
+                            {{ entity.mark }}</span>
                     </h4>
                 </div>
 
