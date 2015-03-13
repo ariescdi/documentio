@@ -67,11 +67,15 @@
             </div>
         </div>
         <div class="btn-group">
-            <div class="btn btn-default">
-                <a href="{{ path('document_show', { 'slug': entity.slug }) }}">
-                    <i class="glyphicon glyphicon-forward"></i> Voir le document sur le site
-                </a>
-            </div>
+
+            {% if entity.isPublished == true %}
+                <div class="btn btn-default">
+                    <a href="{{ path('document_show', { 'slug': entity.slug }) }}" target="_blank">
+                        <i class="glyphicon glyphicon-forward"></i> Voir le document sur le site
+                    </a>
+                </div>
+            {% endif %}
+
             <div class="btn btn-default">
                 <a href="#" id="copyClipboard">
                     <i class="glyphicon glyphicon-link"></i> Copier l'url du document
