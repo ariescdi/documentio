@@ -233,14 +233,26 @@ class SiteController extends Controller
     }
 
     /**
-     * @Route("/clock", name="clock")
+     * @Route("/clock", name="clock_display")
      *
      * @Method("GET")
-     * @Template("AppBundle:Media:clock.html.twig")
+     * @Template("AppBundle:Site:clock.html.twig")
      */
     public function clockAction()
     {
-        return [];
+        $entity = $this->getDoctrine()->getManager()
+                        ->getRepository('MediaBundle:Clock')
+                        ->find(1);
+
+        $result = true;
+        if (!$entity) {
+            $result = 'Aucun changement horaire';
+        }
+
+        return array(
+            'entity' => $entity,
+            'result' => $result,
+        );
     }
 
     /**
