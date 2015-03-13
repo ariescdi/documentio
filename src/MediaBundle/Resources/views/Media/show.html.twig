@@ -66,6 +66,19 @@
                 </a>
             </div>
         </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="btn btn-default">
+                <a href="{{ path('toggle_publish', {'id': entity.id} ) }}">
+                {% if entity.isPublished == true %}
+                    <i class="glyphicon glyphicon-remove"></i> Dépublier
+                {% else %}
+                    <i class="glyphicon glyphicon-ok"></i> Publier
+                {% endif %}
+                </a>
+            </div>
+        {% endif %}
+
         <div class="btn-group">
 
             {% if entity.isPublished == true %}

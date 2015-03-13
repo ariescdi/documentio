@@ -45,6 +45,18 @@
                                         <a href="{{ path('media_edit', { 'id': entity.id }) }}">Editer</a>
                                     </li>
                                 {% endif %}
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li>
+                                        <a href="{{ path('toggle_publish', {'id': entity.id} ) }}">
+                                            {% if entity.isPublished == true %}
+                                                Dépublier
+                                            {% else %}
+                                                Publier
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>

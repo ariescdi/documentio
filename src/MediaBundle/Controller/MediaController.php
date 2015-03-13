@@ -365,6 +365,30 @@ class MediaController extends Controller
     }
 
     /**
+     * @Route("/toggle-publish/{id}", name="toggle_publish")
+     * @Method("GET")
+     */
+    public function togglePublish($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('MediaBundle:Media')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Impossible de trouver ce document.');
+        }
+
+        if ($entity->getIsPublished()  == true) {
+            $entity->setIsPublished(false);
+        }else{
+            $entity->setIsPublished(true);
+        }
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
+    }
+
+    /**
      * Displays a form to create a new Media entity.
      *
      * @Route("/new", name="media_new")
