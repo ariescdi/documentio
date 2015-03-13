@@ -474,4 +474,16 @@ class SiteController extends Controller
     {
         return $this->render('AppBundle:Site:mentions-legales.html.twig');
     }
+
+    /**
+     * @Route("/sitemap", name="sitemap")
+     */
+    public function sitemapAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('MediaBundle:Media');
+
+        return $this->render('AppBundle:Site:sitemap.html.twig', [
+            'medias' => $repository->findall(),
+        ]);
+    }
 }
