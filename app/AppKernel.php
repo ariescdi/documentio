@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new Craue\ConfigBundle\CraueConfigBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
