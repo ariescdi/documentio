@@ -1,8 +1,32 @@
-$(document).ready(function () {
-    var dateActu = new Date();
-    var datePerso = new Date(dateActu.getFullYear(), dateActu.getMonth(), dateActu.getDay(), 0, 600);
+$(document).ready(function ()
+{
+    formatDate = new Date();
+    
+    if($('.clock').data("lag")){
+        
+        if ($('.clock').data("lag")>59 ){
+            var hdecalage = Math.ceil($('.clock').data("lag")/60)
+            var newhour = hdecalage+(formatDate.getHours());
+            
+            var mindecalage = $('.clock').data("lag") - hdecalage*60 + formatDate.getMinutes();
+            //var hdecalage = 0;
+           // var mindecalage =30;
+           console.log(hdecalage);
+            console.log(mindecalage);
+        } else
+        {
+            var newhour = formatDate.getHours();
+            var mindecalage = formatDate.getMinutes()+ $('.clock').data("lag");
+        }
+        
+        var date = new Date(formatDate.getFullYear(), formatDate.getMonth(), formatDate.getDay(), newhour,mindecalage );
+    
+    }else{
+        var date = new Date();
+   }
 
-    $('.clock').FlipClock(dateActu, {
+    $('.clock').FlipClock(date,
+    {
         clockFace: 'TwentyFourHourClock'
     });
 

@@ -1,0 +1,11 @@
+<div class="panel  panel-primary">
+    <div class="panel-heading">
+        <h2>Horloge</h2>
+    </div>
+     {% set entity = entities[0] %}
+    <div class="panel-body">
+        <div class="clock" data-lag="{{entity.lagMinutes}}"></div>
+    </div>
+</div>
+
+

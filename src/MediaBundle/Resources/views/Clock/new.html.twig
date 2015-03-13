@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+{% block h1 %} Modification de l'horloge {% endblock %}
+{% block body -%}
+
+    {{ form(form) }}
+
+        <div class="btn-toolbar">
+    <div class="btn-group">
+        <div class="btn btn-default">
+            <a href="{{ path('clock') }}">
+                <i class="glyphicon glyphicon-backward"></i> Back to the list
+            </a>
+        </div>
+                    </div>
+</div>
+{% endblock %}
