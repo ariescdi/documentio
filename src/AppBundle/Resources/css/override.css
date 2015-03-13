@@ -497,7 +497,7 @@ a {
 }
 .card-container, .front, .back {
     width: 100%;
-    height: 420px;
+    height: 460px;
     border-radius: 4px;
 }
 .card .cover{
@@ -553,7 +553,6 @@ a {
 .card .footer {
     border-top: 1px solid #EEEEEE;
     color: #999999;
-    margin: 30px 0 0;
     padding: 10px 0 0;
     text-align: center;
 }
@@ -605,6 +604,6 @@ object{
     min-height: 500px;
 }
 
-.nav.navbar-nav li a:hover { 
+.nav.navbar-nav li a:hover {
     color: #ffffff;
 }
