@@ -18,7 +18,14 @@
             <aside class="col-lg-3">
                 {{ render(path('getbestmark',{'count':2})) }}
                 {{ render(path('getlast')) }}
-                {{ render(path('clock_display')) }}
+                <div class="panel  panel-primary">
+                    <div class="panel-heading">
+                        <h2>Horloge</h2>
+                    </div>
+                    <div class="panel-body">
+                        {{ render(path('clock_display')) }}
+                    </div>
+                </div>
                 {{ render(path('social_network')) }}
             </aside>
             <section class="col-lg-9">
