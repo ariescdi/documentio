@@ -56,7 +56,7 @@
             </div>
             <div class="btn btn-default">
                 <a href="{{ path('media_delete', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-backward"></i> Supprimer
+                    <i class="glyphicon glyphicon-trash"></i> Supprimer
                 </a>
             </div>
             {% endif %}
@@ -66,12 +66,29 @@
                 </a>
             </div>
         </div>
-        <div class="btn-group">
-            <div class="btn btn-default">
-                <a href="{{ path('document_show', { 'slug': entity.slug }) }}">
-                    <i class="glyphicon glyphicon-forward"></i> Voir le document sur le site
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="btn btn-default">
+                <a href="{{ path('toggle_publish', {'id': entity.id} ) }}">
+                {% if entity.isPublished == true %}
+                    <i class="glyphicon glyphicon-remove"></i> Dépublier
+                {% else %}
+                    <i class="glyphicon glyphicon-ok"></i> Publier
+                {% endif %}
                 </a>
             </div>
+        {% endif %}
+
+        <div class="btn-group">
+
+            {% if entity.isPublished == true %}
+                <div class="btn btn-default">
+                    <a href="{{ path('document_show', { 'slug': entity.slug }) }}" target="_blank">
+                        <i class="glyphicon glyphicon-forward"></i> Voir le document sur le site
+                    </a>
+                </div>
+            {% endif %}
+
             <div class="btn btn-default">
                 <a href="#" id="copyClipboard">
                     <i class="glyphicon glyphicon-link"></i> Copier l'url du document

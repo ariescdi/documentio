@@ -38,27 +38,22 @@
                             </p>
                         </div>
                         <div class="footer">
-                            <div class="btn-toolbar">
-                                <div class="label label-primary labelCustom">
-                                    <a href="{{ path('user') }}">
-                                        <i class="glyphicon glyphicon-backward"></i> Retour à la liste
-                                    </a>
-                                </div>
-                                <div class="label label-primary labelCustom">
+                            <div class="btn-group">
+                                <div class="btn btn-default">
                                     <a href="{{ path('fos_user_profile_edit', { 'id': userCard.id }) }}">
                                         <i class="glyphicon glyphicon-edit"></i> Editer
                                     </a>
                                 </div>
-                                <div class="label label-primary labelCustom">
+                                <div class="btn btn-default">
                                     <a href="{{ path('fos_user_change_password', { 'id': userCard.id }) }}">
                                         <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
                                     </a>
                                 </div>
-                               <div class="label label-primary labelCustom">
-                                    <a href="{{ path('fos_user_security_logout') }}">
-                                        <i class="glyphicon glyphicon-backward"></i> Déconnexion
-                                    </a>
-                                </div>
+                            </div>
+                            <div class="btn btn-default">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="glyphicon glyphicon-backward"></i> Déconnexion
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,9 @@
                     <li role="presentation"><a href="{{ path('list_category') }}">Catégories</a></li>
                     <li role="presentation"><a href="{{ path('list_filetype') }}">Types de médias</a></li>
                     <li role="presentation"><a href="{{ path('list_user') }}">Contributeurs</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
                     <li role="presentation"><a href="{{ path('contact') }}">Contact</a></li>
 
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
