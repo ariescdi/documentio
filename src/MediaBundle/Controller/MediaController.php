@@ -313,6 +313,8 @@ class MediaController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->addNotification($entity, 'success', 'ajouté');
+
             $f->move(MediaController::getUploadRoot().'/'.$entity->getCategory()->getName(),
                      $entity->getId().'_'.$fname);
             $entity->setPath($entity->getCategory()->getName().'/'.$entity->getId().'_'.$fname);
@@ -549,11 +551,11 @@ class MediaController extends Controller
             $em->flush();
 
             if (!$entityPublished && $isPublished) {
-                $this->addNotification($entity, 'pusblish', 'publié');
+                $this->addNotification($entity, 'publish', 'publié');
             } elseif ($entityPublished && !$isPublished) {
-                $this->addNotification($entity, 'unpusblish', 'dépublié');
+                $this->addNotification($entity, 'unpublish', 'dépublié');
             } else {
-                $this->addNotification($entity, 'edit', 'édité');
+                $this->addNotification($entity, 'warning', 'édité');
             }
 
             return $this->redirect($this->generateUrl('media_show', array('id' => $id)));

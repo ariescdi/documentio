@@ -234,7 +234,6 @@ class UserController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
             return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 

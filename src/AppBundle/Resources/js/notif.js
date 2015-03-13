@@ -10,6 +10,12 @@ $(document).ready(function () {
         $('.notifBlock').toggle('ease-in');
     });
 
+    $('body').click(function(e){
+        if(!$(e.target).parent('.notifButton').length) {
+            $('.notifBlock').slideUp('ease-in');
+        }
+    });
+
     // FIRST FETCH OF EVERY NOTIFICATIONS
 
     $.ajax({
@@ -27,11 +33,26 @@ $(document).ready(function () {
             .forEach(function (x){
                 var showMedia = Routing.generate('media_show', { id: x.media_id });
                 array[x.id] = true;
-                var $list = $('<li></li>').attr('data-notif', x.id);
+                switch(x.feedback) {
+                    case 'success':
+                        var $picto = $('<i></i>').addClass('fa fa-pencil-square-o');
+                        break;
+                    case 'warning':
+                        var $picto = $('<i></i>').addClass('fa fa-exclamation-triangle');
+                        break;
+                    case 'publish':
+                        var $picto = $('<i></i>').addClass('fa fa-check');
+                        break;
+                    case 'unpublish':
+                        var $picto = $('<i></i>').addClass('fa fa-minus-square');
+                        break;
+                }
+                var $list = $('<li></li>').attr({'data-notif': x.id, 'data-feedback':x.feedback});
                 var $link = $('<a></a>').html(x.message);
                 var $span = $('<span></span>');
                 $span.attr({ class:'glyphicon glyphicon-remove notifSeen' });
                 $link.attr({ href: showMedia });
+                $list.append($picto);
                 $list.append($link);
                 $list.append($span);
                 $content.append($list);
@@ -77,11 +98,26 @@ $(document).ready(function () {
                 .forEach(function (x) {
                     var showMedia = Routing.generate('media_show', { id: x.media_id });
                     array[x.id] = true;
-                    var $list = $('<li></li>').attr('data-notif', x.id);
+                    switch(x.feedback) {
+                        case 'success':
+                            var $picto = $('<i></i>').addClass('fa fa-pencil-square-o');
+                            break;
+                        case 'warning':
+                            var $picto = $('<i></i>').addClass('fa fa-exclamation-triangle');
+                            break;
+                        case 'publish':
+                            var $picto = $('<i></i>').addClass('fa fa-check');
+                            break;
+                        case 'unpublish':
+                            var $picto = $('<i></i>').addClass('fa fa-minus-square');
+                            break;
+                    }
+                    var $list = $('<li></li>').attr({'data-notif': x.id, 'feedback':x.feedback});
                     var $link = $('<a></a>').html(x.message);
                     var $span = $('<span></span>');
                     $span.attr({ class:'glyphicon glyphicon-remove notifSeen' });
                     $link.attr({ href:showMedia });
+                    $list.append($picto);
                     $list.append($link);
                     $list.append($span);
                     $content.append($list);
