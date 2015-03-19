@@ -37,7 +37,7 @@ class MediaType extends AbstractType
 
         $builder
             ->add('name', 'text', array('label' => 'Nom'))
-            ->add('comment', 'textarea', array('label' => 'Description'))
+            ->add('comment', 'textarea', array('label' => 'Description','attr'=> array('class'=>'tinymce')))
             ->add('file', 'file', array('label' => 'Fichier',
                     'required' => $fileRequired,
                 ))

@@ -76,35 +76,30 @@ $(document).ready(function ()
     });
 
     $('#colorpicker').on('hide.spectrum', function (e, color) {
-        if (color != '{{ app.session.get('theme') | raw }}') {
-            $.ajax({
-                url: '{{ path('genererCss', {name:'theme'}) }}',
-                type: 'POST',
-                data: 'value=' + color,
-                dataType: 'html',
-                success: function () {
-                    $(location).attr('href', document.URL);
-                }
-            });
-        }
+        genererCss(color);
     });
 
     $('#palette').on('move.spectrum', function (e, color) {
-        if (color != '{{ app.session.get('theme') | raw }}') {
-            $.ajax({
-                url: '{{ path('genererCss', {name:'theme'}) }}',
-                type: 'POST',
-                data: 'value=' + color,
-                dataType: 'html',
-                success: function () {
-                    $(location).attr('href', document.URL);
-                }
-            });
-        }
+        changeColor(color);
+        genererCss(color);
     });
 
     $('.carousel').carousel();
 });
+
+function genererCss(color) {
+    if (color != '{{ app.session.get('theme') | raw }}') {
+        $.ajax({
+            url: '{{ path('genererCss', {name:'theme'}) }}',
+            type: 'POST',
+            data: 'value=' + color,
+            dataType: 'html',
+            success: function () {
+                $(location).attr('href', document.URL);
+            }
+        });
+    }
+}
 
 function changeColor(color) {
     $('.background-nav').css('background-color', color);

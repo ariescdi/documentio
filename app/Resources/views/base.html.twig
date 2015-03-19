@@ -7,6 +7,8 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
             {% if app.session.get('theme') %}
                 <link rel="stylesheet" href="{{ asset('css/override_color.css') }}" />
+            {% else %}
+                <script>genererCss({{ craue_setting('theme') }});</script>
             {% endif %}
         {% endblock %}
 

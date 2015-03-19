@@ -7,6 +7,8 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
             {% if app.session.get('theme') %}
                 <link rel="stylesheet" href="{{ asset('css/override_color.css') }}" />
+            {% else %}
+                <script>genererCss({{ craue_setting('theme') }});</script>
             {% endif %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -32,6 +34,7 @@
             <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             <script type="text/javascript">{% include 'AppBundle:Site:App.js.twig' %}</script>
+            <script>{{ tinymce_init() }}</script>
         {% endblock %}
     </body>
 </html>

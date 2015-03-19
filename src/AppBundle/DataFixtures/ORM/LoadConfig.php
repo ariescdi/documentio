@@ -12,7 +12,7 @@ class LoadConfig implements FixtureInterface
     {
         $setting = new Setting();
         $setting->setName('theme');
-        $setting->setValue('blue');
+        $setting->setValue('#23a3de');
         $manager->persist($setting);
         $manager->flush();
 
