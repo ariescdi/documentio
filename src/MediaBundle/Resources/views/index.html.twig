@@ -21,7 +21,7 @@
                 <tr>
                     <td><a href="{{ path('media_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{{ entity.name }}</td>
-                    <td>{{ entity.comment }}</td>
+                    <td>{{ entity.comment|striptags|truncate(50) }}</td>
                     <td>{{ entity.path }}</td>
                     <td>{% if entity.creationdate %}{{ entity.creationdate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if entity.updatedate %}{{ entity.updatedate|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -71,7 +71,7 @@
                                     </button>
                                 </div>
                                 <div class='row'>
-                                    {{ entity.comment }}
+                                    {{ entity.comment|striptags|truncate(50) }}
                                 </div>
                             </div>
                             <div class='row' style="height:60px;">

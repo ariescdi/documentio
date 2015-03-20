@@ -27,7 +27,7 @@
 
                 <div class="panel-body">
                     <div class="col-xs-12">
-                        <p>{{entity.comment | truncate(50) }}</p>
+                        <p>{{entity.comment |striptags | truncate(50) }}</p>
                     </div>
                     <div class="col-xs-3">
                         <p>Catégorie : {{ entity.category.name }}</p>
