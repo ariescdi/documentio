@@ -558,7 +558,7 @@ class MediaController extends Controller
                 $this->addNotification($entity, 'warning', 'édité');
             }
 
-            return $this->redirect($this->generateUrl('media_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('media_edit', array('id' => $id)));
         }
 
         return $this->render('MediaBundle:Media:edit.html.twig', array(
