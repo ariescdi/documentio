@@ -204,3 +204,4 @@ stfalcon_tinymce:
         include_jquery: false
         tinymce_jquery: true
         selector: ".tinymce"
+        language: %locale%
