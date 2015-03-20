@@ -246,26 +246,23 @@ class UserController extends Controller
     /**
      * Deletes a User entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/delete/{id}", name="user_delete")
      *
-     * @Method("DELETE")
+     * @Method({"DELETE","GET"})
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('MediaBundle:User')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MediaBundle:User')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Impossible de trouver cet utilisateur.');
         }
+
+        $em->remove($entity);
+        $em->flush();
+
+        //$this->addNotification($entity, 'delete', 'supprimé');
 
         return $this->redirect($this->generateUrl('user'));
     }
