@@ -271,6 +271,15 @@ class MediaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:Media')->findBy(array(), array('isPublished' => 'asc'));
+
+        $sumMark = $em->getRepository('MediaBundle:Media')->sumMark();
+        $mark = $sumMark[1];
+        $count = count($entities);
+
+        $average = number_format( ($mark/$count),2);
+
+        $countNotPublished = $em->getRepository('MediaBundle:Media')->countNotPublished();
+
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(
             $entities,
@@ -279,8 +288,11 @@ class MediaController extends Controller
         );
 
         return $this->render('MediaBundle:Media:index.html.twig', array(
-            'entities' => $entities,
+            'entities'  => $entities,
             'user_id'   => $userId,
+            'count'     => $count,
+            'average'   => $average,
+            'countNotPublished' => $countNotPublished
         ));
     }
     /**

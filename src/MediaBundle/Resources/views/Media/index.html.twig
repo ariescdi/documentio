@@ -3,6 +3,19 @@
     Liste des média
 {% endblock %}
 {% block body -%}
+
+<p>
+    Il y a {{count}} médias
+    {% if countNotPublished[1] == 0  %}
+        tous publiés.
+    {% elseif countNotPublished[1] == 1  %}
+        dont 1 non publié.
+    {% else %}
+        dont {{countNotPublished[1]}} non publiés.
+    {% endif %}
+    La note moyenne des documents est de {{ average }}.
+</p>
+
 <div class="table-responsive">
     <table class="records_list table table-hover" data-height="299" data-sort-name="name" data-sort-order="id">
         <thead>
