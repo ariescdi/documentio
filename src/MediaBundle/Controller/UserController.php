@@ -30,9 +30,11 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:User')->findAll();
+        $count = count($entities);
 
         return array(
             'entities' => $entities,
+            'count'    => $count
         );
     }
     /**

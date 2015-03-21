@@ -6,7 +6,7 @@
 
 {% block body -%}
 
-
+    <p>Il y a {{count}} {% if count > 1 %}utilisateurs{% else %}utilisateur{% endif %}.</p>
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>

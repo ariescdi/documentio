@@ -3,6 +3,8 @@
     Liste des types de média
 {% endblock %}
 {% block body -%}
+    <p>Il y a {{count}} {% if count > 1 %}types de fichier{% else %}type de fichier{% endif %}.</p>
+
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>

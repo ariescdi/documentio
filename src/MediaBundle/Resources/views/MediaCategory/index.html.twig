@@ -3,6 +3,9 @@
     Liste des catégories
 {% endblock %}
 {% block body -%}
+
+    <p>Il y a {{count}} {% if count > 1 %}catégories{% else %}catégorie{% endif %}.</p>
+
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>
