@@ -1,12 +1,12 @@
 {% extends '::base_admin.html.twig' %}
 {% block h1 -%}
-    <h1>{{ entity.name }}</h1>
+    { entity.name }}
 {% endblock %}
 {% block body -%}
     <div class="container">
         <div class="well container-fluid">
             <div class='col-md-8'>
-                {{ entity.comment }}
+                {{ entity.comment|raw }}
             </div>
             <div class='col-md-4'>
                 <div class="row">

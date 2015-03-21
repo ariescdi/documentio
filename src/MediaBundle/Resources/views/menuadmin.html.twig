@@ -137,7 +137,14 @@
                             {% endif %}
                             <li><a href="{{ path('clock_edit') }}">Réglage de l'horloge</a></li>
                         </ul>
-                        <div class="navbar-form navbar-right notifButton">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="#" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> {{ app.security.getToken().getUser().getUsername() | capitalize }}</a>
+                            </li>
+                        </ul>
+                        {{ render(path('user_card',{'id': app.security.getToken().getUser().getId() })) }}
+
+                        <div class="navbar-form navbar-left notifButton">
                             <button class="glyphicon glyphicon-bell btn"></button>
                             <div class="notifCount"></div>
                         </div>
@@ -148,10 +155,12 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="" id="userCard" class="userCardButton" role="button" onclick="toggle_visibility(this.id);"><span class="glyphicon glyphicon-user"></span> {{ app.security.getToken().getUser().getUsername() | capitalize }}</a>
+                                <a href="{{ path('index') }}">
+                                    <i class="glyphicon glyphicon-forward"></i>
+                                    Retour au site
+                                </a>
                             </li>
                         </ul>
-                        {{ render(path('user_card',{'id': app.security.getToken().getUser().getId() })) }}
                     </div><!-- /.navbar-collapse -->
                 {% endif %}
             </section>

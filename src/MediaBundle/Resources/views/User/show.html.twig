@@ -1,5 +1,9 @@
 {% extends '::base_admin.html.twig' %}
 
+{% block h1 %}
+Informations Personnelles
+{% endblock %}
+
 {% block body -%}
 
 <div class="media">
@@ -27,12 +31,12 @@
     </div>
     <div class="media-body">
 
-        <h4 class="media-heading">Informations Personnelles</h4>
-        Id : {{ entity.id }}<br>
-        Nom d'utilisateur : {{ entity.username }} <br>
-        Nombre de connexion : {{ entity.nbConnection }} <br>
-        Rôle : {% for role in entity.roles %} {{ role }}&nbsp; {% endfor %} <br>
-        Email : {{ entity.email }} <br>
+
+        <p>Id : {{ entity.id }}</p>
+        <p>Nom d'utilisateur : {{ entity.username }}</p>
+        <p>Nombre de connexion : {{ entity.nbConnection }}</p>
+        <p>Rôle : {% for role in entity.roles %} {{ role }}&nbsp; {% endfor %} </p>
+        <p>Email : {{ entity.email }} </p>
         <!-- 1 - Male -->
         <!-- 2 - Female -->
         <!-- 3 - Other -->
@@ -40,8 +44,8 @@
             Sexe : Homme <br>
         {% elseif entity.sex == 2 %}
             Sexe : Femme <br>
-        {% elseif entity.sec == 3 %}
-            Sexe : Homme avec une chatte/ Femme à quequette <br>
+        {% elseif entity.sex == 3 %}
+            Sexe : Autre <br>
         {% endif %}
 
         &nbsp;
@@ -63,7 +67,12 @@
                         <i class="glyphicon glyphicon-edit"></i> Modifier le mot de passe
                     </a>
                 </div>
-                {{ form(delete_form) }}
+
+                <div class="btn btn-default">
+                    <a href="{{ path('user_delete', { 'id': entity.id }) }}">
+                        <i class="glyphicon glyphicon-trash"></i> Supprimer
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -80,9 +89,9 @@
                         <!-- <i class="fa fa-file-pdf-o"></i> AJOUTER L'IMAGE POUR LE TYPE DE DOCUMENT -->
                         <div class="caption">
 
-                            Titre : {{ doc.name }} <br>
-                            Date de création : {{ doc.creationDate | date('d-m-Y') }} <br>
-                            Note : {{ doc.mark }} <br>
+                            <p>Titre : {{ doc.name }}</p>
+                            <p>Date de création : {{ doc.creationDate | date('d-m-Y') }}</p>
+                            <p>Note : {{ doc.mark }}</p>
                             &nbsp;
                             <p>
                                 <a href="{{ path('media_show', { 'id': doc.id }) }}" class="btn btn-primary" role="button">Aller vers le document</a>

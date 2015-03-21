@@ -1,4 +1,4 @@
-<div class="panel  panel-default">
+<div class="panel  panel-primary">
     <div class="panel-heading">
         <h2>Les derniers documents postés</h2>
     </div>
@@ -27,7 +27,7 @@
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{{ path('document_show', { 'slug': entity.slug }) }}">{{ entity.name }}</a></h3>
                             <em>note : {{ entity.mark }}</em>
-                            <p>{{entity.comment | truncate(50) }}</p>
+                            <p>{{entity.comment |striptags| truncate(50) }}</p>
                             <p ><span class="text-left">Le {{ entity.creationDate|date('d-m-Y') }}</span class="text-right"> Par {{ entity.owner.username }}<span></span></p>
                         </div>
                     </div>

@@ -1,8 +1,10 @@
 {% extends '::base_admin.html.twig' %}
 {% block h1 -%}
-    <h1>Liste des mots clefs</h1>
+    Liste des mots clefs
 {% endblock %}
 {% block body -%}
+    <p>Il y a {{count}} {% if count > 1 %}mots clés{% else %}mot clé{% endif %}.</p>
+
     <table class="records_list table table-hover" data-sort-name="name" data-sort-order="id">
         <thead>
             <tr>

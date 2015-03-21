@@ -1,12 +1,11 @@
 {% extends '::base_admin.html.twig' %}
 {% block h1 -%}
-    <h1>Media edit</h1>
+    Media edit
 {% endblock %}
 {% block body -%}
     {% if user_id == owner_id or is_granted('ROLE_ADMIN') %}
     {{ form(edit_form) }}
-    
-    <textarea class="tinymce"></textarea>
+
     <div class="btn-toolbar">
         <div class="btn-group">
             <div class="btn btn-default">

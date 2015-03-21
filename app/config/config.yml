@@ -199,8 +199,9 @@ services:
      class: Twig_Extensions_Extension_Text
      tags:
          - { name: twig.extension }
-         
+
 stfalcon_tinymce:
-        include_jquery: true
+        include_jquery: false
         tinymce_jquery: true
         selector: ".tinymce"
+        language: %locale%

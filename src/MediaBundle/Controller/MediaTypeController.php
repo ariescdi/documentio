@@ -30,9 +30,11 @@ class MediaTypeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('MediaBundle:MediaType')->findAll();
+        $count = count($entities);
 
         return array(
             'entities' => $entities,
+            'count'    => $count
         );
     }
     /**

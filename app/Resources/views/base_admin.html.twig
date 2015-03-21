@@ -17,9 +17,9 @@
         {% include '::header_admin.html.twig' %}
         <div class="container">
             <section class="col-lg-12">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        {% block h1 %}{% endblock %}
+                        <h1>{% block h1 %}{% endblock %}</h1>
                     </div>
                     <div class="panel-body">
                         {% block body %}{% endblock %}
@@ -34,7 +34,7 @@
             <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             <script type="text/javascript">{% include 'AppBundle:Site:App.js.twig' %}</script>
-            <script>{{ tinymce_init() }}</script>
+            {{ tinymce_init() }}
         {% endblock %}
     </body>
 </html>

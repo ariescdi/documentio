@@ -158,12 +158,28 @@ WHERE m.id IN (
         return $q->getResult();
     }
 
+    public function sumMark()
+    {
+        $dql = "SELECT SUM(m.mark) FROM MediaBundle:Media m ";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getSingleResult();
+    }
+
     public function mediaByCategory($slug)
     {
         $dql = "SELECT m FROM MediaBundle:Media m JOIN m.category c WHERE c.slug = :slug AND m.isPublished = true";
         $q = $this->getEntityManager()->createQuery($dql)->setParameter('slug', $slug);
 
         return $q->getResult();
+    }
+
+    public function countNotPublished()
+    {
+        $dql = "SELECT COUNT(m) FROM MediaBundle:Media m  WHERE m.isPublished = false";
+        $q = $this->getEntityManager()->createQuery($dql);
+
+        return $q->getSingleResult();
     }
 
     public function nbMedia()

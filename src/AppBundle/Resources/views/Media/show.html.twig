@@ -24,7 +24,7 @@
         </p>
     </object>
 
-    <p>{{ entity.comment }}</p>
+    <p>{{ entity.comment|raw }}</p>
     <p>Note : {{entity.mark}}</p>
 
     {% if is_granted('ROLE_USER') %}
