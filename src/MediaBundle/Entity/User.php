@@ -159,6 +159,16 @@ class User extends BaseUser
     }
 
     /**
+     * Gets the last login time.
+     *
+     * @return \DateTime
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
      * Set sex.
      *
      * @param integer $sex
