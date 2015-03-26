@@ -155,10 +155,24 @@ class UserController extends Controller
         $userCard = $em->getRepository('MediaBundle:User')->findOneById($id);
 
         if (!$userCard) {
-            throw $this->createNotFoundException('Impossible de trouver cette utilisateur.');
+            throw $this->createNotFoundException('Impossible de trouver cet utilisateur.');
         }
 
-        return array('userCard' => $userCard);
+
+        $heureLastLogin = $userCard->getLastLogin();
+        // $heureLastLogin = $heureLastLogin->getTimestamp();
+
+
+        $heureActuelle = new \DateTime();
+        // $heureActuelle = $heureActuelle->getTimestamp();
+
+        $interval = $heureLastLogin->diff($heureActuelle);
+
+        // var_dump($interval);
+        // exit;
+
+        return array('userCard' => $userCard,
+                    'interval' => $interval);
     }
 
     public function isAdmin($roles)
