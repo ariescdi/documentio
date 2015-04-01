@@ -10,7 +10,7 @@
         <div class="btn-group">
             <div class="btn btn-default">
                 <a href="{{ path('media_delete', { 'id': entity.id }) }}">
-                    <i class="glyphicon glyphicon-backward"></i> Supprimer
+                    <i class="glyphicon glyphicon-trash"></i> Supprimer
                 </a>
             </div>
             <div class="btn btn-default">
@@ -22,7 +22,7 @@
     </div>
     {% else %}
     <p class="alert alert-danger">
-        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Vous ne disponez pas des autorisations nécessaires pour modifier ce média
+        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Vous ne disposez pas des autorisations nécessaires pour modifier ce média
     </p>
     {% endif %}
 {% endblock %}
