@@ -1,0 +1,10 @@
+{% extends '::base_admin.html.twig' %}
+{% block h1 %}
+    Oups ! Une erreur est survenue !
+{% endblock %}
+{% block body %}
+    
+    <img src="{{ asset('images/error2_404.jpg') }}" alt="image_erreur" />
+    <h2>La page demandé n'est pas disponible ou est inexistante.</h2>
+    <p><a class="btn btn-primary" href="{{ path('index') }}">Retour à l'accueil</a></p>
+{% endblock %}
