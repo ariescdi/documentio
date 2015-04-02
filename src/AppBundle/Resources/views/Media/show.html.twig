@@ -19,7 +19,7 @@
             height="100%">
 
         <p>It appears your Web browser is not configured to display {{ entity.type.name }} files.
-            No worries, just <a href='{{ entity.webpath }}'>click here to download {{ entity.name }}.</a>
+            No worries, just <a href="{{asset(entity.webpath)}}" download="{{ entity.name }}.{{ entity.type.ext }}" target="_blank">click here to download {{ entity.name }}.</a>
             Or here to <a class="plugin-search">search for plugin</a>.
         </p>
     </object>
@@ -34,7 +34,7 @@
         <p/>
     {% endif %}
 
-    <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{entity.name }}" target="_blank">Télécharger {{entity.name }}</a>
+    <p><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>: <a href="{{asset(entity.webpath)}}" download="{{ entity.name }}.{{ entity.type.ext }}" target="_blank">Télécharger {{entity.name }}</a>
 
     {% if is_granted('ROLE_USER') %}
         <div class="btn btn-default">

@@ -6,12 +6,50 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class MediaControllerTest extends WebTestCase
 {
-    /*
     public function testCompleteScenario()
     {
+        /* @var $crawler Symfony\Component\DomCrawler\Crawler */
+        
         // Create a new client to browse the application
         $client = static::createClient();
-
+        
+        // basic index test
+        $url = '/';
+        $crawler = $client->request('GET', $url);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET $url");
+        
+        // admin must redirect to login
+        $url = '/admin/';
+        $crawler = $client->request('GET', $url);
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status must be 302 (redirect) or GET $url when unlogged");
+        
+        // follow redirect & login
+        $crawler = $client->followRedirect();
+        $form = $crawler->selectButton('_submit')->form(array(
+            '_username' => 'sylvain',
+            '_password' => 'sgarcia',
+        ));
+                
+        $crawler = $client->submit($form);
+        $this->assertEquals($url . 'login_check' , $client->getRequest()->getPathInfo());
+        
+        $response = $client->getResponse();
+        
+        $this->assertEquals(302, $response->getStatusCode(), "Unexpected HTTP status code for GET $url/login_check");
+        
+        $crawler = $client->followRedirect();
+        $this->assertEquals($url, $client->getRequest()->getPathInfo());
+        
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET $url");
+        $this->assertEquals($url, $client->getRequest()->getPathInfo());
+        
+        
+        
+        // Create new media
+        //$url = '/admin/media/new';
+        //$crawler = $client->request('GET', $url);
+        //$this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET $url");
+        /*
         // Create a new entry in the database
         $crawler = $client->request('GET', '/media/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /media/");
@@ -49,7 +87,7 @@ class MediaControllerTest extends WebTestCase
 
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
-    }
-
-    */
+         
+         */
+    } 
 }
