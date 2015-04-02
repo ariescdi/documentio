@@ -31,7 +31,7 @@
                                             {{ media.name }}
                                         </a>
                                     </td>
-                                    <td>{{ media.comment| truncate(50) }}</td>
+                                    <td>{{ media.comment|striptags|truncate(50) }}</td>
                                     <td>{{ media.mark }}</td>
                                 </tr>
                             {% endfor %}
