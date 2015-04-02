@@ -161,7 +161,7 @@
                     <div class="panel-body">
                         <div class="col-xs-3">Catégorie : {{ entity.category.name }}</div>
                         <div class="col-xs-3">Type de fichier : {{ entity.type.name }}</div>
-                        <div class="col-xs-3">{% if entity.creationdate %}<i class="glyphicon glyphicon-calendar"></i> {{ entity.creationdate|date('Y-m-d') }}{% endif %}</div>
+                        <div class="col-xs-3">{% if entity.creationdate %}<i class="glyphicon glyphicon-calendar"></i> {{ entity.creationdate|date('d-m-Y') }}{% endif %}</div>
                         <div class="col-xs-3"><a href="mailto:{{ entity.owner.email }}"><i class="glyphicon glyphicon-user"></i>{{ entity.owner.username }}</a></div>
                     </div>
                 </div>
