@@ -2,7 +2,7 @@
     <div class="panel panel-default panel-horizontal">
         <div class="panel-body" style="text-align: center;">
             <canvas class="tags-canvas"></canvas>
-            <div class="tags">
+            <div class="tags" style="display: none">
                 <ul>
                     {% for entity in tags %}
                         <li><a href="{{ path('document_show', { 'slug': entity.medias[0].slug }) }}">{{entity.word}}</a></li>
@@ -11,7 +11,7 @@
             </div>
 
             <canvas class="tags-canvas"></canvas>
-            <div class="tags">
+            <div class="tags" style="display: none">
                 <ul>
                     {% for entity in types %}
                         <li><a>{{ entity.ext }}</a></li>
@@ -20,7 +20,7 @@
             </div>
 
             <canvas class="tags-canvas"></canvas>
-            <div class="tags">
+            <div class="tags" style="display: none">
                 <ul>
                     {% for entity in types %}
                         <li><a>{{ entity.name }}</a></li>
